@@ -1,0 +1,1 @@
+Voeg een Captcha toe aan registratie-, commentaar- en contact-formulier pagina's (met dank aan P@t)

@@ -1,0 +1,481 @@
+/*
+  SimpleNG theme for Piwigo
+
+  For some instructions on how to use and customize this file, see
+  https://github.com/saimn/simple-theme-piwigo#customize
+*/
+
+@import "../bootstrap/less/bootstrap.less";
+
+// Variables
+// -------------------------
+
+@textColor:      #eee;
+@headingsColor:  #eee;
+@linkColor:      #eee;
+@linkColorHover: #fff;
+@secondaryColor: #888;
+@bodyBackground: #303030;
+@blue:           #08c;
+
+@dropdownBackground:           #2c2c2c;
+@dropdownDividerTop:           #333;
+@dropdownDividerBottom:        #333;
+@dropdownLinkColor:            #999;
+@dropdownLinkColorHover:       @white;
+@dropdownLinkColorActive:      @white;
+@dropdownLinkBackgroundActive: @secondaryColor;
+@dropdownLinkBackgroundHover:  @dropdownLinkBackgroundActive;
+
+@sansFontFamily: 'Open Sans', sans-serif;
+
+// Main styles
+// -------------------------
+
+figure { margin: 0; }
+
+a {
+  &:hover {
+    text-decoration: none;
+    text-shadow: 0 0 6px #999;
+  }
+}
+
+h1, h2, h3, h4 {
+  text-shadow: 1px 1px 3px #000000;
+
+  a {color: @headingsColor;}
+}
+
+blockquote {
+  border-left: 5px solid @secondaryColor;
+}
+
+// Layout
+// -------------------------
+
+#theHeader {
+  margin-bottom: 1em;
+}
+
+#copyright {
+  margin: 1em 0;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: @fontSizeSmall;
+}
+
+.titrePage {
+  h2 {
+    a {margin: 0 1ex;}
+    a:first-child {margin-left: 0;}
+    a:last-child {margin-right: 0;}
+  }
+
+  ul {
+    line-height: 36px;
+    float: right;
+    margin: 4px 0 0 10px;
+
+    li {
+      display: inline-block;
+      margin-left: 10px;
+    }
+
+    .imageNumber {
+      font-size: 24px;
+      color: @secondaryColor;
+    }
+  }
+
+  .button {
+    float: none;
+  }
+
+  img {
+    max-height: 16px;
+    margin: 0 5px;
+  }
+}
+
+#thePicturePage h2 {
+  font-size: 20px;
+}
+
+// Tags
+// -------------------------
+
+#fullTagCloud {
+  text-align: center;
+
+  span {
+    white-space: nowrap;
+    margin: 0 0.5em;
+  }
+
+  .tagLevel5 { font-size: 130%; }
+  .tagLevel4 { font-size: 120%; }
+  .tagLevel3 { font-size: 110%; }
+  .tagLevel2 { font-size: 100%; }
+  .tagLevel1 { font-size: 90%; }
+}
+
+.tagLetter {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 1em;
+
+  h3 {
+    border-bottom: 1px solid @headingsColor;
+    margin-bottom: 10px;
+    padding-bottom: 2px;
+  }
+  .nbEntries {
+    float: right;
+    margin-left: 1em;
+    color: @secondaryColor;
+  }
+}
+
+// Forms
+// -------------------------
+
+form.filter {
+  padding-bottom: 20px;
+}
+legend {
+  color: @textColor;
+  border-color: @textColor;
+}
+label {
+  color: @textColor;
+}
+input, textarea, select {
+  background-color: @bodyBackground;
+  border: 1px solid @secondaryColor;
+  color: @textColor;
+}
+.tagSelection li {
+  display: inline-block;
+  margin-left: 1em;
+}
+.mandatorystar { color: #e04040; }
+
+// Menubar
+// -------------------------
+
+.menuInfoCat, .menuInfoCatByChild {
+  color: @secondaryColor;
+  float: right;
+  font-style: italic;
+}
+
+.selected {font-weight: bold;}
+
+// Images thumbnails
+// -------------------------
+
+.thumbnail {
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  overflow: hidden;
+
+  h3  { font-weight: normal; height: 54px; }
+  a   { display: block; }
+  .caption a { display: inline; }
+
+  // Try to fix piwigo's behavior: sometimes an image is 179px height instead
+  // of 180px.
+  img {
+    @media (min-width: 1200px) {
+      height: 180px;
+    }
+    @media (min-width: 980px) and (max-width: 1200px) {
+      height: 152px;
+    }
+    @media (min-width: 768px) and (max-width: 980px) {
+      height: 115px;
+    }
+  }
+}
+
+.nb-comments, .nb-hits { font-weight: normal; }
+.zero { display: none; }
+
+// Image styles
+// -------------------------
+
+#theImage img, .thumbnail img {
+  -moz-transition-duration: 0.2s;
+  -moz-transition-property: opacity;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  opacity: 1;
+}
+.thumbnail:hover img {
+  opacity: 0.5;
+}
+
+// Page : title bar
+// -------------------------
+
+.navigationBar {
+  text-align: center;
+  color: @secondaryColor;
+  padding: 20px;
+}
+
+.pageNumberSelected { font-weight: bold; }
+
+// Pictures pages
+// -------------------------
+
+.navButtons {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+#theImage {
+  text-align: center;
+  margin: 2em 0;
+  position: relative;
+
+  a, img {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  figcaption {
+    margin: 1em;
+  }
+}
+
+.picture_nav {
+  text-align: center;
+
+  .imgNext, .imgPrev {
+    font-size: 5em;
+  }
+  .spacing {
+    display: inline-block;
+    width: 200px;
+  }
+}
+
+// Rating
+// -------------------------
+
+#rating {
+  float: right;
+  margin: 10px 0;
+}
+
+#rateForm {
+  display: inline-block;
+  margin-bottom: 0;
+
+  input, input:active {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  input.rateButtonStarFull, input.rateButtonStarEmpty {
+    background-image: url("../img/glyphicons-halflings-white.png");
+    background-position: 14px 14px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 14px;
+    vertical-align: text-top;
+    width: 14px;
+  }
+  input.rateButtonStarFull  {
+    background-position: -120px 0;
+  }
+  input.rateButtonStarEmpty {
+    background-position: -144px 0;
+  }
+}
+
+// Tabs
+// -------------------------
+
+#imageInfos, #imageMeta {
+  padding: 0 20px 10px;
+}
+.nav-pills {
+  margin: 0 20px;
+
+  .active > a, .active > a:hover {
+    background-color: @blue;
+  }
+}
+
+// Comments
+// -------------------------
+
+#commentAdd {
+  h3, form {
+    margin: 0 20px;
+  }
+  input[type="text"], textarea {
+    width: 95%;
+  }
+}
+
+.actions {
+  float: right;
+  list-style: none;
+}
+
+#commentList {
+  ul { margin: 0 20px 20px 0; }
+  li { padding: 0 0 1em; }
+}
+
+.author {
+  font-weight: bold;
+  font-variant: small-caps;
+  font-size: 1.2em;
+}
+.date {font-style: italic;}
+
+#theCommentsPage form.filter label {
+  display: inline-block;
+}
+
+#comments {
+  ul {padding-bottom: 10px;}
+  li {margin-bottom: 20px;}
+  .illustration {text-align: right;}
+}
+
+// Calendar
+// -------------------------
+
+.calendarViews, .calendarCalBar {margin: 1em 0;}
+.calendarBar {text-align: center;}
+.calendarBar span {margin: 0 0.5em;}
+
+.calCalHead {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.calMonth {margin: 1em auto;}
+.calMonth td {text-align: center;}
+
+.calImg {text-align: center;}
+.calImg img {height: 80px;}
+
+.calBackDate, .calForeDate {
+  display: none;
+}
+
+// Slideshow
+// -------------------------
+
+#slideshow {
+  padding-bottom: 10px;
+
+  .titrePage ul {
+    float: none;
+    text-align: center;
+  }
+}
+
+// Tooltips
+// -------------------------
+
+.tooltip {
+  font-size: 13px;
+}
+
+// Plugins
+// -------------------------
+
+.pwg-button-text {
+  display: none;
+}
+
+.pwg-icon {
+  background-image: none;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 26px;
+  overflow: hidden;
+  text-indent: -9999px;
+  vertical-align: bottom;
+  width: 26px;
+  cursor: pointer;
+}
+
+// Language Switch
+.menuf .flags {border: 0 !important;}
+.flag-pan { border:2px solid @secondaryColor; background-color: @bodyBackground; }
+.menuf li a:hover { border:0}
+.languageSwitchBoxTitle {color: @textColor;}
+
+// stuff-block
+.personal_block {padding: 0;}
+.stuffs_block .titrePage h2 {color: @headingsColor;}
+
+// Media Queries
+// -------------------------
+
+// Landscape phones and down
+@media (max-width: 480px) {}
+
+// Landscape phone to portrait tablet
+@media (max-width: 768px) {
+  #updateRate {display: none;}
+
+  .nav-pills {margin: 0;}
+  .nav-pills > li > a {padding-left: 0;}
+
+  #theImage {
+    margin: 1em 0;
+  }
+  #thePicturePage h2 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .titrePage ul {
+    float: none;
+    margin: 0;
+  }
+}
+
+// Portrait tablet to landscape and desktop
+@media (max-width: 980px) {
+  .picture_nav {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+      bottom: 0;
+      padding: 0;
+      position: fixed;
+      width: 100%;
+      margin-left: -20px;
+      z-index: 100;
+
+    .imgNext, .imgPrev {
+    }
+    .imgNext {right: 25%;}
+    .imgPrev {left: 25%;}
+  }
+  .titrePage ul .imageNumber {font-size: 20px;}
+}
+
+// Desktop
+@media (min-width: 981px) {
+  body {
+    padding-top: 60px;
+  }
+  .subcontent {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.15);
+    .border-radius(6px);
+    padding: 20px;
+    margin-bottom: 10px;
+  }
+  .titrePage {
+    margin: 0 0 20px;
+  }
+  #rating {margin-right: 20px;}
+}

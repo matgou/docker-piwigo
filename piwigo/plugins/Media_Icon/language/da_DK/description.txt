@@ -1,0 +1,1 @@
+Tilføjer en ikon ved filer der ikke er billeder.

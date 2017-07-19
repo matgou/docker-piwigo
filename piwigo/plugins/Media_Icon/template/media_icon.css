@@ -1,0 +1,294 @@
+.media_icon  {
+	width: 50px !important;
+	height: 50px !important;
+	z-index:99;
+	position: absolute;
+}
+
+/* +-----------------------------------------------------------------------+
+ * | logo                                                                  |
+ * +-----------------------------------------------------------------------+ */
+
+ .media_icon_youtube_logo, .media_icon_admin_youtube_logo {
+	background: transparent url('icons/logo_youtube.png') no-repeat;
+}
+
+.media_icon_vimeo_logo, .media_icon_admin_vimeo_logo {
+	background: transparent url('icons/logo_vimeo.png') no-repeat;
+}
+
+.media_icon_dailymotion_logo, .media_icon_admin_dailymotion_logo {
+	background: transparent url('icons/logo_dailymotion.png') no-repeat;
+}
+
+.media_icon_wat_logo, .media_icon_admin_wat_logo {
+	background: transparent url('icons/logo_wat.png') no-repeat;
+}
+
+.media_icon_wideo_logo, .media_icon_admin_wideo_logo {
+	background: transparent url('icons/logo_wideo.png') no-repeat;
+}
+
+.media_icon_video_logo, .media_icon_admin_video_logo {
+	background: transparent url('icons/logo_video.png') no-repeat;
+}
+
+.media_icon_music_logo, .media_icon_admin_music_logo {
+	background: transparent url('icons/logo_music.png') no-repeat;
+}
+
+.media_icon_pdf_logo, .media_icon_admin_pdf_logo {
+	background: transparent url('icons/logo_pdf.png') no-repeat;
+}
+
+.media_icon_document_logo, .media_icon_admin_document_logo {
+	background: transparent url('icons/logo_document.png') no-repeat;
+}
+
+.media_icon_spreadsheet_logo, .media_icon_admin_spreadsheet_logo {
+	background: transparent url('icons/logo_spreadsheet.png') no-repeat;
+}
+
+.media_icon_presentation_logo, .media_icon_admin_presentation_logo {
+	background: transparent url('icons/logo_presentation.png') no-repeat;
+}
+ 
+/* +-----------------------------------------------------------------------+
+ * | page                                                                 |
+ * +-----------------------------------------------------------------------+ */
+ 
+.media_icon_youtube_page, .media_icon_admin_youtube_page {
+	background: transparent url('icons/page_video.png') no-repeat;
+}
+
+.media_icon_vimeo_page, .media_icon_admin_vimeo_page {
+	background: transparent url('icons/page_video.png') no-repeat;
+}
+
+.media_icon_dailymotion_page, .media_icon_admin_dailymotion_page {
+	background: transparent url('icons/page_video.png') no-repeat;
+}
+
+.media_icon_wat_page, .media_icon_admin_wat_page {
+	background: transparent url('icons/page_video.png') no-repeat;
+}
+
+.media_icon_wideo_page, .media_icon_admin_wideo_page {
+	background: transparent url('icons/page_video.png') no-repeat;
+}
+
+.media_icon_video_page, .media_icon_admin_video_page {
+	background: transparent url('icons/page_video.png') no-repeat;
+}
+
+.media_icon_music_page, .media_icon_admin_music_page {
+	background: transparent url('icons/page_music.png') no-repeat;
+}
+
+.media_icon_pdf_page, .media_icon_admin_pdf_page {
+	background: transparent url('icons/page_pdf.png') no-repeat;
+}
+
+.media_icon_document_page, .media_icon_admin_document_page {
+	background: transparent url('icons/page_document.png') no-repeat;
+}
+
+.media_icon_spreadsheet_page, .media_icon_admin_spreadsheet_page {
+	background: transparent url('icons/page_spreadsheet.png') no-repeat;
+}
+
+.media_icon_presentation_page, .media_icon_admin_presentation_page {
+	background: transparent url('icons/page_presentation.png') no-repeat;
+}
+
+/* +-----------------------------------------------------------------------+
+ * | folder                                                                |
+ * +-----------------------------------------------------------------------+ */
+ 
+ .media_icon_youtube_folder, .media_icon_admin_youtube_folder {
+	background: transparent url('icons/folder_video.png') no-repeat;
+}
+
+.media_icon_vimeo_folder, .media_icon_admin_vimeo_folder {
+	background: transparent url('icons/folder_video.png') no-repeat;
+}
+
+.media_icon_dailymotion_folder, .media_icon_admin_dailymotion_folder {
+	background: transparent url('icons/folder_video.png') no-repeat;
+}
+
+.media_icon_wat_folder, .media_icon_admin_wat_folder {
+	background: transparent url('icons/folder_video.png') no-repeat;
+}
+
+.media_icon_wideo_folder, .media_icon_admin_wideo_folder {
+	background: transparent url('icons/folder_video.png') no-repeat;
+}
+
+.media_icon_video_folder, .media_icon_admin_video_folder {
+	background: transparent url('icons/folder_video.png') no-repeat;
+}
+
+.media_icon_music_folder, .media_icon_admin_music_folder {
+	background: transparent url('icons/folder_music.png') no-repeat;
+}
+
+.media_icon_pdf_folder, .media_icon_admin_pdf_folder {
+	background: transparent url('icons/folder_pdf.png') no-repeat;
+}
+
+.media_icon_document_folder, .media_icon_admin_document_folder {
+	background: transparent url('icons/folder_document.png') no-repeat;
+}
+
+.media_icon_spreadsheet_folder, .media_icon_admin_spreadsheet_folder {
+	background: transparent url('icons/folder_spreadsheet.png') no-repeat;
+}
+
+.media_icon_presentation_folder, .media_icon_admin_presentation_folder {
+	background: transparent url('icons/folder_presentation.png') no-repeat;
+}
+
+/* +-----------------------------------------------------------------------+
+ * | foldercolor                                                           |
+ * +-----------------------------------------------------------------------+ */
+ 
+ .media_icon_youtube_foldercolor, .media_icon_admin_youtube_foldercolor {
+	background: transparent url('icons/foldercolor_video.png') no-repeat;
+}
+
+.media_icon_vimeo_foldercolor, .media_icon_admin_vimeo_foldercolor {
+	background: transparent url('icons/foldercolor_video.png') no-repeat;
+}
+
+.media_icon_dailymotion_foldercolor, .media_icon_admin_dailymotion_foldercolor {
+	background: transparent url('icons/foldercolor_video.png') no-repeat;
+}
+
+.media_icon_wat_foldercolor, .media_icon_admin_wat_foldercolor {
+	background: transparent url('icons/foldercolor_video.png') no-repeat;
+}
+
+.media_icon_wideo_foldercolor, .media_icon_admin_wideo_foldercolor {
+	background: transparent url('icons/foldercolor_video.png') no-repeat;
+}
+
+.media_icon_video_foldercolor, .media_icon_admin_video_foldercolor {
+	background: transparent url('icons/foldercolor_video.png') no-repeat;
+}
+
+.media_icon_music_foldercolor, .media_icon_admin_music_foldercolor {
+	background: transparent url('icons/foldercolor_music.png') no-repeat;
+}
+
+.media_icon_pdf_foldercolor, .media_icon_admin_pdf_foldercolor {
+	background: transparent url('icons/foldercolor_pdf.png') no-repeat;
+}
+
+.media_icon_document_foldercolor, .media_icon_admin_document_foldercolor {
+	background: transparent url('icons/foldercolor_document.png') no-repeat;
+}
+
+.media_icon_spreadsheet_foldercolor, .media_icon_admin_spreadsheet_foldercolor {
+	background: transparent url('icons/foldercolor_spreadsheet.png') no-repeat;
+}
+
+.media_icon_presentation_foldercolor, .media_icon_admin_presentation_foldercolor {
+	background: transparent url('icons/foldercolor_presentation.png') no-repeat;
+}
+
+/* +-----------------------------------------------------------------------+
+ * | folderpicture                                                         |
+ * +-----------------------------------------------------------------------+ */
+ 
+.media_icon_youtube_folderpicture, .media_icon_admin_youtube_folderpicture {
+	background: transparent url('icons/folderpicture_youtube.png') no-repeat;
+}
+
+.media_icon_vimeo_folderpicture, .media_icon_admin_vimeo_folderpicture {
+	background: transparent url('icons/folderpicture_video.png') no-repeat;
+}
+
+.media_icon_dailymotion_folderpicture, .media_icon_admin_dailymotion_folderpicture {
+	background: transparent url('icons/folderpicture_video.png') no-repeat;
+}
+
+.media_icon_wat_folderpicture, .media_icon_admin_wat_folderpicture {
+	background: transparent url('icons/folderpicture_video.png') no-repeat;
+}
+
+.media_icon_wideo_folderpicture, .media_icon_admin_wideo_folderpicture {
+	background: transparent url('icons/folderpicture_video.png') no-repeat;
+}
+
+.media_icon_video_folderpicture, .media_icon_admin_video_folderpicture {
+	background: transparent url('icons/folderpicture_video.png') no-repeat;
+}
+
+.media_icon_music_folderpicture, .media_icon_admin_music_folderpicture {
+	background: transparent url('icons/folderpicture_music.png') no-repeat;
+}
+
+.media_icon_pdf_folderpicture, .media_icon_admin_pdf_folderpicture {
+	background: transparent url('icons/folderpicture_pdf.png') no-repeat;
+}
+
+.media_icon_document_folderpicture, .media_icon_admin_document_folderpicture {
+	background: transparent url('icons/folderpicture_document.png') no-repeat;
+}
+
+.media_icon_spreadsheet_folderpicture, .media_icon_admin_spreadsheet_folderpicture {
+	background: transparent url('icons/folderpicture_spreadsheet.png') no-repeat;
+}
+
+.media_icon_presentation_folderpicture, .media_icon_admin_presentation_folderpicture {
+	background: transparent url('icons/folderpicture_presentation.png') no-repeat;
+}
+
+/* +-----------------------------------------------------------------------+
+ * | cracked                                                           |
+ * +-----------------------------------------------------------------------+ */
+ 
+ .media_icon_youtube_cracked, .media_icon_admin_youtube_cracked {
+	background: transparent url('icons/cracked_youtube.png') no-repeat;
+}
+
+.media_icon_vimeo_cracked, .media_icon_admin_vimeo_cracked {
+	background: transparent url('icons/cracked_vimeo.png') no-repeat;
+}
+
+.media_icon_dailymotion_cracked, .media_icon_admin_dailymotion_cracked {
+	background: transparent url('icons/cracked_dailymotion.png') no-repeat;
+}
+
+.media_icon_wat_cracked, .media_icon_admin_wat_cracked {
+	background: transparent url('icons/cracked_wat.png') no-repeat;
+}
+
+.media_icon_wideo_cracked, .media_icon_admin_wideo_cracked {
+	background: transparent url('icons/cracked_wideo.png') no-repeat;
+}
+
+.media_icon_video_cracked, .media_icon_admin_video_cracked {
+	background: transparent url('icons/cracked_video.png') no-repeat;
+}
+
+.media_icon_music_cracked, .media_icon_admin_music_cracked {
+	background: transparent url('icons/cracked_music.png') no-repeat;
+}
+
+.media_icon_pdf_cracked, .media_icon_admin_pdf_cracked {
+	background: transparent url('icons/cracked_pdf.png') no-repeat;
+}
+
+.media_icon_document_cracked, .media_icon_admin_document_cracked {
+	background: transparent url('icons/cracked_document.png') no-repeat;
+}
+
+.media_icon_spreadsheet_cracked, .media_icon_admin_spreadsheet_cracked {
+	background: transparent url('icons/cracked_spreadsheet.png') no-repeat;
+}
+
+.media_icon_presentation_cracked, .media_icon_admin_presentation_cracked {
+	background: transparent url('icons/cracked_presentation.png') no-repeat;
+}

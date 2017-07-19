@@ -1,0 +1,1 @@
+Add a captcha to register, comment, GuestBook  and ContactForm pages

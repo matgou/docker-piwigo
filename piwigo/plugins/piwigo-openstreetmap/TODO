@@ -1,0 +1,21 @@
+TODO OpenStreetMap
+* Add support GPX file as image - Done
+* Add map with elevation on GPX picture view - Done
+* Add new option for GPX Map view (map heigth and elevation width) - Done
+* Fixed issue on custom tile (change to a better name as for Pin) - Done
+* Fixed issue on photo edit if image icon selected
+* Fixed issue - Show correctly when need the track file eg: category/album check
+* Add layer for track file on World Map
+* Add new option for select WorldMap layout version - Done
+* Clean WorldMap v3 without bottom
+* Add WorldMap v4 with slider of thumbnails
+* Review function_map
+* Test Center map option on WorldMap
+* Test GPX on mobile and tablet
+* Update description with new features
+* Update documentation with new features
+* Fixed non double value on GPX locateion update
+	Warning:  [mysql error 1054] Unknown column 'wqwq' in 'field list'
+	UPDATE piwigo27_images SET latitude=wqwq, longitude=2.151700 WHERE id = 24; in /var/www/piwigo/include/dblayer/functions_mysqli.inc.php on line 830
+
+

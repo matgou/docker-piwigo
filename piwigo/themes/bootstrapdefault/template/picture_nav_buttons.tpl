@@ -64,7 +64,7 @@
     </a>
 {/if}{/strip}
 {if isset($current.U_DOWNLOAD)}
-                    <a id="downloadSizeLink" href="{$current.U_DOWNLOAD}" title="{'Download this file'|@translate}" class="pwg-state-default pwg-button" rel="nofollow">
+                    <a id="downloadSizeLink" href="/d.php?link={$current.U_DOWNLOAD}" title="{'Download this file'|@translate}" class="pwg-state-default pwg-button" rel="nofollow">
                         <span class="glyphicon glyphicon-download-alt"></span><span class="glyphicon-text">{'Download'|@translate}</span>
                     </a>
 {/if}

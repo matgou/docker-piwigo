@@ -173,7 +173,7 @@ $.get( "/ws.php?method=pwg.images.getInfo&image_id=" + imgid, function( data ) {
   }
   image = images[0];
   url=image.getAttribute('element_url');
-  $("#downloadSizeLink").attr('href', url.replace(/([0-9]*_[a-zA-Z0-9.-]*$)/, 'pwg_high/$1'));
+  $("#downloadSizeLink").attr('href', '/d.php?img=' + url.replace("/^.*galleries/", ''));
   $("#downloadSizeLink").attr('download', url.replace(/^.*\/([0-9]*_[a-zA-Z0-9.-]*$)/, '$1'));
 });
         $(document).ready(function() {
@@ -182,4 +182,3 @@ $.get( "/ws.php?method=pwg.images.getInfo&image_id=" + imgid, function( data ) {
 
 
 {/strip}{/footer_script}
-

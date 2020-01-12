@@ -47,6 +47,11 @@ $lang['Ldap_Login Test'] = 'Ldap_Login Tests';
 $lang['Ldap_Login Plugin'] = 'Ldap_Login Spraudnis';
 $lang['Ldap server host connection'] = 'Ldap servera savienojums';
 $lang['Ldap port'] = 'Ldap ports';
-$lang['Ldap filter :'] = 'Ldap filtrs :';
-$lang['Ldap attributes'] = 'Ldap atribūti';
-?>
+$lang['Users branch'] = 'Vieta, kur būtu atrodami LDAP lietotāji (e.g.: ou=users):';
+$lang['Ldap users'] = 'LDAP lietotāji';
+$lang['Ldap groups'] = 'LDAP gtupas';
+$lang['To get them out of these roles, they must be sorted of the ldap group and then role updated in the <a href="admin.php?page=user_list">piwigo admin</a>. If a group is mandatory as described in the <a href="admin.php?page=plugin-Ldap_Login-newusers">new piwigo users tab</a>, then they must also belong to the users group.'] = 'Lai tos atbrīvotu no šīm nozīmēm, tie ir jāsakārto pēc LDAP grupām un pēc tam nozīme atjaunina <a href="admin.php?page=user_list"> piwigo admin </ a>. Ja grupa ir obligāta, kā aprakstīts <a href="admin.php?page=plugin-Ldap_Login-newusers"> jauna Piwigo lietotāja cilnē </ a>, tad tiem ir arī jāpieder lietotāju grupai.';
+$lang['Search Ldap users ?'] = 'Meklē Ldap lietotājus? Ja jūsu grupas ir izmētātas pa dažadām vietām vai OU, jums būs nepieciešams šis. Ja šo neizvēlēsities, ietaupīsit vienu ldap pieprasījumu. Jums tas nav nepieciešams, ja jūsu ldap koks ir vienkāršs (piemēram, cn = GROUPNAME, ou = groups, dc = example, dc = corn).';
+$lang['Groups branch'] = 'Vieta, kur ir atrodamas LDAP grupas (e.g.: ou=groups):  ';
+$lang['Search Ldap groups ?'] = 'Meklē Ldap lietotājus? Ja jūsu grupas ir izmētātas pa dažadām vietām vai OU, jums būs nepieciešams šis. Ja šo neizvēlēsities, ietaupīsit vienu ldap pieprasījumu. Jums tas nav nepieciešams, ja jūsu ldap koks ir vienkāršs (piemēram, cn = GROUPNAME, ou = groups, dc = example, dc = corn).';
+$lang['If you create a <a href="admin.php?page=group_list">piwigo group</a> with the same name as an ldap one, all members of the ldap group will automatically join the piwigo group at their next authentication. This allows you to create <a href="admin.php?page=help&section=groups">specific right access management</a> (restrict access to a particaular album...).'] = 'Ja izveidojat <a href="admin.php?page=group_list"> Piwigo grupu </ a> ar tādu pašu nosaukumu kā ldap, visi LDAP grupas locekļi automātiski pievienosies Piwigo grupai savā nākamajā autentifikācijā. Tas ļauj jums izveidot <a href="admin.php?page=help&section=groups"> īpašu piekļuves tiesību pārraudzību </ a> (ierobežot piekļuvi noteiktam albūmam ...). Tomēr, lai šos lietotājus dabūtu ārā, Jums tie vispirms jādabū ārā no LDAP grupas, tad Piwigo grupas iespējams atjaunināt.';

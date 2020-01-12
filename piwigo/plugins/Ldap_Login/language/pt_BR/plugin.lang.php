@@ -39,9 +39,7 @@ $lang['Do you want admins to be advertised by mail in case of new users creation
 $lang['Do you want to send mail to the new users, like casual piwigo users receive ?'] = 'Deverão novos usuários receber mensagens semelhantes aos usuários Piwigo casuais?';
 $lang['If empty, localhost and standard protocol ports will be used in configuration.'] = 'Se vazio, portas de protocolo localhost e padrão serão utilizados na configuração.';
 $lang['If empty, standard protocol ports will be used by the software.'] = 'Se vazio, portas de protocolo padrão serão usados pelo software.';
-$lang['Ldap attributes'] = 'Atributos LDAP';
 $lang['Ldap connection credentials'] = 'Credenciais de conexão LDAP';
-$lang['Ldap filter :'] = 'Filtro LDAP';
 $lang['Ldap port'] = 'Porta LDAP';
 $lang['Ldap server host'] = 'Servidor host LDAP';
 $lang['Ldap server host connection'] = 'Conexão com servidor LDAP';
@@ -49,4 +47,11 @@ $lang['Ldap_Login Plugin'] = 'Plugin Ldap_Login ';
 $lang['Ldap_Login Test'] = 'Teste Ldap_Login';
 $lang['Ldap_Login configuration'] = 'Configuração Ldap_Login';
 $lang['Let the fields blank if the ldap accept anonymous connections.'] = 'Deixe os campos em branco se o LDAP aceitar conexões anônimas.';
-?>
+$lang['Groups branch'] = 'Local onde grupos LDAP devem ser encontrados (por exemplo: ou = grupos):';
+$lang['If you create a <a href="admin.php?page=group_list">piwigo group</a> with the same name as an ldap one, all members of the ldap group will automatically join the piwigo group at their next authentication. This allows you to create <a href="admin.php?page=help&section=groups">specific right access management</a> (restrict access to a particaular album...).'] = 'Se você criar um grupo <a href="admin.php?page=group_list">Piwigo</a> com o mesmo nome de um ldap um, todos os membros do grupo ldap irão juntar-se automaticamente ao grupo Piwigo em sua próxima autenticação. Isso permite que você crie <a href="admin.php?page=help&section=groups">gerenciamento de acesso direito específico</a> (restringindo o acesso a um álbum de particaular ...). No entanto, para retirar os usuários, você deve primeiro tirá-los dos grupos LDAP, em seguida, os grupos Piwigo podem ser atualizados.';
+$lang['Ldap groups'] = 'Grupos LDAP';
+$lang['Ldap users'] = 'Usuários LDAP';
+$lang['Search Ldap groups ?'] = 'Pesquisar usuários LDAP? Se você tem seus grupos espalhados em várias filiais ou OU, você vai precisar disso. Se você evitar isso, você economiza um pedido ldap. Você pode não precisar se sua árvore ldap for simples (por exemplo: cn = nome do grupo, ou = grupos, dc = exemplo, dc = com).';
+$lang['Search Ldap users ?'] = 'Pesquisar usuários LDAP? Se você tem seus usuários espalhados em várias filiais ou OU, você vai precisar disso. Se você evitar isso, você economiza um pedido ldap. Você pode não precisar se sua árvore ldap for simples (por exemplo: cn = nome do grupo, ou = grupos, dc = exemplo, dc = com).';
+$lang['To get them out of these roles, they must be sorted of the ldap group and then role updated in the <a href="admin.php?page=user_list">piwigo admin</a>. If a group is mandatory as described in the <a href="admin.php?page=plugin-Ldap_Login-newusers">new piwigo users tab</a>, then they must also belong to the users group.'] = 'Para tirá-los dessas funções, eles devem ser ordenados no grupo ldap e a função atualizada em <a href="admin.php?page=user_list"> Piwigo administrador </a>. Se um grupo é obrigatório, conforme descrito em <a href="admin.php?page=plugin-Ldap_Login-newusers"> nova aba de usuários Piwigo </a>, então eles também devem pertencer ao grupo de usuários.';
+$lang['Users branch'] = 'Local onde os usuários LDAP devem ser encontrados (por exemplo: ou = usuários):';

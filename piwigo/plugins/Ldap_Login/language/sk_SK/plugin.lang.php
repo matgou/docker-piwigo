@@ -33,7 +33,6 @@ $lang['Warning: LDAP Extension missing.'] = 'Upozornenie: chýba LDAP rozšíren
 $lang['Ldap_Login configuration'] = 'Ldap_Login nastavenia';
 $lang['Ldap_Login Test'] = 'Ldap_Login test';
 $lang['Ldap_Login Plugin'] = 'Ldap_Login doplnok';
-$lang['Ldap filter :'] = 'LDAP filter';
 $lang['Secure connexion'] = 'Bezpečné pripojenie (ldaps)';
 $lang['Save'] = 'Uložiť';
 $lang['Test Settings'] = 'Test nastavení';
@@ -43,9 +42,11 @@ $lang['Base DN'] = 'Základné DN, kde by mal byť nájdený používateľov LDA
 $lang['Ldap server host connection'] = 'LDAP serverové pripojenie';
 $lang['Ldap server host'] = 'LDAP serverový hostiteľ';
 $lang['Ldap port'] = 'LDAP port';
-$lang['Ldap attributes'] = 'LDAP atribúty';
 $lang['Bind password'] = 'Spojiť heslo';
 $lang['Bind DN, field in full ldap style'] = 'Spojiť DN LDAP štýlu (napr.: cn = admin, dc = example, dc = com).';
 $lang['Attribute corresponding to the user name'] = 'Atribút zodpovedajúci používateľskému menu';
 $lang['All LDAP users can use their ldap password everywhere on piwigo if needed.'] = 'Všetci LDAP používatelia môžu v prípade potreby použite svoje LDAP heslo všade v Piwigo.';
-?>
+$lang['Users branch'] = 'Oblasť, kde by mali byť používatelia LDAP nájdení (napr.: ou=používatelia):';
+$lang['Groups branch'] = 'Oblasť, kde by mali byť skupiny LDAP nájdené (napr.: ou=skupiny):';
+$lang['Ldap users'] = 'LDAP používatelia';
+$lang['Ldap groups'] = 'LDAP skupiny';

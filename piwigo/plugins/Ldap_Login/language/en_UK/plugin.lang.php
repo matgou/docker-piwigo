@@ -25,13 +25,24 @@ $lang['If empty, localhost and standard protocol ports will be used in configura
 $lang['Ldap server host'] = 'LDAP server host';
 $lang['Secure connexion'] = 'Secure connection (ldaps)';
 $lang['Ldap port'] = 'LDAP port';
+$lang['Base DN'] = 'Base DN of LDAP server (e.g.: dc=example,dc=com):';
 
-// ldap attributes
-
-$lang['Ldap attributes'] = 'LDAP attributes';
-$lang['Base DN'] = 'Base DN where LDAP users should be found (e.g.: ou=users,dc=example,dc=com):';
-$lang['Ldap filter :'] = 'LDAP filter';
+// ldap users
+$lang['Ldap users'] = 'LDAP users';
+$lang['Users branch'] = 'Branch where LDAP users should be found (e.g.: ou=users):';
 $lang['Attribute corresponding to the user name'] = 'Attribute corresponding to the user name';
+$lang['Search Ldap users ?'] = 'Search Ldap users ? If you have your users widespreaded in several branchs or OU, you will need this. If you avoid it, you save one ldap request. You may not need it if your ldap tree is simple (e.g.: uid=user,ou=people,dc=example,dc=com).';
+
+// ldap groups
+$lang['Ldap groups'] = 'LDAP groups';
+$lang['Groups branch'] = 'Branch where LDAP groups should be found (e.g.: ou=groups):';
+$lang['Search Ldap groups ?'] = 'Search Ldap users ? If you have your groups widespreaded in several branchs or OU, you will need this. If you avoid it, you save one ldap request. You may not need it if your ldap tree is simple (e.g.: cn=groupname,ou=groups,dc=example,dc=com).';
+
+$lang['If you create a <a href="admin.php?page=group_list">piwigo group</a> with the same name as an ldap one, all members of the ldap group will automatically join the piwigo group at their next authentication. This allows you to create <a href="admin.php?page=help&section=groups">specific right access management</a> (restrict access to a particaular album...).']
+	= 'If you create a <a href="admin.php?page=group_list">piwigo group</a> with the same name as an ldap one, all members of the ldap group will automatically join the piwigo group at their next authentication. This allows you to create <a href="admin.php?page=help&section=groups">specific right access management</a> (restrict access to a particaular album...). Yet, in order to out this users, you must first get them out of the ldap groups, then the piwigo groups can be updated.';
+$lang['To get them out of these roles, they must be sorted of the ldap group and then role updated in the <a href="admin.php?page=user_list">piwigo admin</a>. If a group is mandatory as described in the <a href="admin.php?page=plugin-Ldap_Login-newusers">new piwigo users tab</a>, then they must also belong to the users group.']
+	= 'To get them out of these roles, they must be sorted of the ldap group and then role updated in the <a href="admin.php?page=user_list">piwigo admin</a>. If a group is mandatory as described in the <a href="admin.php?page=plugin-Ldap_Login-newusers">new piwigo users tab</a>, then they must also belong to the users group.';
+
 
 // ldap connection credentials
 

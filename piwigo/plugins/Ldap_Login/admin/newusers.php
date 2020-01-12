@@ -12,10 +12,7 @@ $me = new Ldap();
 $me->load_config();
 //$me = get_plugin_data($plugin_id);
 
-$template->assign('ALLOW_NEWUSERS',	$me->config['allow_newusers']);
-$template->assign('ADVERTISE_ADMINS',	$me->config['advertise_admin_new_ldapuser']);
-$template->assign('SEND_CASUAL_MAIL',	$me->config['send_password_by_mail_ldap']);
-
+// Save LDAP configuration when submitted
 if (isset($_POST['save'])){
 
 	if (isset($_POST['ALLOW_NEWUSERS'])){
@@ -35,10 +32,6 @@ if (isset($_POST['save'])){
 	} else {
 		$me->config['send_password_by_mail_ldap'] = False;
 	}
-}
-
-// Save LDAP configuration
-if (isset($_POST['save'])){
 	$me->save_config();
 }
 
@@ -47,6 +40,11 @@ if (isset($_POST['save'])){
 // does ldap groups give some power ?
 // what do we do when there's no mail in the ldap ?
 // do we send mail to admins ?
+
+// And build up the form with the new values
+$template->assign('ALLOW_NEWUSERS',	$me->config['allow_newusers']);
+$template->assign('ADVERTISE_ADMINS',	$me->config['advertise_admin_new_ldapuser']);
+$template->assign('SEND_CASUAL_MAIL',	$me->config['send_password_by_mail_ldap']);
 
 $template->assign_var_from_handle( 'ADMIN_CONTENT', 'plugin_admin_content');
 ?>

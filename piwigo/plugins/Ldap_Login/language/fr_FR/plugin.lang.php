@@ -1,7 +1,6 @@
 <?php
 /*
 Plugin Name: Ldap_Login
-Version: 1.0.1
 Description: Permet de se logger via une authentification ldap
 Plugin URI: http://www.22decembre.eu
 Author: 22decembre
@@ -25,13 +24,29 @@ $lang['If empty, localhost and standard protocol ports will be used in configura
 $lang['Ldap server host'] = 'Hote du serveur Ldap';
 $lang['Secure connexion'] = 'Connexion sécurisée (ldaps)';
 $lang['Ldap port'] = 'Port a utiliser';
+$lang['Base DN'] = 'Racine du serveur LDAP (e.g.: dc=example,dc=com):';
 
 // ldap attributes
 
 $lang['Ldap attributes'] = 'Attributs ldap';
-$lang['Base DN'] = 'Arbre ldap à explorer où rechercher les utilisateurs (ex : ou=users,dc=exemple,dc=com)';
-$lang['Ldap filter'] = 'Filtre de recherche';
+$lang['Base DN'] = 'Arbre ldap à explorer où rechercher les utilisateurs et les groupes (ex : dc=exemple,dc=com)';
 $lang['Attribute corresponding to the user name'] = 'Attribut correspondant au nom d\'utilisateur';
+
+//ldap users
+$lang['Ldap users'] = 'utilisateurs Ldap';
+$lang['Users branch'] = 'Branche où les utilisateurs LDAP peuvent être trouvés (e.g.: ou=users):';
+$lang['Attribute corresponding to the user name'] = 'Attribut correspondant au nom d\'utilisateur (e.g.: uid):';
+$lang['Search Ldap users ?'] = 'Faire une recherche sur le nom des utilisateurs ? Vous n\'avez pas besoin de cela si votre annuaire est assez simple (e.g.: uid=user,ou=people,dc=example,dc=com). Si vous n\'utilisez pas cette option, vous épargnez une requete Ldap.';
+
+//ldap groups
+$lang['Ldap groups'] = 'groupes Ldap';
+$lang['Groups branch'] = 'Branche où les groupes LDAP peuvent être trouvés (e.g.: ou=groups):';
+$lang['Attribute corresponding to the group name'] = 'Attribut correspondant au nom du groupe (e.g.: cn):';
+$lang['Search Ldap groups ?'] = 'Faire une recherche sur le nom des groupes ? Vous n\'avez pas besoin de cela si votre annuaire est assez simple (e.g.: cn=groupname,ou=groups,dc=example,dc=com). Si vous n\'utilisez pas cette option, vous épargnez une requete Ldap.';
+$lang['If you create a <a href="admin.php?page=group_list">piwigo group</a> with the same name as an ldap one, all members of the ldap group will automatically join the piwigo group at their next authentication. This allows you to create <a href="admin.php?page=help&section=groups">specific right access management</a> (restrict access to a particaular album...).']
+	= 'Si vous créez un <a href="admin.php?page=group_list">groupe piwigo</a> avec le même nom qu\'un groupe ldap, tous les membres de ce groupe ldap seront membres du groupe piwigo à leur prochaine connexion. Ceci vous permet de mettre en place des <a href="admin.php?page=help&section=groups">contrôles d\'accès</a>. Pour enlever les utilisateurs de ces groupes, ils doivent d\'abord être enlevés des groupes ldap, ensuite seulement des groupes piwigo.';
+$lang['To get them out of these roles, they must be sorted of the ldap group and then role updated in the <a href="admin.php?page=user_list">piwigo admin</a>. If a group is mandatory as described in the <a href="admin.php?page=plugin-Ldap_Login-newusers">new piwigo users tab</a>, then they must also belong to the users group.']
+	= 'Pour retirer ces droits d\'administration, vous devez enlever ces utilisateurs du groupe ldap puis mettre à jour leur role dans la <a href="admin.php?page=user_list">config piwigo</a>. Si l\'appartenance à un groupe est obligatoire comme indiqué dans <a href="admin.php?page=plugin-Ldap_Login-newusers">l\'onglet nouveaux utilisateurs</a>, alors les administrateurs et webmasters ldap doivent aussi appartenir à ce groupe ldap.';
 
 // ldap connection credentials
 

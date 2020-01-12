@@ -5,8 +5,8 @@ $config['basedn'] = $_ENV['LDAP_BASE_DN'];
 $config['port'] = $_ENV['LDAP_PORT'];
 $config['ld_attr'] = 'uid';
 $config['ld_use_ssl'] = False;
-$config['ld_bindpw'] = $_ENV['LDAP_BIND_DN'];
-$config['ld_binddn'] = $_ENV['LDAP_BIND_PW'];
+$config['ld_bindpw'] = $_ENV['LDAP_BIND_PW'];
+$config['ld_binddn'] = $_ENV['LDAP_BIND_DN'];
 
 $config['allow_newusers'] = True;
 $config['advertise_admin_new_ldapuser'] = True;

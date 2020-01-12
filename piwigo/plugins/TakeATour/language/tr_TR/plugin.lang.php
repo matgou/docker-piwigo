@@ -35,3 +35,15 @@ $lang['Take a tour and discover the features of your Piwigo gallery » Go to the
 $lang['privacy_descrp'] = 'Bu tur, albüme ve fotoğraflara verilen izinlerle genel erişime ve kopyalamaya karşın fotoğraflarınızın korunma yollarını sunar.';
 $lang['First Contact'] = 'İlk Karşılaşma';
 $lang['takeatour_configpage'] = 'Bir Tur Atın » Tur Listesi';
+$lang['2.8 Tour'] = '2.8 Turu';
+$lang['2_8_0_descrp'] = '2.8 ile gelen yeni özellikleri keşfter. Detayları <a href="%s">oku</a>.';
+$lang['edit_photos_descrp'] = 'Fotoğraflar Piwigonun temel bileşenidir. Niteliklerini nasıl değiştirebileceğinizi görün; aynı anda bir fotoğraf veya bir yığın halinde.';
+$lang['manage_albums_descrp'] = 'Albüm hiyerarşisi galerinizin yapısıdır. Onları nasıl organize edebileceğinizi ve düzenleyeceğinizi öğrenin.';
+$lang['plugins_descrp'] = 'Eklentiler Piwigo\'nun temel özelliğidir. Bir kaç tıklamayla değişik özellikler ekleyebilir ve Piwigo\'yu ihtiyaçlarınıza göre şekillendirebilirsiniz.';
+$lang['config_descrp'] = 'Piwigo ayarlarınızı düzenleyin. Tema yöneticisini keşfedin ve Piwigo görünümünüzü seçin.';
+$lang['manage_albums_name'] = 'Albümleri Yönet';
+$lang['config_name'] = 'Yapılandırma';
+$lang['edit_photos_name'] = 'Fotoğrafları Düzenle';
+$lang['plugins_name'] = 'Eklentiler';
+$lang['2_9_0_name'] = '2.9 Turu';
+$lang['2_9_0_descrp'] = 'Piwigo 2.9 ile gelen yeni özellikleri keşfter. Detayları <a href="%s">oku</a>.';

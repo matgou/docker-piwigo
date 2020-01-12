@@ -34,3 +34,15 @@ $lang['privacy_descrp'] = 'Denne omvisningen presenterer alle måter å beskytte
 $lang['first_contact_descrp'] = 'Anbefales for nybegynnere, denne omvisningen inntroduserer deg for Piwigo og dens grunnleggende funksjoner. Den vil starte med å vise deg hvordan legge til bilder og administrere de. Omvisningen forsetter med album administrasjon og slutter med tilpasning ved å bruke innstillinger, temaer og tillegsprogrammer.';
 $lang['Take a tour and discover the features of your Piwigo gallery » Go to the available tours'] = 'Ta en omvisning og oppdag alle funksjonene i ditt Piwigo galleri » Gå til tilgjengelige omvisninger';
 $lang['TAT_descrp'] = 'Velkommen! Her er en liste over alle tilgjengelige omvisninger som vil hjelpe deg å oppdage funksjonene i ditt Piwigo galleri.<br><br> Start en omvisning nedenfor, følg deretter instruksjonene. Klikk på Neste/Forrige (eller bruk pilene på tastaturet) for å navigere i løpet av omvisningen. Mens du holder på med en omvisning og går til en annen side i administrasjonen, vil du bli omdirigert til den gjeldende siden i omvisningen. Hvis du står fast og ikke klarer å avslutte omvisningen, gå til <em> Tillegsprogrammer »Ta en omvisning </em> dette vil avslutte omvisningen.';
+$lang['2.8 Tour'] = '2.8 Omvisning tur';
+$lang['2_8_0_descrp'] = 'Utforsk Piwigo 2.8 sine nye funksjoner. Les detaljer om <a href="%s"> siste utgivelse.';
+$lang['config_descrp'] = 'Konfigurer dine Piwigo innstillinger. Klikk på Temaer og velge utseende på din Piwigo.';
+$lang['config_name'] = 'Konfigurasjon';
+$lang['edit_photos_descrp'] = 'Bilder er det grunnleggende element i din Piwigo. Se hvordan du kan endre bildenes egenskaper, ett bilde om gangen eller i en samling.';
+$lang['edit_photos_name'] = 'Redigere bilder';
+$lang['manage_albums_descrp'] = 'Din album hierarki er strukturen i galleriet. Lær hvordan du kan organisere dem og redigere deres egenskaper.';
+$lang['manage_albums_name'] = 'Administrere Albumer';
+$lang['plugins_descrp'] = 'Tilleggsprogrammer er en viktig funksjon i Piwigo. Aktiver ulike funksjoner i et par klikk og gjøre Piwigo tilpasset dine behov.';
+$lang['plugins_name'] = 'Tilleggsprogrammer';
+$lang['2_9_0_descrp'] = 'Bli kjent med Piwigo 2.9 nye funksjoner. Les detajer på<a href="%s">utgivelses notatet</a>.';
+$lang['2_9_0_name'] = '2.9 Tur';

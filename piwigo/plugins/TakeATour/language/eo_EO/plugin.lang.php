@@ -35,3 +35,15 @@ $lang['first_contact_descrp'] = 'Konsilita al komencantoj, tiu travizito konigas
 $lang['privacy_descrp'] = 'Tiu travizito prezentas ĉiujn metodojn por protekti viajn fotojn el publika atingo kun fotaro- kaj foto-permesoj, kaj el kopiado uzante bildoprotektojn.';
 $lang['takeatour_configpage'] = 'Travizitu » Listo de Travizitoj';
 $lang['Privacy'] = 'Privateco';
+$lang['2_8_0_descrp'] = 'Malkovru kelkajn novajn funkciojn de Piwigo 2.8. Legu detalojn sur la <a href="%s">notoj de versio</a>. ';
+$lang['2_9_0_descrp'] = 'Malkovru kelkajn novajn funkciojn de Piwigo 2.9. Legu detalojn sur la <a href="%s">notoj de versio</a>. ';
+$lang['edit_photos_name'] = 'Redakti la fotojn';
+$lang['manage_albums_name'] = 'Mastrumi la albumojn';
+$lang['2.8 Tour'] = 'Versio 2.8';
+$lang['2_9_0_name'] = 'Version 2.9';
+$lang['config_name'] = 'Agordo';
+$lang['plugins_name'] = 'Kromprogramoj';
+$lang['config_descrp'] = 'Agordi vian Piwigon. Malkovru la administrilon de etosoj kaj elektu la aspekton de via Piwigo.';
+$lang['edit_photos_descrp'] = 'Fotoj estas baza elemento en via Piwigo. Vidu kiel ŝanĝi ĝiajn ecojn, unu post la alia aŭ grupe.';
+$lang['plugins_descrp'] = 'Kromprogramoj estas ĉefa funkcio de Piwigo. Aktivigu diversajn funkciojn per nur kelkaj musklakoj kaj adaptu Piwigo al viaj bezonoj.';
+$lang['manage_albums_descrp'] = 'La albuma hierarkio estas la strukturo de via galerio. Lernu kiel organizi ilin kaj redakti iliajn ecojn.';

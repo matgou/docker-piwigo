@@ -1,4 +1,4 @@
-File automatically created from SVN repository.
+File automatically created from SVN or Git repository.
 
 URL: http://piwigo.org/svn/extensions/lightbox 
-Revision: 29798
+Revision: 31909

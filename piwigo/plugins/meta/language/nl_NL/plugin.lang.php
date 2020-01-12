@@ -58,7 +58,6 @@ $lang['Keywords of Additional Pages to be completed'] = 'Sleutelwoorden van de n
 $lang['Keywords of contact page to be completed'] = 'Sleutelwoorden van de nog af te handelen contactpagina';
 $lang['Add metadata for page'] = 'Voeg metadata toe voor pagina';
 $lang['Additional Pages Metadata'] = 'Metadata van de extra pagina\'s';
-$lang['Choose Additional Pages'] = 'Kies de extra pagina';
+$lang['Choose Additional Pages'] = 'Kies de extra pagina\'s';
 $lang['Metadata updated'] = 'Metadata is vernieuwd';
 $lang['Contact page Metadata'] = 'Metadata van de contactpagina';
-?>

@@ -6,7 +6,7 @@
 *
 * Created   :   24.06.2012
 *
-* Copyright 2012-2014 <xbgmsharp@gmail.com>
+* Copyright 2012-2018 <xbgmsharp@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -53,7 +53,7 @@ function plugin_install()
 
 	$default_config = array(
 		'skin'		  => 'vjs-default-skin',
-		'max_height'  => '720',
+		'max_height'	  => '720',
 		'preload'	  => 'auto',
 		'controls'	  => true,
 		'autoplay'	  => false,
@@ -65,6 +65,8 @@ function plugin_install()
 					'thumbnails'    => false,
 					'watermark'     => false,
 				),
+		'player'	=> 'vjs-5-player.tpl',
+		'metadata'	=> true,
 	);
 
 	/* Add configuration to the config table */
@@ -84,23 +86,13 @@ function plugin_install()
 
 	/* Table to hold videos metadata details */
 	$q = 'CREATE TABLE IF NOT EXISTS `'.videojs_table.'` (
-			`id` mediumint(8) NOT NULL,
-			`format` varchar(64) DEFAULT NULL,
-			`type` varchar(64) DEFAULT NULL,
-			`duration` varchar(64) DEFAULT NULL,
-			`overall_bit_rate` varchar(64) DEFAULT NULL,
-			`model` varchar(128) DEFAULT NULL,
-			`make` varchar(128) DEFAULT NULL,
-			`display_aspect_ratio` varchar(8) DEFAULT NULL,
-			`width` smallint(9) DEFAULT NULL,
-			`height` smallint(9) DEFAULT NULL,
-			`frame_rate` varchar(64) DEFAULT NULL,
-			`channel` varchar(64) DEFAULT NULL,
-			`sampling_rate` varchar(64) DEFAULT NULL,
+			`id` mediumint(8) unsigned NOT NULL,
+			`metadata` text DEFAULT NULL,
+			`date_metadata_update` DATE DEFAULT NULL,
 			PRIMARY KEY (id)
 		) ENGINE=MyISAM DEFAULT CHARSET=utf8
 		;';
-	//pwg_query($q);
+	pwg_query($q);
 }
 
 function plugin_uninstall()

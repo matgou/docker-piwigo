@@ -6,7 +6,7 @@
 *
 * Created   :   28.05.2013
 *
-* Copyright 2013-2015 <xbgmsharp@gmail.com>
+* Copyright 2013-2016 <xbgmsharp@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -44,8 +44,9 @@ $available_baselayer = array(
     'mapnikhot'     => 'OpenStreetMap HOT',
     'mapquest'      => 'MapQuestOpen',
     'mapquestaerial'=> 'MapQuestOpen Aerial',
-    'cloudmade'     => 'Cloudmade',
+    'toner'         => 'Stamen Toner',
     'custom'        => 'Own tile (custom style)',
+    'esri'          => 'Esri.WorldImagery',
 );
 
 // Available zoom value
@@ -86,6 +87,16 @@ $available_add_before = array(
     'Privacy'   => l10n('Who can see this photo?'),
 );
 
+// Available options
+// 0 - PLUGIN_INDEX_CONTENT_BEGIN
+// 1 - PLUGIN_INDEX_CONTENT_COMMENT
+// 2 - PLUGIN_INDEX_CONTENT_END
+$available_cat_index = array(
+    '0' => l10n('Thumbnail'),
+    '1' => l10n('Description'),
+    '2' => l10n('Last'),
+);
+
 // Available pin
 $available_pin = array(
     '0' => l10n('NOPIN'),
@@ -112,7 +123,8 @@ $available_popup = array(
 $available_layout = array(
     '1' => 'osm-map.tpl',
     '2' => 'osm-map2.tpl',
-//    '3' => 'osm-map3.tpl',
+    '3' => 'osm-map3.tpl',
+//    '4' => 'osm-map4.tpl',
 );
 
 $query = 'SELECT COUNT(*) FROM '.IMAGES_TABLE.' WHERE `latitude` IS NOT NULL and `longitude` IS NOT NULL ';
@@ -122,8 +134,8 @@ list($nb_geotagged) = pwg_db_fetch_array( pwg_query($query) );
 if (isset($_POST['submit']) && !empty($_POST['osm_height']))
 {
 	// Check the center GPS position is valid
-	if (isset($_POST['osm_left_center']) and strlen($_POST['osm_left_center']) != 0)
-        $center_arr = explode(',', $_POST['osm_left_center']);
+        $osm_left_center = (isset($_POST['osm_left_center']) and strlen($_POST['osm_left_center']) != 0) ? $_POST['osm_left_center'] : '0,0';
+        $center_arr = explode(',', $osm_left_center);
         //print_r($center_arr);
         $latitude = $center_arr[0];
         $longitude = $center_arr[1];
@@ -137,7 +149,7 @@ if (isset($_POST['submit']) && !empty($_POST['osm_height']))
 
 	// On post admin form
 	$conf['osm_conf'] = array(
-		'right_panel' => array(
+	'right_panel' => array(
             'enabled'    => get_boolean($_POST['osm_right_panel']),
             'add_before' => $_POST['osm_add_before'],
             'height'     => $_POST['osm_height'],
@@ -146,7 +158,7 @@ if (isset($_POST['submit']) && !empty($_POST['osm_height']))
             'linkcss'    => $_POST['osm_right_linkcss'],
             'showosm'    => get_boolean($_POST['osm_showosm']),
 			),
-		'left_menu' => array(
+	'left_menu' => array(
             'enabled'           => get_boolean($_POST['osm_left_menu']),
             'link'              => $_POST['osm_left_link'],
             'popup'             => $_POST['osm_left_popup'],
@@ -156,15 +168,17 @@ if (isset($_POST['submit']) && !empty($_POST['osm_height']))
             'popupinfo_comment' => isset($_POST['osm_left_popupinfo_comment']),
             'popupinfo_author'  => isset($_POST['osm_left_popupinfo_author']),
             'zoom'              => $_POST['osm_left_zoom'],
-            'center'            => $_POST['osm_left_center'],
+            'center'            => $osm_left_center,
+            'autocenter'        => get_boolean($_POST['osm_left_autocenter']),
             'layout'            => $_POST['osm_left_layout'],
 			),
         'category_description' => array(
             'enabled' => get_boolean($_POST['osm_category_description']),
             'height'  => $_POST['osm_cat_height'],
             'width'   => $_POST['osm_cat_width'],
+            'index'   => $_POST['osm_cat_index'],
             ),
-		'main_menu' => array(
+	'main_menu' => array(
             'enabled' => get_boolean($_POST['osm_main_menu']),
             'height'  => $_POST['osm_menu_height'],
             ),
@@ -172,7 +186,11 @@ if (isset($_POST['submit']) && !empty($_POST['osm_height']))
             'height' => $_POST['osm_gpx_height'],
             'width'  => $_POST['osm_gpx_width'],
             ),
-		'map' => array(
+        'batch' => array(
+            'global_height' => $_POST['osm_batch_global_height'],
+            'unit_height'  => $_POST['osm_batch_unit_height'],
+            ),
+	'map' => array(
             'baselayer'          => $_POST['osm_baselayer'],
             'custombaselayer'    => $_POST['osm_custombaselayer'],
             'custombaselayerurl' => $_POST['osm_custombaselayerurl'],
@@ -180,8 +198,9 @@ if (isset($_POST['submit']) && !empty($_POST['osm_height']))
             'attrleaflet'        => get_boolean($_POST['osm_attrleaflet']),
             'attrimagery'        => get_boolean($_POST['osm_attrimagery']),
             'attrplugin'         => get_boolean($_POST['osm_attrplugin']),
-			),
-		'pin' => array(
+            'mapquestapi'        => $_POST['osm_mapquestapi'],
+            ),
+	'pin' => array(
             'pin'            => $_POST['osm_pin'],
             'pinpath'        => $_POST['osm_pinpath'],
             'pinsize'        => $_POST['osm_pinsize'],
@@ -189,7 +208,7 @@ if (isset($_POST['submit']) && !empty($_POST['osm_height']))
             'pinshadowsize'  => $_POST['osm_pinshadowsize'],
             'pinoffset'      => $_POST['osm_pinoffset'],
             'pinpopupoffset' => $_POST['osm_pinpopupoffset'],
-			),
+	    ),
 	);
 
     // Update config to DB
@@ -205,6 +224,7 @@ $template->assign($conf['osm_conf']);
 $template->assign(
     array(
         'AVAILABLE_ADD_BEFORE' => $available_add_before,
+        'AVAILABLE_CAT_INDEX'  => $available_cat_index,
         'AVAILABLE_ZOOM'       => $available_zoom,
         'AVAILABLE_BASELAYER'  => $available_baselayer,
         'AVAILABLE_PIN'        => $available_pin,
@@ -212,6 +232,8 @@ $template->assign(
         'AVAILABLE_LAYOUT'     => $available_layout,
         'NB_GEOTAGGED'         => $nb_geotagged,
         'OSM_PATH'             => OSM_PATH,
+        'GLOBAL_MODE'          => l10n('global mode'),
+        'SINGLE_MODE'          => l10n('unit mode'),
     )
 );
 

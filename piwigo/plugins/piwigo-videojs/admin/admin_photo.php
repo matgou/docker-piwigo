@@ -2,11 +2,11 @@
 /***********************************************
 * File      :   admin_photo.php
 * Project   :   piwigo-videojs
-* Descr     :   Video edit in photo panel
+* Descr     :   Video edit in admin photo panel
 *
 * Created   :   10.07.2013
 *
-* Copyright 2012-2014 <xbgmsharp@gmail.com>
+* Copyright 2012-2018 <xbgmsharp@gmail.com>
 *
 *
 * This program is free software: you can redistribute it and/or modify
@@ -40,16 +40,12 @@ check_input_parameter('image_id', $_GET, false, PATTERN_ID);
 $admin_photo_base_url = get_root_url().'admin.php?page=photo-'.$_GET['image_id'];
 $self_url = get_root_url().'admin.php?page=plugin&amp;section=piwigo-videojs/admin/admin_photo.php&amp;image_id='.$_GET['image_id'];
 $sync_url = get_root_url().'admin.php?page=plugin&amp;section=piwigo-videojs/admin/admin_photo.php&amp;sync_metadata=1&amp;image_id='.$_GET['image_id'];
+$delete_url = get_root_url().'admin.php?page=plugin&amp;section=piwigo-videojs/admin/admin_photo.php&amp;delete_extra=1&amp;image_id='.$_GET['image_id'].'&amp;pwg_token='.get_pwg_token();
 
 load_language('plugin.lang', PHPWG_PLUGINS_PATH.basename(dirname(__FILE__)).'/');
 load_language('plugin.lang', VIDEOJS_PATH);
 
 global $template, $page, $conf;
-
-if (isset($_POST['submit']))
-{
-	check_pwg_token();
-}
 
 include_once(PHPWG_ROOT_PATH.'admin/include/tabsheet.class.php');
 $tabsheet = new tabsheet();
@@ -63,52 +59,91 @@ $template->set_filenames(
     )
   );
 
-// Override default value from configuration
-// Override default value from configuration
+// Generate default value
+$sync_options = array(
+    'mediainfo'         => 'mediainfo',
+    'ffmpeg'            => 'ffmpeg',
+    'exiftool'          => 'exiftool',
+    'ffprobe'           => 'ffprobe',
+    'metadata'          => true,
+    'poster'            => true,
+    'postersec'         => 4,
+    'output'            => 'jpg',
+    'posteroverlay'     => false,
+    'posteroverwrite'   => true,
+    'thumb'             => false,
+    'thumbsec'          => 5,
+    'thumbsize'         => "120x68",
+    'simulate'          => true,
+    'cat_id'            => 0,
+    'subcats_included'  => true,
+);
+// Merge default value with user configuration
 if (isset($conf['vjs_sync']))
 {
-    $sync_options = unserialize($conf['vjs_sync']);
+    $sync_options = array_merge(unserialize($conf['vjs_sync']), $sync_options);
 }
-// Do the Check dependencies, MediaInfo & FFMPEG, share with batch manager & photo edit & admin sync
-require_once(dirname(__FILE__).'/../include/function_dependencies.php');
 
+// Get image details if video type
 $query = "SELECT * FROM ".IMAGES_TABLE." WHERE ".SQL_VIDEOS." AND id = ".$_GET['image_id'].";";
 $picture = pwg_db_fetch_assoc(pwg_query($query));
 
-//if (!$sync_options['metadata'] or !isset($picture['path'])) {
+// Ensure we have an image path
 if (!isset($picture['path'])) {
-	//print_r($sync_options);
 	die("Mediainfo error reading file id: '". $_GET['image_id']."'");
 }
 
+// Delete the extra data
+if (isset($_GET['delete_extra']) and $_GET['delete_extra'] == 1)
+{
+	check_pwg_token();
+	vjs_begin_delete_elements(array($picture['id']));
+	array_push( $page['infos'], 'Thumbnails and Subtitle and extra videos source deleted');
+}
+
 $filename = $picture['path'];
-// Get the metadata video information
-include_once(dirname(__FILE__).'/../include/mediainfo.php');
+// Do the Check dependencies, MediaInfo & FFMPEG, share with batch manager & photo edit & admin sync
+require_once(dirname(__FILE__).'/../include/function_dependencies.php');
+// Get the metadata video information if program exist
+if (isset($sync_binaries['mediainfo']) and $sync_binaries['mediainfo']) { include(dirname(__FILE__).'/../include/mediainfo.php'); }
+if (isset($sync_binaries['exiftool']) and $sync_binaries['exiftool']) { include(dirname(__FILE__).'/../include/exiftool.php'); }
+if (isset($sync_binaries['ffprobe']) and $sync_binaries['ffprobe']) { include(dirname(__FILE__).'/../include/ffprobe.php'); }
+// If metadata from video
 if (isset($exif))
 {
-	if (isset($_GET['sync_metadata']) and $_GET['sync_metadata'] == 1)
+	$exif = array_filter($exif);
+	if (isset($exif['error']))
 	{
+		array_push( $page['errors'], $exif['error']);
+		unset($exif['error']);
+	}
+	// Import metadata into the DB
+	if (isset($_GET['sync_metadata']) and $_GET['sync_metadata'] == 1 and !empty($exif) and count($exif) > 0)
+	{
+		array_push( $page['infos'], ' metadata: '.count($exif)." ".vjs_pprint_r($exif));
 		$dbfields = explode(",", "filesize,width,height,latitude,longitude,date_creation,rotation");
 		$query = "UPDATE ".IMAGES_TABLE." SET ".vjs_dbSet($dbfields, $exif).", `date_metadata_update`=CURDATE() WHERE `id`=".$_GET['image_id'].";";
 		pwg_query($query);
-		array_push( $page['infos'], ' metadata: '.implode(",", $dbfields));
+
+		/* Use our own metadata sql table */
+		$query = "INSERT INTO ".$prefixeTable."image_videojs (metadata,date_metadata_update,id) VALUES ('".serialize($exif)."',CURDATE(),'".$_GET['image_id']."') ON DUPLICATE KEY UPDATE metadata='".serialize($exif)."',date_metadata_update=CURDATE(),id='".$_GET['image_id']."';";
+		pwg_query($query);
 	}
-	// replace some value by human readable string
-	$exif['name'] = (string)$general->CompleteName;
-	$exif['filename'] = (string)$general->FileName;
-	$exif['filesize'] = (string)$general->FileSize_String;
-	$exif['duration'] = (string)$general->Duration_String;
-	$exif['bitrate'] = (string)$video->BitRate_String;
-	$exif['sampling_rate'] = (string)$audio->SamplingRate_String;
+	// Add some value by human readable string
+	if (isset($exif['width']) and isset($exif['height']))
+	{
+		$exif['resolution'] = $exif['width'] ."x". $exif['height'];
+	}
+	isset($exif['rotation']) and $exif['rotation'] = pwg_image::get_rotation_angle_from_code($exif['rotation']) ."°";
 	ksort($exif);
 }
 
 // Try to guess the poster extension
 $parts = pathinfo($picture['path']);
 $poster = vjs_get_poster_file( Array(
-	(string)$general->FolderName."/pwg_representative/".$parts['filename'].".jpg" =>
+	$parts['dirname']."/pwg_representative/".$parts['filename'].".jpg" =>
 		get_gallery_home_url() . $parts['dirname'] . "/pwg_representative/".$parts['filename'].".jpg",
-	(string)$general->FolderName."/pwg_representative/".$parts['filename'].".png" =>
+	$parts['dirname']."/pwg_representative/".$parts['filename'].".png" =>
 		get_gallery_home_url() . $parts['dirname'] . "/pwg_representative/".$parts['filename'].".png",
 ));
 // If none found, it create an strpos error
@@ -125,7 +160,7 @@ $videos[] = array(
 			'ext' => $extension,
 		);
 foreach ($files_ext as $file_ext) {
-	$file = (string)$general->FolderName."/pwg_representative/".$parts['filename'].".".$file_ext;
+	$file = $parts['dirname']."/pwg_representative/".$parts['filename'].".".$file_ext;
 	if (file_exists($file)){
 		array_push($videos,
 			   array (
@@ -139,10 +174,16 @@ foreach ($files_ext as $file_ext) {
 }
 //print_r($videos);
 
+/* Try to find WebVTT */
+$file = $parts['dirname']."/pwg_representative/".$parts['filename'].".vtt";
+file_exists($file) ? $subtitle = embellish_url(get_gallery_home_url() .$file) : $subtitle = null;
+
+/* Thumbnail videojs plugin */
 $filematch = $parts['dirname']."/pwg_representative/".$parts['filename']."-th_*";
 $matches = glob($filematch);
 $thumbnails = array();
-if ( is_array ( $matches ) ) {
+$sort = array(); // A list of sort columns and their data to pass to array_multisort
+if ( is_array ( $matches ) and !empty($matches) ) {
 	foreach ( $matches as $filename) {
 		 $ext = explode("-th_", $filename);
 		 $second = explode(".", $ext[1]);
@@ -152,23 +193,28 @@ if ( is_array ( $matches ) ) {
 				   'second' => $second[0],
 				   'source' => embellish_url(get_gallery_home_url() . $filename)
 				);
+		 $sort['second'][$second[0]] = $second[0];
 	}
 }
 //print_r($thumbnails);
+// Sort thumbnails by second
+!empty($sort['second']) and array_multisort($sort['second'], SORT_ASC, $thumbnails);
 
 $infos = array_merge(
 				array('Poster' => $poster),
 				array('Videos source' => count($videos)),
 				array('videos' => $videos),
 				array('Thumbnails' => count($thumbnails)),
-				array('thumbnails' => $thumbnails)
-				);
+				array('thumbnails' => $thumbnails),
+				array('Subtitle' => $subtitle)
+			);
 //print_r($infos);
 
 $template->assign(array(
 	'PWG_TOKEN' => get_pwg_token(),
 	'F_ACTION' => $self_url,
 	'SYNC_URL' => $sync_url,
+	'DELETE_URL' => $delete_url,
 	'TN_SRC' => DerivativeImage::thumb_url($picture).'?'.time(),
 	'TITLE' => render_element_name($picture),
 	'EXIF' => $exif,

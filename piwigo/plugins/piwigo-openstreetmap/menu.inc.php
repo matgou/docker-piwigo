@@ -6,7 +6,7 @@
 *
 * Created   :   10.10.2014
 *
-* Copyright 2013-2015 <xbgmsharp@gmail.com>
+* Copyright 2013-2016 <xbgmsharp@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@ function osm_apply_menu($menu_ref_arr)
                 $local_conf['center_lat'] = 0;
                 $local_conf['center_lng'] = 0;
                 $local_conf['zoom'] = 2;
-                $local_conf['auto_center'] = 0;
+                $local_conf['autocenter'] = 1;
                 $local_conf['divname'] = 'mapmenu';
                 $local_conf['paths'] = osm_get_gps($page);
                 $height = isset($conf['osm_conf']['main_menu']['height']) ? $conf['osm_conf']['main_menu']['height'] : '200';
@@ -73,7 +73,7 @@ function osm_apply_menu($menu_ref_arr)
                 $template->set_template_dir(dirname(__FILE__).'/template/');
                 $template->assign(
                     array(
-                        'OSM_PATH' => embellish_url(get_absolute_root_url().OSM_PATH),
+                        'OSM_PATH' => embellish_url(get_gallery_home_url().OSM_PATH),
                         'OSMJS'    => $js,
                         'HEIGHT'   => $height,
                     )

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>{html_head}
 <meta http-equiv="content-type" content="text/html; charset={$CONTENT_ENCODING}" />
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -11,8 +11,7 @@
 <link rel="stylesheet" href="{$OSM_PATH}leaflet/MarkerCluster.Default.css" />
 <link rel="stylesheet" href="{$OSM_PATH}leaflet/leaflet.contextmenu.css" />
 <link rel="stylesheet" href="{$OSM_PATH}leaflet/Control.MiniMap.css" />
-<link rel="stylesheet" href="{$OSM_PATH}leaflet/L.Control.Sidebar.css" />
-<link rel="stylesheet" href="{$OSM_PATH}leaflet/L.Control.ViewCenter.css" />
+<link rel="stylesheet" href="{$OSM_PATH}leaflet/iconLayers.css" />
 <script src="{$OSM_PATH}leaflet/leaflet.js"></script>
 <script src="{$OSM_PATH}leaflet/leaflet-search.min.js"></script>
 <script src="{$OSM_PATH}leaflet/leaflet.markercluster.js"></script>
@@ -20,8 +19,7 @@
 <script src="{$OSM_PATH}leaflet/leaflet-omnivore.min.js"></script>
 <script src="{$OSM_PATH}leaflet/Control.MiniMap.js"></script>
 <script src="{$OSM_PATH}leaflet/L.Control.ControlCenter.js"></script>
-<script src="{$OSM_PATH}leaflet/L.Control.ViewCenter.js"></script>
-<script src="{$OSM_PATH}leaflet/L.Control.Sidebar.js"></script>
+<script src="{$OSM_PATH}leaflet/iconLayers.js"></script>
 {html_style}
 {literal}
 html, body {
@@ -38,123 +36,15 @@ html, body {
 	right:0;
 	bottom:0;
 }
-/*
-.leaflet-bottom {
-    transition: bottom 0.5s;
-}
-.leaflet-right {
-    transition: bottom 0.5s;
-}
-#leaflet-bar-up a {
-	//float: right;
-}
 
-#sidebar-up {
-	//transition: bottom 0.8s ease 0s, height 0.8s ease 0s;
-	//transition: background-color 0.8s ease;
-	//background-color: red;
-	//bottom: 0;
-	//right: 0;
-}
-#sidebar-up.visible {
-	//background-color: green;
-	//width: 100%;
-	//height: 100px;
-	//bottom: 0;
-	//right: 0;
-}
-
-#sidebar-up.bottom.visible ~ .leaflet-bottom {
-	height: 190px;
-}
-#sidebar-up.bottom.visible ~ .leaflet-left {
-	height: 140px;
-}
-#sidebar-up.left.visible ~ .leaflet-left {
-	left: 0px;
-}
-*/
-
-/* Tiny Scrollbar */
-#scrollbar1
-{
-    height:150px;
-    width:100%;
-    margin:0 0 10px;
-}
-
-#scrollbar1 .viewport
-{
-    width:236px;
-    height:125px;
-    overflow:hidden;
-    position:relative;
-}
-
-#scrollbar1 .overview
-{
-    list-style:none;
-    width:1416px;
-    padding:0;
-    margin:0;
-    position:absolute;
-    left:0;
-    top:0;
-}
-
-#scrollbar1 .overview img
-{
-    float:left;
-}
-
-#scrollbar1 .scrollbar
-{
-    background:transparent url(plugins/piwigo-openstreetmap/leaflet/images/bg-scrollbar-track-y.png) no-repeat 0 0;
-    position:relative;
-    margin:0 0 5px;
-    clear:both;
-    height:15px;
-}
-
-#scrollbar1 .track
-{
-    background:transparent url(plugins/piwigo-openstreetmap/leaflet/images/bg-scrollbar-trackend-y.png) no-repeat 100% 0;
-    width:100%;
-    height:15px;
-    position:relative;
-}
-
-#scrollbar1 .thumb
-{
-    background:transparent url(plugins/piwigo-openstreetmap/leaflet/images/bg-scrollbar-thumb-y.png) no-repeat 100% 50%;
-    height:25px;
-    cursor:pointer;
-    overflow:hidden;
-    position:absolute;
-    left:0;
-    top:-5px;
-}
-
-#scrollbar1 .thumb .end
-{
-    background:transparent url(plugins/piwigo-openstreetmap/leaflet/images/bg-scrollbar-thumb-y.png) no-repeat 0 50%;
-    overflow:hidden;
-    height:25px;
-    width:5px;
-}
-
-#scrollbar1 .disable
-{
-    display:none;
-}
-
-.noSelect
-{
-    user-select:none;
-    -o-user-select:none;
-    -moz-user-select:none;
-    -khtml-user-select:none;
-    -webkit-user-select:none;
+#content {
+	position: absolute;
+	bottom: 110px;
+	left:0;
+	right:0;
+	height: 60px;
+	z-index: 10;
+	background-color: rgba(0,0,0,0.5);
 }
 
 #dialog {
@@ -167,42 +57,6 @@ html, body {
 </head>
 <body>
 <noscript>Your browser must have JavaScript enable</noscript> 
-
-<div id="sidebar-left">
-    <h1>leaflet-sidebar</h1>
-</div>
-
-<div id="scrollbar1">
-	<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-	<div class="viewport">
-		<div class="overview">
-			<img src="http://placehold.it/100x40&text=FooBar1" alt="image 2" />
-			<img src="http://placehold.it/100x40&text=FooBar2" alt="image 2" />
-			<img src="http://placehold.it/100x40&text=FooBar3" alt="image 2" />
-			<img src="http://placehold.it/100x40&text=FooBar4" alt="image 2" />
-			<img src="http://placehold.it/100x40&text=FooBar5" alt="image 2" />
-			<img src="http://placehold.it/100x40&text=FooBar6" alt="image 2" />
-			<img src="http://placehold.it/100x40&text=FooBar1" alt="image 1" />
-			<img src="http://placehold.it/100x40&text=FooBar2" alt="image 1" />
-			<img src="http://placehold.it/100x40&text=FooBar3" alt="image 1" />
-			<img src="http://placehold.it/100x40&text=FooBar4" alt="image 1" />
-			<img src="http://placehold.it/100x40&text=FooBar5" alt="image 1" />
-			<img src="http://placehold.it/100x40&text=FooBar6" alt="image 1" />
-			<img src="http://placehold.it/100x40&text=FooBar1" alt="image 3" />
-			<img src="http://placehold.it/100x40&text=FooBar2" alt="image 3" />
-			<img src="http://placehold.it/100x40&text=FooBar3" alt="image 3" />
-			<img src="http://placehold.it/100x40&text=FooBar4" alt="image 3" />
-			<img src="http://placehold.it/100x40&text=FooBar5" alt="image 3" />
-			<img src="http://placehold.it/100x40&text=FooBar6" alt="image 3" />
-			<img src="http://placehold.it/100x40&text=FooBar1" alt="image 4" />
-			<img src="http://placehold.it/100x40&text=FooBar2" alt="image 4" />
-			<img src="http://placehold.it/100x40&text=FooBar3" alt="image 4" />
-			<img src="http://placehold.it/100x40&text=FooBar4" alt="image 4" />
-			<img src="http://placehold.it/100x40&text=FooBar5" alt="image 4" />
-			<img src="http://placehold.it/100x40&text=FooBar6" alt="image 4" />
-		</div>
-	</div>
-</div>
 
 <div id="map"></div>
 
@@ -219,29 +73,10 @@ html, body {
 	/* Load leaflet PWG-OSM ControlCenter Leaflet plugin */
 	map.addControl( new L.Control.ControlCenter() );
 
-	/* Load leaflet PWG-OSM ViewCenter Leaflet plugin */
-	var viewcenter = new L.Control.ViewCenter()
-	map.addControl( viewcenter );
-
-	function ShowThumbs() {
-		viewcenter.toggle();
-	}
-
 	/* BEGIN leaflet-MiniMap https://github.com/Norkart/Leaflet-MiniMap */
 	var osm2 = new L.TileLayer(Url, {minZoom: 0, maxZoom: 13, attribution: Attribution});
 	var miniMap = new L.Control.MiniMap(osm2).addTo(map);
 	/* END leaflet-MiniMap */
-
-	/* BEGIN */
-	var sidebar = L.control.sidebar('sidebar-left', {
-		position: 'left'
-	});
-	map.addControl(sidebar);
-
-	function goShowInfo() {
-		sidebar.toggle();
-	}
-	/* END L.control.sidebar */
 
 	/* BEGIN leaflet-search https://github.com/stefanocudini/leaflet-search */
 	var jsonpurl = 'https://open.mapquestapi.com/nominatim/v1/search.php?q={s}'+
@@ -277,8 +112,8 @@ html, body {
 		};
 
 	map.addControl( new L.Control.Search(searchOpts) );
-
 	/* END leaflet-search */
+
 	/* https://github.com/codeforamerica/lv-trucks-map/blob/master/js/main.js */
 	/* http://clvfoodtrucks.com/ */
 	L.Map.prototype.panToOffset = function (latlng, offset, options) {
@@ -372,61 +207,6 @@ html, body {
 		//getMarkers();
 	}
 
-	/* Generate the carrousel */
-	function getMarkers(){
-		/* Get coordonates */
-		var bounds = map.getBounds();
-		var min = bounds.getSouthWest().wrap();
-		var max = bounds.getNorthEast().wrap();
-
-		/* Remove any previous thumbnails */
-		removeChildren({parentId:'jcarousel-thumb'});
-
-		var nb_items = 0;
-		for (var i = 0; i < addressPoints.length; i++) {
-			var a = addressPoints[i];
-			var pathurl = a[3];
-
-			//console.log(a[0] +" > "+ min.lat +" && "+ a[1] +" > "+ min.lng +" && "+ a[0] +" < "+ max.lat +" && "+ a[1] +" < "+ max.lng);
-			if (a[0] > min.lat && a[1] > min.lng && a[0] < max.lat && a[1] < max.lng)
-			{
-				//console.log("Inside bounds");
-				var li_elem = document.createElement("li");
-				var img_elem = document.createElement("img");
-				img_elem.setAttribute("id","jcarousel-img");
-				img_elem.setAttribute("width","50");
-				img_elem.setAttribute("height","50");
-				img_elem.setAttribute("onclick","OnThumbClick("+i+")");
-				img_elem.setAttribute("class","morph pic");
-				img_elem.src = pathurl;
-				document.getElementById("jcarousel-thumb").appendChild(li_elem).appendChild(img_elem);
-				nb_items++;
-				//console.log("Inside bounds:"+i);
-			}
-		}
-		/* Update items counts */
-		document.getElementById("nb_showall").innerHTML = nb_items +' items';
-	}
-
-	function OnThumbClick(Id){
-		/* http://leaflet.github.io/Leaflet.markercluster/example/marker-clustering-zoomtoshowlayer.html */
-		//console.log("Open:"+Id+" "+MarkerClusterList[Id].getLatLng());
-		markers.zoomToShowLayer(MarkerClusterList[Id], function () {
-				map.panTo(MarkerClusterList[Id].getLatLng());
-				MarkerClusterList[Id].togglePopup();
-		});
-	}
-
-	function removeChildren (params){
-		var parentId = params.parentId;
-
-		var childNodes = document.getElementById(parentId).childNodes;
-		for(var i=childNodes.length-1;i >= 0;i--){
-			var childNode = childNodes[i];
-			childNode.parentNode.removeChild(childNode);
-		}
-	}
-
 	/* BEGIN leaflet Location */
 	function onLocationFound(e) {
 		var radius = e.accuracy / 2;
@@ -444,33 +224,218 @@ html, body {
 	map.on('locationfound', onLocationFound);
 	map.on('locationerror', onLocationError);
 
+
+/* Providers list.
+ * Here because of the icon path
+ */
+
+var provider_mapping = {
+    'mapnik'         : 'OpenStreetMap_Mapnik',
+    'blackandwhite'  : 'OpenStreetMap_BlackAndWhite',
+    'mapnikfr'       : 'OpenStreetMap_France',
+    'mapnikde'       : 'OpenStreetMap_DE',
+    'mapnikhot'      : 'OpenStreetMap_HOT',
+    'mapquest'       : 'MapQuestOpen_OSM',
+    'mapquestaerial' : 'MapQuestOpen_Aerial',
+    'cloudmade'      : 'CloudMade',
+    'toner'          : 'Stamen_Toner',
+    'custom'         : 'Custom',
+};
+
+var providers = {};
+
+providers['OpenStreetMap_Mapnik'] = {
+    title: 'osm',
+    icon: '{/literal}{$OSM_PATH}{literal}leaflet/icons/openstreetmap_mapnik.png',
+    layer: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    })
+};
+
+providers['OpenStreetMap_BlackAndWhite'] = {
+    title: 'osm bw',
+    icon: '{/literal}{$OSM_PATH}{literal}leaflet/icons/openstreetmap_blackandwhite.png',
+    layer: L.tileLayer('https://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    })
+};
+
+providers['OpenStreetMap_France'] = {
+    title: 'osm fr',
+    icon: 'https://a.tile.openstreetmap.fr/osmfr/5/15/11.png',
+    layer: L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; Openstreetmap France | &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    })
+}
+
+providers['OpenStreetMap_DE'] = {
+    title: 'osm de',
+    icon: '{/literal}{$OSM_PATH}{literal}leaflet/icons/openstreetmap_de.png',
+    layer: L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    })
+}
+
+providers['OpenStreetMap_HOT'] = {
+    title: 'osm HOT',
+    icon: 'http://a.tile.openstreetmap.fr/hot/5/15/11.png',
+    layer: L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
+    })
+}
+
+providers['MapQuestOpen_OSM'] = {
+    title: 'MapQuest',
+    icon: 'http://otile1.mqcdn.com/tiles/1.0.0/map/5/15/11.png',
+    layer: L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        subdomains: '1234'
+    })
+}
+
+providers['MapQuestOpen_Aerial'] = {
+    title: 'MapQuest Aerial',
+    icon: 'http://otile1.mqcdn.com/tiles/1.0.0/sat/5/15/11.png',
+    layer: L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png', {
+        attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency',
+        subdomains: '1234'
+    })
+}
+
+providers['Stamen_Toner'] = {
+    title: 'toner',
+    icon: '{/literal}{$OSM_PATH}{literal}leaflet/icons/stamen_toner.png',
+    layer: L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png', {
+        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        subdomains: 'abcd',
+        minZoom: 0,
+        maxZoom: 20,
+        ext: 'png'
+    })
+};
+
+providers['Esri_WorldTerrain'] = {
+    title: 'esri terrain',
+    icon: '{/literal}{$OSM_PATH}{literal}leaflet/icons/esri_worldterrain.png',
+    layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: USGS, Esri, TANA, DeLorme, and NPS',
+        maxZoom: 13
+    })
+};
+
+providers['Esri_OceanBasemap'] = {
+    title: 'esri ocean',
+    icon: '{/literal}{$OSM_PATH}{literal}leaflet/icons/esri_oceanbasemap.png',
+    layer: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ, and Esri',
+        maxZoom: 13
+    })
+};
+
+providers['HERE_normalDay'] = {
+    title: 'normalday',
+    icon: '{/literal}{$OSM_PATH}{literal}leaflet/icons/here_normalday.png',
+    layer: L.tileLayer('https://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/normal.day/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
+        attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
+        subdomains: '1234',
+        mapID: 'newest',
+        app_id: 'Y8m9dK2brESDPGJPdrvs',
+        app_code: 'dq2MYIvjAotR8tHvY8Q_Dg',
+        base: 'base',
+        maxZoom: 20
+    })
+};
+
+providers['HERE_normalDayGrey'] = {
+    title: 'normalday grey',
+    icon: '{/literal}{$OSM_PATH}{literal}leaflet/icons/here_normaldaygrey.png',
+    layer: L.tileLayer('https://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/normal.day.grey/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
+        attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
+        subdomains: '1234',
+        mapID: 'newest',
+        app_id: 'Y8m9dK2brESDPGJPdrvs',
+        app_code: 'dq2MYIvjAotR8tHvY8Q_Dg',
+        base: 'base',
+        maxZoom: 20
+    })
+};
+
+providers['HERE_satelliteDay'] = {
+    title: 'satellite',
+    icon: '{/literal}{$OSM_PATH}{literal}leaflet/icons/here_satelliteday.png',
+    layer: L.tileLayer('https://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/satellite.day/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
+        attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
+        subdomains: '1234',
+        mapID: 'newest',
+        app_id: 'Y8m9dK2brESDPGJPdrvs',
+        app_code: 'dq2MYIvjAotR8tHvY8Q_Dg',
+        base: 'aerial',
+        maxZoom: 20
+    })
+};
+
+providers['CartoDB_Positron'] = {
+    title: 'positron',
+    icon: '{/literal}{$OSM_PATH}{literal}leaflet/icons/cartodb_positron.png',
+    layer: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+    })
+};
+
 {/literal}
-</script>
-<!--
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="{$OSM_PATH}leaflet/jcarousel.responsive.css" />
--->
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<!--
-<script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<script src="{$OSM_PATH}leaflet/jquery.jcarousel.min.js"></script>
--->
-<script type="text/javascript" src="{$OSM_PATH}leaflet/jquery.tinyscrollbar.js"></script>
-<script>
+{if $default_baselayer == 'custom'}
+{literal}
+    providers['Custom'] = {
+        title: '{/literal}{$custombaselayer}{literal}',
+        icon: '{/literal}{$iconbaselayer}{literal}',
+        layer: L.tileLayer('{/literal}{$custombaselayerurl}{literal}', {
+            // The following attribution might be wrong
+            // Please refer to https://leaflet-extras.github.io/leaflet-providers/preview/
+            // to get the correct attribution notice.
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            maxZoom: 19
+        })
+    };
+{/literal}
+{/if}
 {literal}
 
-	/* Init Jquery */
-	(function($) {
+	/* BEGIN Leaflet-IconLayers https://github.com/ScanEx/Leaflet-IconLayers */
+	var layers = [];
+	for (var providerId in providers) {
+		layers.push(providers[providerId]); // Providers from providers.js
+	}
+    var il = L.control.iconLayers(layers);
+    il.setActiveLayer(providers[provider_mapping['{/literal}{$default_baselayer}{literal}']].layer);
+    var ctrl = il.addTo(map);
+	/* END Leaflet-IconLayers */
 
-		$("#scrollbar1").tinyscrollbar({ axis: "y"});
-	
+
+</script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script>
+
+        /* Init Jquery */
+        (function($) {
+
 		$('#dialog').dialog({autoOpen: false, minHeight: 150, minWidth: 600});
 
-		$('#opener').click(function() {
-			$('#dialog').dialog('open');
-		});
+                $('#opener').click(function() {
+                        $('#dialog').dialog('open');
+                });
 
-	})(jQuery);
+        })(jQuery);
+
 {/literal}
 </script>
 

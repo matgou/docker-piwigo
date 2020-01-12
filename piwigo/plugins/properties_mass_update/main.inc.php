@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Properties Mass Update
-Version: 2.7.a
+Version: 2.9.b
 Description: Update many photo properties at once
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=630
 Author: plg

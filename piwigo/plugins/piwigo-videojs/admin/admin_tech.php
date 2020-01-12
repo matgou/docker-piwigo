@@ -2,11 +2,11 @@
 /***********************************************
 * File      :   admin_tech.php
 * Project   :   piwigo-videojs
-* Descr     :   Generate the admin panel
+* Descr     :   Generate the admin tech panel
 *
 * Created   :   4.06.2013
 *
-* Copyright 2012-2014 <xbgmsharp@gmail.com>
+* Copyright 2012-2018 <xbgmsharp@gmail.com>
 *
 *
 * This program is free software: you can redistribute it and/or modify

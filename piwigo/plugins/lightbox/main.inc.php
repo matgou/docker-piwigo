@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Lightbox
-Version: 2.7.a
+Version: 2.9.b
 Description: Display pictures in a lightbox.
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=280
 Author: P@t

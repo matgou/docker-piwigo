@@ -6,7 +6,7 @@
 *
 * Created   :   28.05.2013
 *
-* Copyright 2013-2015 <xbgmsharp@gmail.com>
+* Copyright 2013-2016 <xbgmsharp@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@ if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 function plugin_install()
 {
 	global $prefixeTable;
+
 	if (!defined('OSM_PATH'))
 		define('OSM_PATH', PHPWG_PLUGINS_PATH . basename(dirname(__FILE__)).'/');
 
@@ -67,9 +68,10 @@ function plugin_install()
 			'layout'            => 2,
 			),
 		'category_description' => array(
-			'enabled' => true,
-			'height'  => '200',
-			'width'   => 'auto',
+			'enabled'        => true,
+			'index'          => 0,
+			'height'         => '200',
+			'width'          => 'auto',
 			),
 		'main_menu' => array(
 			'enabled' => false,
@@ -78,6 +80,10 @@ function plugin_install()
 		'gpx' => array(
 				'height' 	=> '500',
 				'width' 	=> '320',
+			),
+		'batch' => array(
+				'global_height' => '200',
+				'unit_height' 	=> '200',
 			),
 		'map' => array(
 			'baselayer'          => 'mapnik',
@@ -105,13 +111,47 @@ function plugin_install()
 	$q = 'UPDATE '.CONFIG_TABLE.' SET `comment` = "Configuration settings for piwigo-openstreetmap plugin" WHERE `param` = "osm_conf";';
 	pwg_query( $q );
 
-	// Create DB for GPX entries
+	// Remove previous created db table for GPX entries
 	$q = "DROP TABLE IF EXISTS ".$prefixeTable."osm_gps;";
 	pwg_query( $q );
 
-	// Create album for GPX entries
-	if (!file_exists(PHPWG_ROOT_PATH.PWG_LOCAL_DIR.'gps_track_files/'))
-		rmdir (PHPWG_ROOT_PATH.PWG_LOCAL_DIR.'gps_track_files/');
+	// Remove previous created directory for GPX entries
+	$gpx_dir = PHPWG_ROOT_PATH.PWG_LOCAL_DIR.'gps_track_files/';
+	if (file_exists($gpx_dir) and is_dir($gpx_dir))
+		osm_deltree($gpx_dir);
+
+	// Easy access
+	if (!defined('osm_place_table'))
+		define('osm_place_table', $prefixeTable.'osm_places');
+
+	/* Table to hold osm places details */
+	$q = 'CREATE TABLE IF NOT EXISTS `'.osm_place_table.'` (
+                `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+                `latitude` double(8,6) NOT NULL,
+                `longitude` double(9,6) NOT NULL,
+                `name` varchar(255) DEFAULT NULL,
+                `parentId` mediumint(8),
+                PRIMARY KEY (id)
+        ) ENGINE=MyISAM DEFAULT CHARSET=utf8
+        ;';
+	pwg_query($q);
+
+  // Increase size of longitude column from double(8,6) to double(9,6). GH#153.
+  foreach(pwg_query('DESCRIBE '.osm_place_table) as $col_info)
+  {
+    $is_longitude = isset($col_info['Field'])
+      && $col_info['Field'] === 'longitude';
+    $is_old_size = isset($col_info['Type'])
+      && $col_info['Type'] === 'double(8,6)';
+    if ($is_longitude && $is_old_size)
+    {
+      $alter_longitude = 'ALTER TABLE `'.osm_place_table.'`'
+        .' CHANGE `longitude` `longitude` double(9,6) NOT NULL';
+      pwg_query($alter_longitude);
+      // This is the only column to change, so we can leave the loop now.
+      break;
+    }
+  }
 
 	// Create world map link
 	$dir_name = basename( dirname(__FILE__) );
@@ -124,8 +164,10 @@ else if (isset(\$_GET['v']) and \$_GET['v'] == 2)
 	include_once( PHPWG_ROOT_PATH. 'plugins/piwigo-openstreetmap/osmmap2.php');
 else if (isset(\$_GET['v']) and \$_GET['v'] == 3)
 	include_once( PHPWG_ROOT_PATH. 'plugins/piwigo-openstreetmap/osmmap3.php');
+else if (isset(\$_GET['v']) and \$_GET['v'] == 4)
+	include_once( PHPWG_ROOT_PATH. 'plugins/piwigo-openstreetmap/osmmap4.php');
 else
-	include_once( PHPWG_ROOT_PATH. 'plugins/piwigo-openstreetmap/osmmap2.php');
+	include_once( PHPWG_ROOT_PATH. 'plugins/piwigo-openstreetmap/osmmap3.php');
 ?>
 EOF;
 	$fp = fopen( PHPWG_ROOT_PATH.'osmmap.php', 'w' );

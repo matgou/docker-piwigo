@@ -6,7 +6,7 @@
 *
 * Created   :   28.05.2013
 *
-* Copyright 2013-2015 <xbgmsharp@gmail.com>
+* Copyright 2013-2016 <xbgmsharp@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -49,6 +49,8 @@ $my_base_url = get_admin_plugin_menu_link(__FILE__);
 
 $tabsheet = new tabsheet();
 $tabsheet->add( 'config', '<span class="icon-cog"></span>' . l10n('Configuration'), add_url_params( $my_base_url, array('tab'=>'config') ) );
+$tabsheet->add( 'tag', '<span class="icon-tags"></span>' . l10n('Tags'), add_url_params( $my_base_url, array('tab'=>'tag') ) );
+$tabsheet->add( 'place', '<span class="osm-location"></span>' . l10n('Places'), add_url_params( $my_base_url, array('tab'=>'place') ) );
 $tabsheet->select($page['tab']);
 
 $tabsheet->assign();

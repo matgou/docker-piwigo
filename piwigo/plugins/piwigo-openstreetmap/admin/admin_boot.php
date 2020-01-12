@@ -6,7 +6,7 @@
 *
 * Created   :   11.06.2013
 *
-* Copyright 2013-2015 <xbgmsharp@gmail.com>
+* Copyright 2013-2016 <xbgmsharp@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -56,5 +56,28 @@ function osm_photo_add_tab($sheets, $id)
 
 	return $sheets;
 }
+
+/* Pretty Print recursive */
+function osm_pprint_r(array $array, $glue = ', <br/>', $size = 4)
+{
+        // Split tag array in chuck of $size for nicer display
+        $chunk_arr = array_chunk( $array, $size, true);
+
+        // Generate ouput
+        $output = "";
+        foreach ( $chunk_arr as $row ) {
+                foreach ( $row as $key ) {
+                        //printf('[%2s] ', $key);
+                        $output .= $key.", ";
+                }
+                $output .= "<br/>";
+        }
+
+        // Removes last $glue from string
+        strlen($glue) > 0 and $output = substr($output, 0, -strlen($glue));
+
+        return (string) $output;
+}
+
 
 ?>

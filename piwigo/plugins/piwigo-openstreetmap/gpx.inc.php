@@ -6,7 +6,7 @@
 *
 * Created   :   01.11.2014
 *
-* Copyright 2013-2015 <xbgmsharp@gmail.com>
+* Copyright 2013-2016 <xbgmsharp@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -77,7 +77,7 @@ function osm_render_media($content, $picture)
 			'HEIGHT'   => $height,
 			'WIDTH'    => $width,
 			'FILENAME' => $filename,
-			'OSM_PATH' => embellish_url(get_absolute_root_url().OSM_PATH),
+			'OSM_PATH' => embellish_url(get_gallery_home_url().OSM_PATH),
 			'OSMGPX'   => $js,
             )
 	);

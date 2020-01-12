@@ -29,7 +29,7 @@
 
 This plugin add the open source HTML5 video player <a href="http://www.videojs.com/" target="_blank">VideoJS</a>.
 <br/><br/>
-Refer to the <a href="https://github.com/xbgmsharp/piwigo-videojs/wiki" target="_blanck">plugin documentation</a> for additional information. Create an <a href="https://github.com/xbgmsharp/piwigo-videojs/issues" target="_blanck">issue</a> for support, or feedback, or feature request.
+Refer to the <a href="https://github.com/xbgmsharp/piwigo-videojs/wiki" target="_blank">plugin documentation</a> for additional information. Create an <a href="https://github.com/xbgmsharp/piwigo-videojs/issues" target="_blank">issue</a> for support, or feedback, or feature request.
 
 <div class="vjs_layout">
   <legend>{'Statistics'|@translate}</legend>
@@ -75,8 +75,42 @@ Refer to the <a href="https://github.com/xbgmsharp/piwigo-videojs/wiki" target="
 				<!-- <label><input type="text" name="vjs_volume" value="1" placeholder="1"/></label> -->
 				<br/><small>{'VOLUME_DESC'|@translate}</small>
 			</li>
+			<li>
+				<label><span class="property">{'LANGUAGE'|@translate} : </span></label>
+				<select name="vjs_language">
+					{html_options options=$AVAILABLE_LANGUAGES selected=$language}
+				</select>
+				<br/><small>{'LANGUAGE_DESC'|@translate}</small>
+			</li>
 		</ul>
 	</fieldset>
+
+	<fieldset>
+		<legend>{'METADATA'|@translate}</legend>
+		<ul>
+			<li>
+				<label><span class="property">{'Show file metadata'|@translate} : </span></label>
+				<label><input type="radio" name="vjs_metadata" value="true" {if $metadata}checked="checked"{/if}/> {'Yes'|@translate}</label>
+				<label><input type="radio" name="vjs_metadata" value="false" {if not $metadata}checked="checked"{/if}/> {'No'|@translate}</label>
+				<br/><small>{'METADATA_DESC'|@translate}</small>
+			</li>
+		</ul>
+	</fieldset>
+
+	<fieldset>
+		<legend>{'PLAYER'|@translate}</legend>
+		<ul>
+			<li>
+				<label><span class="property">{'PLAYER'|@translate} : </span></label>
+				<select name="vjs_player" id="vjs_player" onchange="player_toggle(this);">
+					{html_options options=$AVAILABLE_PLAYERS selected=$player}
+				</select>
+				<br/><small>{'PLAYER_DESC'|@translate}</small>
+			</li>
+		</ul>
+	</fieldset>
+
+	<div id="player">
 	<fieldset>
 		<legend>{'PLUGIN'|@translate}</legend>
 		<ul>
@@ -107,6 +141,7 @@ Refer to the <a href="https://github.com/xbgmsharp/piwigo-videojs/wiki" target="
 			</li>
 		<ul>
 	</fieldset>
+	</div>
 	<fieldset>
 		<legend>{'VIDEOJSPLUGIN'|@translate}</legend>
 		<ul>
@@ -128,9 +163,34 @@ Refer to the <a href="https://github.com/xbgmsharp/piwigo-videojs/wiki" target="
 				<label><input type="radio" name="vjs_watermark" value="false" {if not $plugins.watermark}checked="checked"{/if}/> {'No'|@translate}</label>
 				<br/><small>{'WATERMARK_DESC'|@translate}</small>
 			</li>
+			<li>
+				<label><span class="property">{'RESOLUTION'|@translate} : </span></label>
+				<label><input type="radio" name="vjs_resolution" value="true" {if $plugins.resolution}checked="checked"{/if}/> {'Yes'|@translate}</label>
+				<label><input type="radio" name="vjs_resolution" value="false" {if not $plugins.resolution}checked="checked"{/if}/> {'No'|@translate}</label>
+				<br/><small>{'RESOLUTION_DESC'|@translate}</small>
+			</li>
 		</ul>
 	</fieldset>
 	<p>
 		<input class="submit" type="submit" value="{'Save Settings'|@translate}" name="submit"/>
 	</p>
 </form>
+
+{literal}
+<script>
+function player_toggle()
+{
+        var select = document.getElementById("vjs_player");
+        var div = document.getElementById("player");
+	if (select.selectedIndex == 3) /* Only for VideoJS v4 */
+        {
+                div.removeAttribute("style");
+        } else {
+                div.setAttribute("style","visibility:hidden; width:0px; height:0px; display:none;");
+        }
+}
+
+window.onload = player_toggle();
+
+</script>
+{/literal}

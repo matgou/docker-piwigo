@@ -6,7 +6,7 @@
 *
 * Created   :   28.05.2013
 *
-* Copyright 2013-2015 <xbgmsharp@gmail.com>
+* Copyright 2013-2016 <xbgmsharp@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -126,7 +126,7 @@ function osm_render_element_content()
     $local_conf['center_lng'] = $lon;
     $local_conf['zoom'] = $zoom;
 
-    $js_data = array(array($lat, $lon, null, null, null, null, null, null));
+    $js_data = osm_get_items($page);
 
     $js = osm_get_js($conf, $local_conf, $js_data);
 
@@ -140,7 +140,7 @@ function osm_render_element_content()
         array(
             'HEIGHT'		=> $height,
             'OSMJS' 		=> $js,
-            'OSM_PATH'		=> embellish_url(get_absolute_root_url().OSM_PATH),
+            'OSM_PATH'		=> embellish_url(get_gallery_home_url().OSM_PATH),
             'OSMNAME'		=> $osmname,
             'OSMNAMECSS'	=> $osmnamecss,
             'SHOWOSM'		=> $showosm,

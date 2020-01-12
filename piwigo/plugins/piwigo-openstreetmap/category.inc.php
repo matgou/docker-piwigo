@@ -6,7 +6,7 @@
 *
 * Created   :   10.10.2014
 *
-* Copyright 2013-2015 <xbgmsharp@gmail.com>
+* Copyright 2013-2016 <xbgmsharp@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -29,19 +29,21 @@ if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 if ($conf['osm_conf']['category_description']['enabled'])
 {
     // Hook to add comment
-    add_event_handler('loc_begin_index', 'osm_render_category_description');
+    add_event_handler('loc_begin_index', 'osm_render_category');
+    // Hook to show data after Thumbnails
+    // Use only one trigger as we do have all the data need on first run trigger
+    // add_event_handler('loc_end_index', 'osm_render_category');
 }
-function osm_render_category_description()
-{
-    include_once( dirname(__FILE__) .'/include/functions.php');
-    include_once(dirname(__FILE__).'/include/functions_map.php');
-    osm_load_language();
-    load_language('plugin.lang', OSM_PATH);
 
-    global $template, $page, $conf;
-    // Comment are used only with this condition index.php l294
-    if ($page['start']==0 and !isset($page['chronology_field']) )
-    {
+function osm_render_category()
+{
+        global $template, $page, $conf, $filter;
+
+        include_once( dirname(__FILE__) .'/include/functions.php');
+        include_once( dirname(__FILE__) .'/include/functions_map.php');
+        osm_load_language();
+        load_language('plugin.lang', OSM_PATH);
+
         $js_data = osm_get_items($page);
         if ($js_data != array())
         {
@@ -49,11 +51,11 @@ function osm_render_category_description()
             $local_conf['contextmenu'] = 'false';
             $local_conf['control'] = true;
             $local_conf['img_popup'] = false;
-            $local_conf['popup'] = 2;
+            $local_conf['popup'] = 1;
             $local_conf['center_lat'] = 0;
             $local_conf['center_lng'] = 0;
             $local_conf['zoom'] = 2;
-            $local_conf['auto_center'] = 0;
+            $local_conf['autocenter'] = 1;
             $local_conf['paths'] = osm_get_gps($page);
             $height = isset($conf['osm_conf']['category_description']['height']) ? $conf['osm_conf']['category_description']['height'] : '200';
             $width = isset($conf['osm_conf']['category_description']['width']) ? $conf['osm_conf']['category_description']['width'] : 'auto';
@@ -62,7 +64,7 @@ function osm_render_category_description()
             $template->assign(
                 array(
                     'CONTENT_ENCODING' => get_pwg_charset(),
-                    'OSM_PATH'         => embellish_url(get_absolute_root_url().OSM_PATH),
+                    'OSM_PATH'         => embellish_url(get_gallery_home_url().OSM_PATH),
                     'HOME'             => make_index_url(),
                     'HOME_PREV'        => isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : get_absolute_root_url(),
                     'HOME_NAME'        => l10n("Home"),
@@ -74,11 +76,31 @@ function osm_render_category_description()
             );
 
             $osm_content = $template->parse('map', true);
-//            $osm_content = '<div id="osmmap"><div class="map_title">'.l10n('EDIT_MAP').'</div>' . $osm_content . '</div>';
-            if (empty($page['comment']))
-                $page['comment'] = $osm_content;
-            else
-                $page['comment'] = '<div>' . $osm_content . $page['comment'] . '</div>';
+            //$osm_content = '<div id="osmmap"><div class="map_title">'.l10n('EDIT_MAP').'</div>' . $osm_content . '</div>';
+            $index = isset($conf['osm_conf']['category_description']['index']) ? $conf['osm_conf']['category_description']['index'] : 0;
+            // 0 - PLUGIN_INDEX_CONTENT_BEGIN
+            // 1 - PLUGIN_INDEX_CONTENT_COMMENT
+            // 2 - PLUGIN_INDEX_CONTENT_END
+            if ($index <= 1)
+            {
+              // From index category comment at L300
+              if ($page['start']==0 and !isset($page['chronology_field']) )
+              {
+                if (empty($page['comment']))
+                   $page['comment'] = $osm_content;
+                else
+                {
+                  if ($index == 0)
+                     $page['comment'] = '<div>' . $osm_content . $page['comment'] .'</div>';
+                  else
+                     $page['comment'] = '<div>' . $page['comment'] . $osm_content . '</div>';
+                }
+              }
+            }
+	    else
+            {
+              $osm_content = '<div id="osmmap">'. $osm_content . '</div>';
+              $template->concat( 'PLUGIN_INDEX_CONTENT_END' , "\n".$osm_content);
+            }
         }
-    }
 }

@@ -6,7 +6,7 @@
 *
 * Created   :   18.01.2014
 *
-* Copyright 2013-2015 <xbgmsharp@gmail.com>
+* Copyright 2013-2016 <xbgmsharp@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -83,7 +83,7 @@ $local_conf = array();
 $local_conf['zoom'] = $zoom;
 $local_conf['center_lat'] = $center_lat;
 $local_conf['center_lng'] = $center_lng;
-$local_conf['contextmenu'] = 'false';
+$local_conf['contextmenu'] = 'true';
 $local_conf['control'] = true;
 $local_conf['img_popup'] = false;
 $local_conf['paths'] = osm_get_gps($page);

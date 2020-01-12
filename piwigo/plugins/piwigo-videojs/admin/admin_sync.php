@@ -2,11 +2,11 @@
 /***********************************************
 * File      :   admin_sync.php
 * Project   :   piwigo-videojs
-* Descr     :   Generate the admin panel
+* Descr     :   Generate the admin sync panel
 *
 * Created   :   4.06.2013
 *
-* Copyright 2012-2014 <xbgmsharp@gmail.com>
+* Copyright 2012-2018 <xbgmsharp@gmail.com>
 *
 *
 * This program is free software: you can redistribute it and/or modify
@@ -31,6 +31,8 @@ if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 $sync_options = array(
     'mediainfo'         => 'mediainfo',
     'ffmpeg'            => 'ffmpeg',
+    'exiftool'          => 'exiftool',
+    'ffprobe'           => 'ffprobe',
     'metadata'          => true,
     'poster'            => true,
     'postersec'         => 4,
@@ -45,17 +47,19 @@ $sync_options = array(
     'subcats_included'  => true,
 );
 
-// Override default value from configuration
+// Merge default value with user configuration
 if (isset($conf['vjs_sync']))
 {
-    $sync_options = unserialize($conf['vjs_sync']);
+    $sync_options = array_merge(unserialize($conf['vjs_sync']), $sync_options);
 }
 
 if(isset($_POST['mediainfo']) && isset($_POST['ffmpeg'])) {
     // Override default value from the form
-    $sync_options = array(
-		'mediainfo'         => $_POST['mediainfo'],
-		'ffmpeg'            => $_POST['ffmpeg'],
+    $sync_options_form = array(
+	'mediainfo'         => $_POST['mediainfo'],
+	'ffmpeg'            => $_POST['ffmpeg'],
+	'exiftool'          => $_POST['exiftool'],
+	'ffprobe'           => $_POST['ffprobe'],
         'metadata'          => isset($_POST['metadata']),
         'poster'            => isset($_POST['poster']),
         'postersec'         => $_POST['postersec'],
@@ -70,6 +74,9 @@ if(isset($_POST['mediainfo']) && isset($_POST['ffmpeg'])) {
         'subcats_included'  => isset($_POST['subcats_included']),
     );
 
+    // Merge default value with user configuration
+    $sync_options = array_merge(unserialize($conf['vjs_sync']), $sync_options_form);
+
     // Update config to DB
     conf_update_param('vjs_sync', serialize($sync_options));
 }
@@ -77,54 +84,22 @@ if(isset($_POST['mediainfo']) && isset($_POST['ffmpeg'])) {
 // Check dependencies
 $warnings = array();
 
-// Do the dependencies checks for MediaInfo & FFMPEG
-function check_mediainfo($sync_options)
-{
-    $retval = 0;
-    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-        system($sync_options['mediainfo'] ." >NUL 2>NUL", $retval); // redirect any output
-    } else {
-        system($sync_options['mediainfo'] ." 1>&2 /dev/null", $retval); // redirect any output
-    }
-    if($retval == 127 or $retval == 9009) // Linux or windows exit code for command not found.
-    {
-        return false;
-    } else {
-        return true;
-    }
-}
+// Do the Check dependencies, MediaInfo & FFMPEG, share with batch manager & photo edit & admin sync
+include(dirname(__FILE__).'/../include/function_dependencies.php');
 
-function check_ffmpeg($sync_options)
+if ($sync_options['posteroverlay'] and !function_exists('gd_info'))
 {
-    $retval = 0;
-    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-        system($sync_options['ffmpeg'] ." >NUL 2>NUL", $retval); // redirect any output
-    } else {
-        system($sync_options['ffmpeg'] ." 1>&2 /dev/null", $retval); // redirect any output
-    }
-    if($retval == 127 or $retval == 9009) // Linux or windows exit code for command not found.
-    {
-        return false;
-    } else {
-        return true;
-    }
+	$warnings[] = "GD library is missing to add overlay movie frame";
 }
-
-if (!check_mediainfo($sync_options))
+if ($sync_options['metadata'] and $sync_binaries['mediainfo'] and !class_exists('SimpleXMLElement'))
 {
-    $warnings[] = "Metadata parsing disable because MediaInfo is not installed on the system, eg: '/usr/bin/mediainfo'.";
-    $sync_options['metadata'] = false;
-}
-
-if (!check_ffmpeg($sync_options))
-{
-    $warnings[] = "Poster creation disable because FFmpeg is not installed on the system, eg: '/usr/bin/ffmpeg'.";
-    $sync_options['poster'] = false;
-    $sync_options['thumb'] = false;
+	$warnings[] = "XML library is missing to use mediainfo";
 }
 
 $template->assign('sync_warnings', $warnings);
 $template->assign($sync_options); // send config value to template
+$template->assign('sync_options', $sync_options); // send config value to template
+$template->assign('sync_binaries', $sync_binaries); // send external tools binary to template
 
 if ( isset($_POST['submit']) and isset($_POST['postersec']) )
 {
@@ -194,9 +169,18 @@ list($nb_videos_thumb) = pwg_db_fetch_row( pwg_query($query) );
 $query = "SELECT COUNT(*) FROM ".IMAGES_TABLE." WHERE `latitude` IS NOT NULL and `longitude` IS NOT NULL AND ".SQL_VIDEOS.";";
 list($nb_videos_geotagged) = pwg_db_fetch_row( pwg_query($query) );
 
+
+if (isset($_POST['cat_id']) and is_numeric($_POST['cat_id']))
+{
+	$cat_selected = array($sync_options['cat_id']);
+}
+else
+{
+	$cat_selected = array();
+}
 $query = 'SELECT id, CONCAT(name, IF(dir IS NULL, " (V)", "") ) AS name, uppercats, global_rank  FROM '.CATEGORIES_TABLE;
 display_select_cat_wrapper($query,
-                           array( $sync_options['cat_id'] ),
+                           $cat_selected,
                            'categories',
                            false);
 

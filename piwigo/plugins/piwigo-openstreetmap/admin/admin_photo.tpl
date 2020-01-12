@@ -36,26 +36,40 @@
 		<div style="float: left;">
 			<img src="{$TN_SRC}" alt="{'Thumbnail'|@translate}" style="border: 2px solid rgb(221, 221, 221);">
 		</div>
-		<div style="float: left; margin: auto;">
-			<ul>
+		<div style="float: left; margin: auto; padding-left:20px; vertical-align:top;">
+                        <ul style="margin:0;">
 				<li>
-					<label><input type="text" size="9" name="osmlat" value="{$LAT}"> {'LATITUDE'|@translate} (-90=S to 90=N)</label>
+					<label><input type="text" size="9" id="osmlat" name="osmlat" value="{$LAT}"> {'LATITUDE'|@translate} (-90=S to 90=N)</label>
 				</li>
 				<li>
-					<label><input type="text" size="9" name="osmlon" value="{$LON}"> {'LONGITUDE'|@translate} (-180=W to 180=E)</label>
+					<label><input type="text" size="9" id="osmlon" name="osmlon" value="{$LON}"> {'LONGITUDE'|@translate} (-180=W to 180=E)</label>
+				</li>
+			</ul>
+			<hr>
+			<ul>
+				<li>
+					<label>Save places :</label>
+					<select id="osmplaces" name="osmplaces" onchange="place_to_latlon(this)">
+						<option value="NULL">--</option>
+						{html_options options=$AVAILABLE_PLACES}
+					</select>
 				</li>
 			</ul>
 		</div>
+                <div style="float: left; margin: auto; padding-left:20px; vertical-align:top;" class="photoLinks">
+                        <ul style="margin:0;">
+                                <li>{'Empty values will erase coordinates'|@translate}</a></li>
+                                <li><a class="icon-trash" href="{$DELETE_URL}" onclick="return confirm('{'Are you sure?
+Latitude and Longitude will be delete.'|@translate|@escape:javascript}');">{'Erase coordinates'|@translate}</a></li>
+                        </ul>
+                </div>
+
 	</fieldset>
 
 	<fieldset>
 		<legend>{'EDIT_MAP'|@translate}</legend>
 		{'EDIT_UPDATE_LOCATION_DESC'|@translate}
 		<div id="map"></div>
-		<div id="info">
-			<small>Search values: OpenStreetMap Data offer by MapQuest Open Platform 
-			<a href="http://open.mapquestapi.com/nominatim/">open.mapquestapi.com</a></small>
-		</div>
 	</fieldset>
 
 	<p>
@@ -84,7 +98,9 @@
 
 	map.on('click', onMapClick);
 
+	/* Disable search require AppKey from mapquest */
 	/* BEGIN leaflet-search */
+	/*
 	var jsonpurl = 'https://open.mapquestapi.com/nominatim/v1/search.php?q={s}'+
 				   '&format=json&osm_type=N&limit=100&addressdetails=0',
 		jsonpName = 'json_callback';
@@ -118,6 +134,27 @@
 		};
 
 	map.addControl( new L.Control.Search(searchOpts) );
+	*/
 	/* END leaflet-search */
+
+function place_to_latlon()
+{
+	var select = document.getElementById("osmplaces").value;
+	{/literal}{$LIST_PLACES}{literal}
+	//alert(arr_places[select]);
+	var lat_elem = document.getElementById("osmlat");
+	var lon_elem = document.getElementById("osmlon");
+	if (arr_places[select] == "NULL")
+	{
+		lat_elem.value = "0";
+		lon_elem.value = "0";
+	}
+	else
+	{
+		lat_elem.value = arr_places[select][1];
+		lon_elem.value = arr_places[select][2];
+	}
+}
+
 </script>
 {/literal}

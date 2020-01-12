@@ -40,10 +40,11 @@ function osmcopyright($attrleaflet, $attrimagery, $attrmodule, $bl, $custombasel
         else if($bl == 'mapnikde')	$return .= "Tiles Courtesy of Openstreetmap.de (CC BY-SA)";
         else if($bl == 'blackandwhite')	$return .= "Tiles Courtesy of OSM.org (CC BY-SA)";
         else if($bl == 'mapnikhot')	$return .= 'Tiles Courtesy of &copy; <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>';
-        else if($bl == 'cloudmade')	$return .= 'Tiles Courtesy of &copy; <a href="http://cloudmade.com">CloudMade</a> ';
         else if($bl == 'mapquest')	$return .= 'Tiles Courtesy of &copy; <a href="http://www.mapquest.com/">MapQuest</a>';
         else if($bl == 'mapquestaerial')	$return .= 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency';
+        else if($bl == 'toner')		$return .= 'Tiles Courtesy of &copy; <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash;';
         else if($bl == 'custom')	$return .= $custombaselayer;
+        else if($bl == 'esri')		$return .= "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community";
     }
     // Mandatory by http://www.openstreetmap.org/copyright
     $return .= ' &copy; ';
@@ -91,7 +92,7 @@ function osm_get_gps($page)
     /* Get all GPX tracks */
     $query="SELECT i.path FROM ".IMAGES_TABLE." AS i
             INNER JOIN (".IMAGE_CATEGORY_TABLE." AS ic ".$INNER_JOIN.") ON i.id = ic.image_id
-            WHERE ".$LIMIT_SEARCH." `path` LIKE '%gpx%' ".$forbidden." ";
+            WHERE ".$LIMIT_SEARCH." `path` LIKE '%.gpx' ".$forbidden." ";
 
     return array_from_query($query, 'path');
 }
@@ -139,6 +140,11 @@ function osm_get_items($page)
         $LIMIT_SEARCH="";
         $INNER_JOIN="";
 
+        foreach (array('min_lat', 'min_lng', 'max_lat', 'max_lng') as $get_key)
+        {
+                check_input_parameter($get_key, $_GET, false, '/^-?\d+(\.\d+)?$/');
+        }
+
         /* Delete all previous album */
         $query="SELECT `id` FROM ".CATEGORIES_TABLE." WHERE `name` = 'Locations' AND `comment` LIKE '%OSM plugin%';";
         $ids = array_from_query($query, 'id');
@@ -185,11 +191,13 @@ function osm_get_items($page)
     // SUBSTRING_INDEX(TRIM(LEADING '.' FROM `path`), '.', 1) full path without filename extension
     // SUBSTRING_INDEX(TRIM(LEADING '.' FROM `path`), '.', -1) full path with only filename extension
 
+
+    if (isset($page['image_id'])) $LIMIT_SEARCH .= 'i.id = ' . $page['image_id'] . ' AND ';
+
     $query="SELECT i.latitude, i.longitude,
     IFNULL(i.name, '') AS `name`,
-    IF(i.representative_ext IS NULL,
-        CONCAT(SUBSTRING_INDEX(TRIM(LEADING '.' FROM i.path), '.', 1 ), '-sq.', SUBSTRING_INDEX(TRIM(LEADING '.' FROM i.path), '.', -1 )),
-        TRIM(LEADING '.' FROM
+    TRIM(LEADING '.' FROM IF(i.representative_ext IS NULL,
+        CONCAT(LEFT(i.path,LENGTH(i.path)-1-LENGTH(SUBSTRING_INDEX(i.path, '.', -1 ))), '-sq.', SUBSTRING_INDEX(i.path, '.', -1 )),
             REPLACE(i.path, TRIM(TRAILING '.' FROM SUBSTRING_INDEX(i.path, '/', -1 )),
                 CONCAT('pwg_representative/',
                     CONCAT(
@@ -198,9 +206,8 @@ function osm_get_items($page)
                     )
                 )
             )
-        )
-    ) AS `pathurl`,
-    TRIM(TRAILING '/' FROM CONCAT( i.id, '/category/', IFNULL(i.storage_category_id, '') ) ) AS `imgurl`,
+    )) AS `pathurl`,
+    TRIM(TRAILING '/' FROM CONCAT( i.id, '/category/', IFNULL(ic.category_id, '') ) ) AS `imgurl`,
     IFNULL(i.comment, '') AS `comment`,
     IFNULL(i.author, '') AS `author`,
     i.width
@@ -278,27 +285,40 @@ function osm_get_js($conf, $local_conf, $js_data)
     $divname = isset($local_conf['divname']) ? $local_conf['divname'] : 'map';
 
     /* If the config include parameters get them */
-    $zoom = isset($conf['osm_conf']['left_menu']['zoom']) ? $conf['osm_conf']['left_menu']['zoom'] : 2;
     $center = isset($conf['osm_conf']['left_menu']['center']) ? $conf['osm_conf']['left_menu']['center'] : '0,0';
     $center_arr = preg_split('/,/', $center);
     $center_lat = isset($center_arr) ? $center_arr[0] : 0;
     $center_lng = isset($center_arr) ? $center_arr[1] : 0;
 
     /* If we have zoom and center coordonate, set it otherwise fallback default */
-    $zoom = isset($_GET['zoom']) ? $_GET['zoom'] : $zoom;
+    $zoom = isset($_GET['zoom'])
+        ? $_GET['zoom']
+        : (
+            isset($local_conf['zoom'])
+                ? $local_conf['zoom']
+                : 2
+            );
     $center_lat = isset($_GET['center_lat']) ? $_GET['center_lat'] : $center_lat;
     $center_lng = isset($_GET['center_lng']) ? $_GET['center_lng'] : $center_lng;
 
+    $autocenter = isset($local_conf['autocenter'])
+        ? $local_conf['autocenter']
+        : 0;
+    
+    // When gallery is SSL and when switching baselayerURL to https is possible
+    $httpx = (!empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off')?'https':'http';
+
     // Load baselayerURL
-    if     ($baselayer == 'mapnik')     $baselayerurl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    if     ($baselayer == 'mapnik')     $baselayerurl = $httpx.'://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     else if($baselayer == 'mapquest')   $baselayerurl = 'http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png';
-    else if($baselayer == 'cloudmade')  $baselayerurl = 'http://{s}.tile.cloudmade.com/7807cc60c1354628aab5156cfc1d4b3b/997/256/{z}/{x}/{y}.png';
-    else if($baselayer == 'mapnikde')   $baselayerurl = 'http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png';
-    else if($baselayer == 'mapnikfr')   $baselayerurl = 'http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png';
+    else if($baselayer == 'mapnikde')   $baselayerurl = $httpx.'://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png';
+    else if($baselayer == 'mapnikfr')   $baselayerurl = $httpx.'://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png';
     else if($baselayer == 'blackandwhite')  $baselayerurl = 'http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png';
-    else if($baselayer == 'mapnikhot')  $baselayerurl = 'http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png';
-    else if($baselayer == 'mapquestaerial') $baselayerurl = 'http://oatile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg';
+    else if($baselayer == 'mapnikhot')  $baselayerurl = $httpx.'://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png';
+    else if($baselayer == 'mapquestaerial') $baselayerurl = 'http://otile1.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png';
+    else if($baselayer == 'toner') $baselayerurl = $httpx.'://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png';
     else if($baselayer == 'custom') $baselayerurl = $custombaselayerurl;
+    else if($baselayer == 'esri') $baselayerurl = $httpx.'://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
 
     $attribution = osmcopyright($attrleaflet, $attrimagery, $attrmodule, $baselayer, $custombaselayer);
 
@@ -342,7 +362,7 @@ function osm_get_js($conf, $local_conf, $js_data)
         $js .= "\nvar Url = '".$baselayerurl."',
         Attribution = '".$attribution."',
         TileLayer = new L.TileLayer(Url, {maxZoom: 18, noWrap: ".$nowarp.", attribution: Attribution});\n";
-        $js .= "var " . $divname . " = new L.Map('" . $divname . "', {" . $worldcopyjump . ", zoom: ".$local_conf['zoom'].", layers: [TileLayer], contextmenu: " . $local_conf['contextmenu'] . "});\n";
+        $js .= "var " . $divname . " = new L.Map('" . $divname . "', {" . $worldcopyjump . ", zoom: ".$zoom.", layers: [TileLayer], contextmenu: " . $local_conf['contextmenu'] . "});\n";
         $js .= $divname . ".attributionControl.setPrefix('');\n";
         $js .= "\nL.control.scale().addTo(" . $divname . ");\n";
         return $js;
@@ -352,7 +372,7 @@ function osm_get_js($conf, $local_conf, $js_data)
         Attribution = '".$attribution."',
         TileLayer = new L.TileLayer(Url, {maxZoom: 18, noWrap: ".$nowarp.", attribution: Attribution}),
         latlng = new L.LatLng(".$local_conf['center_lat'].", ".$local_conf['center_lng'].");\n";
-        $js .= "var " . $divname . " = new L.Map('" . $divname . "', {" . $worldcopyjump . ", center: latlng, ".$editor." zoom: ".$local_conf['zoom'].", layers: [TileLayer], contextmenu: " . $local_conf['contextmenu'] . "});\n";
+        $js .= "var " . $divname . " = new L.Map('" . $divname . "', {" . $worldcopyjump . ", center: latlng, ".$editor." zoom: ".$zoom.", layers: [TileLayer], contextmenu: " . $local_conf['contextmenu'] . "});\n";
         $js .= $divname . ".attributionControl.setPrefix('');\n";
         $js .= "var MarkerClusterList=[];\n";
         $js .= "if (typeof L.MarkerClusterGroup === 'function')\n";
@@ -506,7 +526,7 @@ function osm_get_js($conf, $local_conf, $js_data)
     }
     $js .= "\nif (typeof L.MarkerClusterGroup === 'function')\n";
     $js .= "    " . $divname . ".addLayer(markers);\n";
-    if (isset($local_conf['auto_center']) and $local_conf['auto_center'] === 0 ) {
+    if ( $autocenter and !isset($_GET['center_lat']) and !isset($_GET['center_lng']) and !isset($_GET['zoom']) ) {
         $js .= "var group = new L.featureGroup(MarkerClusterList);";
         $js .= "this." . $divname . ".whenReady(function () {
         window.setTimeout(function () {
@@ -525,7 +545,7 @@ function osm_gen_template($conf, $js, $js_data, $tmpl, $template)
     $template->assign(
         array(
             'CONTENT_ENCODING'	=> get_pwg_charset(),
-            'OSM_PATH'			=> embellish_url(get_absolute_root_url().OSM_PATH),
+            'OSM_PATH'			=> embellish_url(get_gallery_home_url().OSM_PATH),
             'GALLERY_TITLE'		=> $linkname .' - '. $conf['gallery_title'],
             'HOME'              => make_index_url(),
             'HOME_PREV'         => isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : get_absolute_root_url(),
@@ -534,8 +554,24 @@ function osm_gen_template($conf, $js, $js_data, $tmpl, $template)
             'TOTAL'             => sprintf( l10n('ITEMS'), count($js_data) ),
             'OSMJS'				=> $js,
             'MYROOT_URL'		=> get_absolute_root_url(),
+            'default_baselayer' => $conf['osm_conf']['map']['baselayer'],
         )
     );
+
+    if ( $conf['osm_conf']['map']['baselayer'] == 'custom' ) {
+        $iconbaselayer = $conf['osm_conf']['map']['custombaselayerurl'];
+        $iconbaselayer = str_replace('{s}', 'a', $iconbaselayer);
+        $iconbaselayer = str_replace('{z}', '5', $iconbaselayer);
+        $iconbaselayer = str_replace('{x}', '15', $iconbaselayer);
+        $iconbaselayer = str_replace('{y}', '11', $iconbaselayer);
+        $template->assign(
+            array(
+                'custombaselayer'    => $conf['osm_conf']['map']['custombaselayer'],
+                'custombaselayerurl' => $conf['osm_conf']['map']['custombaselayerurl'],
+                'iconbaselayer'      => $iconbaselayer,
+            )
+        );
+    }
 
     $template->pparse('map');
     $template->p();
@@ -546,7 +582,7 @@ function osm_parse_map_data_url($tokens, &$next_token)
     $page = parse_section_url($tokens, $next_token);
     if ( !isset($page['section']) )
       $page['section'] = 'categories';
-  
+
     $page = array_merge( $page, parse_well_known_params_url( $tokens, $next_token) );
     $page['start']=0;
     $page['box'] = osm_bounds_from_url( @$_GET['box'] );

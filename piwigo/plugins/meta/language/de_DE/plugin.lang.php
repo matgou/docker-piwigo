@@ -31,7 +31,7 @@ $lang['meta_keywords'] = 'Beschreibung der Metadatei Stichwort';
 $lang['meta_keywords_help'] = '"Stichwort, Stichwort, etc."<br>
 Stichwörter, die die Internetseite beschreiben. (Durch ein Komma getrennt)';
 $lang['meta_Description'] = 'Beschreibung der Metadatei Beschreibung';
-$lang['meta_Description_help'] = 'Beschreibung Ihrer Homepage<br>
+$lang['meta_Description_help'] = 'Beschreibung Ihrer Webseite<br>
 Ermöglicht eine Information auf der Seite zu veröffentlichen, auf der die Resultate der Suche angezeigt werden.';
 $lang['meta_robots'] = 'Beschreibung Metadatei Robot';
 $lang['meta_robots_help'] = '
@@ -56,4 +56,3 @@ $lang['Keywords of Additional Pages to be completed'] = 'Schlüsselwörter für 
 $lang['Keywords of contact page to be completed'] = 'Schlüsselwörter der Kontaktseite sind zu vervollständigen';
 $lang['Add metadata for page'] = 'Meta Daten für diese Seite hinzufügen';
 $lang['Metadata updated'] = 'Metadaten aktualisiert';
-?>

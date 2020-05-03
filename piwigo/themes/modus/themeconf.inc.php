@@ -1,7 +1,7 @@
 <?php
 /*
 Theme Name: modus
-Version: 2.10.1
+Version: 2.10.2
 Description: Responsive, horizontal menu, retina aware, no lost space.
 Theme URI: http://piwigo.org/ext/extension_view.php?eid=728
 Author: rvelices
@@ -10,6 +10,7 @@ Author URI: http://www.modusoptimus.com
 $themeconf = array(
 	'name' => 'modus',
 	'parent' => 'default',
+	'colorscheme' => 'dark',
 );
 
 define('MODUS_STR_RECENT', "\xe2\x9c\xbd"); //HEAVY TEARDROP-SPOKED ASTERISK
@@ -22,6 +23,9 @@ if (isset($conf['modus_theme']) && !is_array($conf['modus_theme']))
 
 if (!empty($_GET['skin']) && !preg_match('/[^a-zA-Z0-9_-]/', $_GET['skin']))
 	$conf['modus_theme']['skin'] = $_GET['skin'];
+
+// we're mainly interested in an override of the colorscheme
+include( dirname(__FILE__).'/skins/'.$conf['modus_theme']['skin'].'.inc.php' );
 
 $this->assign( array(
 	'MODUS_CSS_VERSION' => crc32(implode(',', array(
@@ -41,7 +45,10 @@ if (file_exists(dirname(__FILE__).'/skins/'.$conf['modus_theme']['skin'].'.css' 
 }
 
 if (!$conf['compiled_template_cache_language'])
+{
 	load_language('theme.lang', dirname(__FILE__).'/');
+	load_language('lang', PHPWG_ROOT_PATH.PWG_LOCAL_DIR, array('no_fallback'=>true, 'local'=>true) );
+}
 
 if (isset($_COOKIE['caps']))
 {

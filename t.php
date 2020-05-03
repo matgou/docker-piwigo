@@ -13,10 +13,10 @@ $config['allow_newusers'] = True;
 $config['advertise_admin_new_ldapuser'] = True;
 $config['send_password_by_mail_ldap'] = False;
 $config['forgot_url'] = "";
-$config['ld_server'] = "ad";
-$config['ld_group'] = "ld_server";
-$config['ld_group_class'] = "group";
-$config['ld_group_member_attrib'] = "member";
+$config['ld_server'] = "openldap";
+$config['ld_group'] = "cn=clouduser";
+$config['ld_group_class'] = "posixGroup";
+$config['ld_group_member_attrib'] = "memberUid";
 $config['ldap_debug'] = False;
 $config['ld_anonbind'] = False;
 

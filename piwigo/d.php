@@ -21,7 +21,7 @@ if ($result->num_rows > 0) {
         $img = $row['swift_container'] . '/' . $row['swift_filename'];
     }
 
-    $url = 'https://storage.sbg1.cloud.ovh.net/v1/AUTH_34b2151d63db4378b29ece310835e6c2/' . $img;
+    $url = 'https://storage.sbg.cloud.ovh.net/v1/AUTH_34b2151d63db4378b29ece310835e6c2/' . $img;
     header('Location: ' . $url);
 } else {
     echo "0 results";

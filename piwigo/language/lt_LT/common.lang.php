@@ -7,7 +7,7 @@
 // +-----------------------------------------------------------------------+
 /*
 Language Name: Lietuviu [LT]
-Version: 2.10.1
+Version: 2.10.2
 Language URI: http://piwigo.org/ext/extension_view.php?eid=648
 Author: Piwigo team
 Author URI: http://piwigo.org

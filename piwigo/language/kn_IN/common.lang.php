@@ -7,7 +7,7 @@
 // +-----------------------------------------------------------------------+
 /*
 Language Name: ಕನ್ನಡ [IN]
-Version: 2.10.1
+Version: 2.10.2
 Language URI: http://piwigo.org/ext/extension_view.php?eid=693
 Author: Piwigo team
 Author URI: http://piwigo.org

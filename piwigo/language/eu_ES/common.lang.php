@@ -7,7 +7,7 @@
 // +-----------------------------------------------------------------------+
 /*
 Language Name: Euskara [ES]
-Version: 2.10.2
+Version: 11.4.0
 Language URI: http://piwigo.org/ext/extension_view.php?eid=725
 Author: Piwigo team
 Author URI: http://piwigo.org
@@ -421,3 +421,5 @@ $lang['created after %s (%s)'] = '%s-aren (%s-en) ondoren sortuta';
 $lang['Your authentication key is no longer valid.'] = 'Zure autentifikazio gakoa ez da luzaroago baliozkoa';
 $lang['generate random password'] = 'Sortu ausazko pasahitza';
 $lang['Invalid username or password!'] = 'Erabiltzaile-izen edo pasahitz baliogabea!';
+$lang['Password: ********** (no copy by email)'] = 'Pasahitza: ********** (ez da kopiarik bidaliko posta elektronikoz)';
+$lang['Related albums'] = 'Erlazionatutako albumak';

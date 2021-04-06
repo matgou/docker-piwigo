@@ -1,2 +1,4 @@
 TODO
+admin/ldap_login_plugin_admin.tpl
+admin/ldap_login_plugin_admin.php
 Readme

@@ -271,6 +271,9 @@ $conf['update_notify_reminder_period'] = 7*24*60*60;
 // only the first page (value=false)
 $conf['album_description_on_all_pages'] = false;
 
+// Number of years displayed in the history compare mode (for the years chart)
+$conf['stat_compare_year_displayed'] = 5;
+
 // +-----------------------------------------------------------------------+
 // |                                 email                                 |
 // +-----------------------------------------------------------------------+
@@ -693,6 +696,13 @@ $conf['ws_max_users_per_page'] = 1000;
 // Display a link to subscribe to Piwigo Announcements Newsletter
 $conf['show_newsletter_subscription'] = true;
 
+// Check for available updates on Piwigo or extensions, performed each time
+// the dashboard is displayed
+$conf['dashboard_check_for_updates'] = true;
+
+// Number Weeks displayed on activity chart on the dashboard
+$conf['dashboard_activity_nb_weeks'] = 4;
+
 // +-----------------------------------------------------------------------+
 // | Filter                                                                |
 // +-----------------------------------------------------------------------+
@@ -843,6 +853,12 @@ $conf['batch_manager_images_per_page_unit'] = 5;
 
 // how many missing md5sum should Piwigo compute at once.
 $conf['checksum_compute_blocksize'] = 50;
+
+// quicksearch engine: include all photos from sub-albums of any matching
+// album. For example, if search is "bear", then we display photos from
+// "bear/grizzly". When value changed, delete database cache files in
+// _data/cache directory
+$conf['quick_search_include_sub_albums'] = false;
 
 // +-----------------------------------------------------------------------+
 // |                                 log                                   |

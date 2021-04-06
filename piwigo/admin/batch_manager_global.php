@@ -453,8 +453,17 @@ if ($conf['enable_synchronization'])
   $prefilters[] = array('ID' => 'no_sync_md5sum', 'NAME' => l10n('With no checksum'));
 }
 
+function UC_name_compare($a, $b)
+{
+  return strcmp(strtolower($a['NAME']), strtolower($b['NAME']));
+}
+
 $prefilters = trigger_change('get_batch_manager_prefilters', $prefilters);
-usort($prefilters, 'UC_name_compare');
+
+// Sort prefilters by localized name.
+usort($prefilters, function ($a, $b) {
+  return strcmp(strtolower($a['NAME']), strtolower($b['NAME']));
+});
 
 $template->assign(
   array(
@@ -709,7 +718,7 @@ SELECT id,path,representative_ext,file,filesize,level,name,width,height,rotation
 ;';
   $result = pwg_query($query);
 
-  $thumb_params = ImageStdParams::get_by_type(IMG_THUMB);
+  $thumb_params = ImageStdParams::get_by_type(IMG_SQUARE);
   // template thumbnail initialization
   while ($row = pwg_db_fetch_assoc($result))
   {

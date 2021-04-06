@@ -7,7 +7,7 @@
 // +-----------------------------------------------------------------------+
 /*
 Language Name: Ελληνικά [GR]
-Version: 2.10.2
+Version: 11.4.0
 Language URI: http://piwigo.org/ext/extension_view.php?eid=508
 Author: Piwigo team
 Author URI: http://piwigo.org
@@ -414,3 +414,5 @@ $lang['Link: %s'] = 'Σύνδεσμος: %s';
 $lang['Your authentication key is no longer valid.'] = 'Το κλειδί ταυτοποίησης σας δεν είναι πλέον έγκυρο.';
 $lang['generate random password'] = 'δημιουργήστε τυχαίο κωδικό πρόσβασης';
 $lang['Invalid username or password!'] = 'Μη έγκυρο όνομα ή κωδικός!';
+$lang['Related albums'] = 'Σχετικά Λευκώματα';
+$lang['Password: ********** (no copy by email)'] = 'Κωδικός πρόσβασης: ********** (χωρίς αντίγραφο μέσω email)';

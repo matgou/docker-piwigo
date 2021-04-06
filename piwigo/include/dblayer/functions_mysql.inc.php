@@ -61,7 +61,7 @@ function pwg_get_db_version()
   return mysql_get_server_info();
 }
 
-function pwg_query($query)
+function pwg_query($query, $escape_reserved_words=true)
 {
   global $conf,$page,$debug,$t2;
 
@@ -563,13 +563,13 @@ function do_maintenance_all_tables()
 
 function pwg_db_concat($array)
 {
-  $string = implode($array, ',');
+  $string = implode(',', $array);
   return 'CONCAT('. $string.')';
 }
 
 function pwg_db_concat_ws($array, $separator)
 {
-  $string = implode($array, ',');
+  $string = implode(',', $array);
   return 'CONCAT_WS(\''.$separator.'\','. $string.')';
 }
 

@@ -285,6 +285,7 @@ DELETE FROM '. PLUGINS_TABLE .'
           'uri'=>'',
           'description'=>'',
           'author'=>'',
+          'hasSettings'=>false,
         );
       $plg_data = file_get_contents($path.'/main.inc.php', null, null, 0, 2048);
 
@@ -315,6 +316,22 @@ DELETE FROM '. PLUGINS_TABLE .'
       if (preg_match("|Author URI:\\s*(https?:\\/\\/.+)|", $plg_data, $val))
       {
         $plugin['author uri'] = trim($val[1]);
+      }
+      if (preg_match("/Has Settings:\\s*([Tt]rue|[Ww]ebmaster)/", $plg_data, $val))
+      {
+        if (strtolower($val[1]) == 'webmaster')
+        {
+          global $user;
+
+          if ('webmaster' == $user['status'])
+          {
+            $plugin['hasSettings'] = true;
+          }
+        }
+        else
+        {
+          $plugin['hasSettings'] = true;
+        }
       }
       if (!empty($plugin['uri']) and strpos($plugin['uri'] , 'extension_view.php?eid='))
       {

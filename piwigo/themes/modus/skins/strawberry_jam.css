@@ -63,7 +63,7 @@ a:hover{
 
 #menubar li:hover a{
   text-decoration:none;
-  color:white;!important
+  color:white!important;
 }
 
 #menubar LI.selected>A{

@@ -7,7 +7,7 @@
 // +-----------------------------------------------------------------------+
 /*
 Language Name: Nederlands [NL]
-Version: 2.10.2
+Version: 11.4.0
 Language URI: http://piwigo.org/ext/extension_view.php?eid=429
 Author: Piwigo team
 Author URI: http://piwigo.org
@@ -381,7 +381,7 @@ $lang['Photo title, Z &rarr; A'] = 'Fototitel, Z &rarr; A';
 $lang['Rating score, high &rarr; low'] = 'Waarderingsscore, hoog &rarr; laag';
 $lang['Rating score, low &rarr; high'] = 'Waarderingsscore, laag &rarr; hoog';
 $lang['Visits, high &rarr; low'] = 'Bezoeken, hoog &rarr; laag';
-$lang['Visits, low &rarr; high'] = 'Bezoeken, laag %rarr; hoog';
+$lang['Visits, low &rarr; high'] = 'Bezoeken, laag &rarr; hoog';
 $lang['xsmall'] = 'XS - extra klein';
 $lang['%d rate'] = '%d waardering';
 $lang['Bad request'] = 'Foutief verzoek';
@@ -433,3 +433,5 @@ $lang['month']['9'] = 'september';
 $lang['Your authentication key is no longer valid.'] = 'Je sleutel is niet langer geldig.';
 $lang['Invalid username or password!'] = 'Ongeldige gebruikersnaam of wachtwoord!';
 $lang['generate random password'] = 'Genereer een willekeurig wachtwoord';
+$lang['Related albums'] = 'Gerelateerde albums';
+$lang['Password: ********** (no copy by email)'] = 'Wachtwoord ********** (geen kopie via email)';

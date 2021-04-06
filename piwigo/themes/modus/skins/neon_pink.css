@@ -236,7 +236,7 @@ fieldset h3, fieldset label {
 }
 
 #quickconnect input,
-.properties input,{
+.properties input{
   color:black;
 }
 
@@ -470,7 +470,7 @@ SELECT, TEXTAREA{
 .content .navigationBar,
 SPAN.calItem,
 .content .navigationBar:hover,
-SPAN.calItem:hover,{
+SPAN.calItem:hover{
   color:#8e8e93;
   border:none;
 }

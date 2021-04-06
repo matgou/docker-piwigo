@@ -298,8 +298,10 @@ function build_user($user_id, $use_cache=true)
     $user['internal_status']['guest_must_be_guest'] = true;
   }
 
-  // Check user theme
-  if (!isset($user['theme_name']) || !check_theme_installed($user['theme_name']))
+  // Check user theme. 2 possible problems:
+  // 1. the user_infos.theme was not found in the themes table, thus themes.name is null
+  // 2. the theme is not really installed on the filesystem
+  if (!isset($user['theme_name']) or !check_theme_installed($user['theme']))
   {
     $user['theme'] = get_default_theme();
     $user['theme_name'] = $user['theme'];
@@ -936,10 +938,7 @@ function log_user($user_id, $remember_me)
   if ( session_id()!="" )
   { // we regenerate the session for security reasons
     // see http://www.acros.si/papers/session_fixation.pdf
-    if (version_compare(PHP_VERSION, '7') <= 0)
-    {
-      session_regenerate_id(true);
-    }
+    session_regenerate_id(true);
   }
   else
   {
@@ -1100,6 +1099,8 @@ function pwg_login($success, $username, $password, $remember_me)
   pwg_session_gc();
 
   global $conf;
+
+  $user_found = false;
   // retrieving the encrypted password of the login submitted
   $query = '
 SELECT '.$conf['user_fields']['id'].' AS id,
@@ -1107,8 +1108,31 @@ SELECT '.$conf['user_fields']['id'].' AS id,
   FROM '.USERS_TABLE.'
   WHERE '.$conf['user_fields']['username'].' = \''.pwg_db_real_escape_string($username).'\'
 ;';
+
   $row = pwg_db_fetch_assoc(pwg_query($query));
   if (isset($row['id']) and $conf['password_verify']($password, $row['password'], $row['id']))
+  {
+    $user_found = true;
+  }
+
+  // If we didn't find a matching user name, we search for email address
+  if (!$user_found)
+  {
+    $query = '
+  SELECT '.$conf['user_fields']['id'].' AS id,
+         '.$conf['user_fields']['password'].' AS password
+    FROM '.USERS_TABLE.'
+    WHERE '.$conf['user_fields']['email'].' = \''.pwg_db_real_escape_string($username).'\'
+    ;';
+
+    $row = pwg_db_fetch_assoc(pwg_query($query));
+    if (isset($row['id']) and $conf['password_verify']($password, $row['password'], $row['id']))
+    {
+      $user_found = true;
+    }
+  }
+
+  if ($user_found)
   {
     log_user($row['id'], $remember_me);
     trigger_notify('login_success', stripslashes($username));
@@ -1603,6 +1627,25 @@ UPDATE '.USER_AUTH_KEYS_TABLE.'
     AND expired_on > NOW()
 ;';
   pwg_query($query);
+}
+
+/**
+ * Deactivates password reset key
+ *
+ * @since 11
+ * @param int $user_id
+ * @return null
+ */
+function deactivate_password_reset_key($user_id)
+{
+  single_update(
+    USER_INFOS_TABLE,
+    array(
+      'activation_key' => null,
+      'activation_key_expire' => null,
+      ),
+    array('user_id' => $user_id)
+    );
 }
 
 /**

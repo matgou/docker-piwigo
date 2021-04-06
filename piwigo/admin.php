@@ -181,7 +181,9 @@ $template->assign(
     'U_CONFIG_LANGUAGES' => $link_start.'languages',
     'U_CONFIG_THEMES'=> $link_start.'themes',
     'U_CATEGORIES'=> $link_start.'cat_list',
+    'U_CAT_MOVE'=> $link_start.'cat_move',
     'U_CAT_OPTIONS'=> $link_start.'cat_options',
+    'U_CAT_SEARCH'=> $link_start.'cat_search',
     'U_CAT_UPDATE'=> $link_start.'site_update&amp;site=1',
     'U_RATING'=> $link_start.'rating',
     'U_RECENT_SET'=> $link_start.'batch_manager&amp;filter=prefilter-last_import',
@@ -260,19 +262,6 @@ if ($nb_orphans > 0)
       )
     );
 }
-
-// +-----------------------------------------------------------------------+
-// | Plugin menu                                                           |
-// +-----------------------------------------------------------------------+
-
-$plugin_menu_links = trigger_change('get_admin_plugin_menu_links', array() );
-
-function UC_name_compare($a, $b)
-{
-  return strcmp(strtolower($a['NAME']), strtolower($b['NAME']));
-}
-usort($plugin_menu_links, 'UC_name_compare');
-$template->assign('plugin_menu_items', $plugin_menu_links);
 
 // +-----------------------------------------------------------------------+
 // | Refresh permissions                                                   |

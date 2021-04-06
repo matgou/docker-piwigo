@@ -1,7 +1,7 @@
 <?php
 /*
 Theme Name: Smart Pocket
-Version: 2.10.2
+Version: 11.4.0
 Description: Mobile theme.
 Theme URI: http://piwigo.org/ext/extension_view.php?eid=599
 Author: P@t
@@ -24,6 +24,11 @@ load_language('theme.lang', PHPWG_THEMES_PATH.'smartpocket/');
   redirect(duplicate_index_url());
 */
 
+// avoid trying to load slideshow.tpl which does not exist in SmartPocket theme
+if (isset($_GET['slideshow']))
+{
+  unset($_GET['slideshow']);
+}
 
 class SPThumbPicker
 {

@@ -7,7 +7,7 @@
 // +-----------------------------------------------------------------------+
 /*
 Language Name: Slovensky [SK]
-Version: 2.10.2
+Version: 11.4.0
 Language URI: http://piwigo.org/ext/extension_view.php?eid=452
 Author: Piwigo team
 Author URI: http://piwigo.org
@@ -420,3 +420,5 @@ $lang['Link: %s'] = 'Link: %s';
 $lang['Your authentication key is no longer valid.'] = 'Váš autentifikačný kľúč nie je viac platný.';
 $lang['generate random password'] = 'generovanie náhodného hesla';
 $lang['Invalid username or password!'] = 'Neplatné meno alebo heslo!';
+$lang['Password: ********** (no copy by email)'] = 'Heslo: ********** (žiadna kópia e-mailom)';
+$lang['Related albums'] = 'Súvisiace albumy';

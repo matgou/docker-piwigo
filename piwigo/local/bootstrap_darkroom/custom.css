@@ -1,0 +1,13 @@
+/* matgou-css */
+.card-title {
+  text-align: center;
+}
+.card {
+  border: none;
+}
+.card-footer {
+  text-align: center;
+}
+.card-title {
+    margin-bottom: 0;
+}

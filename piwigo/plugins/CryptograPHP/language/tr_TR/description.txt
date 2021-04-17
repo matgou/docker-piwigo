@@ -1,1 +1,0 @@
-Kayıt, yorum ve iletişim formu sayfalarına captcha ekler. (P&t 'ye teşekkürler)

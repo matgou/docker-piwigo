@@ -1,1 +1,0 @@
-Actualizar las propiedades de varias fotos a la vez mediante la importación de un archivo de texto.

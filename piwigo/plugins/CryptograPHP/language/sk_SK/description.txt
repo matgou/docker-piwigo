@@ -1,1 +1,0 @@
-Pridá captcha na stránky registrácie, komentára a kontaktného formulára (poďakovanie pre P@t)

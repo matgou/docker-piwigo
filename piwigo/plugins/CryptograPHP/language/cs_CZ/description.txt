@@ -1,1 +1,0 @@
-Vloží captcha ověření pro registrační stránku a kontaktní formulář (thanks to P@t)

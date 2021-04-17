@@ -1,1 +1,0 @@
-Permite añadir metadatos en cada página de la galería (autor, descripción, palabras clave, robots)

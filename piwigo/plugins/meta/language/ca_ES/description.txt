@@ -1,1 +1,0 @@
-Permet afegir metadades a cada pàgina de la galeria (autor, descripció, paraules clau, robots)

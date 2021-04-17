@@ -1,1 +1,0 @@
-Tilføjer Captcha til siderne brugerregistrering, kommentar og ContactForm (med tak til P@t).

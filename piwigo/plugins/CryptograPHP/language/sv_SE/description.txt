@@ -1,1 +1,0 @@
-Lägg till en captcha på registrerings-, kommentars-, gästboks- och kontakt-sidorna.

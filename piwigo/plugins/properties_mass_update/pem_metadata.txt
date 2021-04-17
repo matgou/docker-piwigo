@@ -1,4 +1,0 @@
-File automatically created from SVN or Git repository.
-
-URL: https://github.com/plegall/Piwigo-properties_mass_update 
-Revision: 7ade4dacb7b9f11c3391d696d2ad878a8e1190f8 (Thu Oct 31 10:44:26 2019 +0100)

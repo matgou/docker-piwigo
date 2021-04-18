@@ -18,10 +18,10 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        $img = $row['swift_container'] . '/' . $row['swift_filename'];
+        $img = 'photos_hd_prod' . '/' . $row['swift_filename'];
     }
 
-    $url = 'https://storage.sbg.cloud.ovh.net/v1/AUTH_34b2151d63db4378b29ece310835e6c2/' . $img;
+    $url = 'https://storage.gra.cloud.ovh.net/v1/AUTH_34b2151d63db4378b29ece310835e6c2/' . $img;
     header('Location: ' . $url);
 } else {
     echo "0 results";

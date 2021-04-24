@@ -6,7 +6,7 @@
 {/if}
 {if !empty($PLUGIN_INDEX_CONTENT_BEFORE)}{$PLUGIN_INDEX_CONTENT_BEFORE}{/if}
 
-    <nav id="secondary-nav-custom" class="navbar navbar-expand-lg navbar-contextual {$theme_config->navbar_contextual_style} {$theme_config->navbar_contextual_bg}{if $theme_config->page_header == 'fancy' && $theme_config->page_header_both_navs} navbar-transparent navbar-sm{/if} sticky-top mb-2">
+    <nav id="secondary-nav-custom" class="navbar navbar-expand-lg navbar-contextual navbar-light bg-light sticky-top mb-2">
         <div class="container{if $theme_config->fluid_width}-fluid{/if}">
             <div class="navbar-brand mr-auto">
 {if isset($chronology.TITLE)}

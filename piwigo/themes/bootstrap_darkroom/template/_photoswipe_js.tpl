@@ -135,7 +135,7 @@ function startPhotoSwipe(idx) {
                            {id:'whatsapp', label:'<i class="fab fa-whatsapp fa-2x fa-fw"></i> Share via WhatsApp', url:'whatsapp://send?text={{url}}', download:true},
 {/literal}{/if}
 {literal}
-                           {id:'download', label:'<i class="fas fa-cloud-download-alt fa-2x fa-fw"></i> Download image', url:'{{raw_image_url}}', download:true}
+                           {id:'download', label:'<i class="fas fa-cloud-download-alt fa-2x fa-fw"></i> Download image', url:'/d.php?img={{raw_image_url}}', download:true}
 {/literal}
                         ],
 {/if}

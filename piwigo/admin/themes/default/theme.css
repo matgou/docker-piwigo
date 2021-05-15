@@ -3135,7 +3135,7 @@ FORM#categoryOrdering p.albumActions .userSeparator {margin:0 5px;}
 .move-cat-container .move-cat-title {
   font-size: 16px;
   margin: 10px;
-  max-width: 200px;
+  max-width: 600px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -3219,6 +3219,17 @@ FORM#categoryOrdering p.albumActions .userSeparator {margin:0 5px;}
   transform: translate(-50%, -48%);
   text-align: left;
   padding: 30px;
+  min-width: 360px;
+}
+
+.cat-move-order-popin .popin-title .icon-sort-name-up::before {
+  display:inline !important;
+}
+.cat-move-order-popin .popin-title .icon-sort-name-up, .cat-move-order-popin .popin-title-text {
+  display:inline-block;
+}
+.cat-move-order-popin .popin-title-text::first-letter {
+  text-transform: capitalize;
 }
 
 .cat-move-order-popin .album-name {
@@ -3266,7 +3277,7 @@ FORM#categoryOrdering p.albumActions .userSeparator {margin:0 5px;}
 
 .cat-move-order-popin .close-popin:hover { color: #ffa646;}
 
-.popin-title {font-weight: bold; font-size: 15px; margin-bottom: 15px; color: #3C3C3C;}
+.popin-title {font-weight: bold; font-size: 15px; margin-bottom: 15px; color: #3C3C3C; white-space: nowrap;}
 
 .popin-title span {
   padding: 7px;
@@ -4811,6 +4822,13 @@ li.plupload_delete a:hover {background: url("images/cancelhover.svg")!important;
   margin: 10px;
   white-space: nowrap;
   font-weight: 600;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 75%;
+  direction: rtl;
+  text-align: left;
 }
 
 .search-album-action-cont {
@@ -4881,3 +4899,21 @@ li.plupload_delete a:hover {background: url("images/cancelhover.svg")!important;
 }
 
 .doubleSelect p {display:flex; justify-content: center;}
+
+/* View selectors css (colors)*/
+
+.AlbumViewSelector, .UserViewSelector {
+  background: #fafafa !important;
+}
+
+.AlbumViewSelector input:checked + label,
+.UserViewSelector input:checked + label{
+  background: transparent;
+  color: white;
+}
+
+.AlbumViewSelector input:checked + label span,
+.UserViewSelector input:checked + label span{
+  background: orange;
+}
+

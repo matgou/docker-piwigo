@@ -1,10 +1,9 @@
 <?php
-
 $conf['dblayer'] = 'mysqli';
-$conf['db_base'] = 'piwigo';
-$conf['db_user'] = 'piwigo';
-$conf['db_password'] = 'piwigo';
-$conf['db_host'] = '192.168.100.2';
+$conf['db_base'] = '@@MYSQL_DATABASE@@';
+$conf['db_user'] = '@@MYSQL_USER@@';
+$conf['db_password'] = '@@MYSQL_PASSWORD@@';
+$conf['db_host'] = '@@MYSQL_HOST@@';
 $conf['db_port'] = '3306';
 
 $prefixeTable = 'piwigo_';

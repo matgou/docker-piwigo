@@ -7,6 +7,7 @@ server {
 	proxy_send_timeout          900;
 	proxy_read_timeout          900;
 	send_timeout                900;
+        client_max_body_size        256M;
 
 
 	# Add index.php to the list if you are using PHP

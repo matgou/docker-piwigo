@@ -22,6 +22,8 @@ sed -i "s/@@MYSQL_USER@@/$MYSQL_USER/g" $fic
 sed -i "s/@@MYSQL_HOST@@/$MYSQL_HOST/g" $fic
 sed -i "s/@@MYSQL_PASSWORD@@/$MYSQL_PASSWORD/g" $fic
 
+RUN chown -R www-data:www-data /var/www/html
+
 php /t.php > /var/www/html/plugins/Ldap_Login/data.dat
 
 php-fpm

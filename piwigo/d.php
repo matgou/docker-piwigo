@@ -1,35 +1,49 @@
 <?php
+# https://photos.kapable.info/d.php?img=./galleries/2020/202007_Sprint-racing-et-barbecue/202007_Sprint-racing-et-barbecue--10.jpg
 $conf = array();
 include 'local/config/database.inc.php';
-$img=preg_replace('/^.*galleries./', '', $_GET['img']);
+require 'vendor/autoload.php';
+
+use Aws\S3\S3Client;
+use Aws\Exception\AwsException;
+
+#$get_img = $_GET['img'];
+$get_img = $argv['1'];
+
+$bucket_name = 'kapable-photos';
+
+echo $get_img . PHP_EOL;
+
+$img=preg_replace('/^.*galleries./', '', $get_img);
+
+echo $img . PHP_EOL;
+
+$s3 = new Aws\S3\S3Client([
+    'version' => 'latest',
+    'region' => 'eu-west-2'
+]);
 
 
-// Create connection
-$conn = new mysqli($conf['db_host'], $conf['db_user'], $conf['db_password'], $conf['db_base']);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+$result = $s3->listBuckets();
+foreach ($result['Buckets'] as $bucket) {
+    echo $bucket['Name'] . "\n";
 }
 
-$sql = "SELECT swift_filename, swift_container FROM swift_file WHERE swift_filename LIKE '%$img%'";
+$command = $s3->getCommand('ListObjects');
+$command['MaxKeys'] = 50;
+$command['Prefix'] = 'photos/';
+$command['Bucket'] = $bucket_name;
+$result = $s3->execute($command);
 
-$result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        $img = 'photos_hd_prod' . '/' . $row['swift_filename'];
-    }
-
-    $url = 'https://storage.gra.cloud.ovh.net/v1/AUTH_34b2151d63db4378b29ece310835e6c2/' . $img;
-    header('Location: ' . $url);
-} else {
-    echo "0 results";
+foreach ($result['Contents']  as $object) {
+    echo $object['Key'] . PHP_EOL;
 }
-$conn->close();
 
 
-// OR: header('Location: http://www.yoursite.com/home-page.html', true, 302);
+
+
+
 exit;
 
  ?>

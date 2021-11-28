@@ -1,0 +1,34 @@
+from nginx
+
+# Add unzip
+RUN apt-get update && apt-get install unzip
+# Add param
+ADD nginx-piwigo.conf.template /etc/nginx/templates/default.conf.template
+
+# Add src
+ADD piwigo-12.1.0.zip /var/www/
+ADD Ldap_Login_2.10c.zip /var/www
+ADD AdminTools_12.1.0.zip /var/www
+ADD rv_tscroller_2.7.a.zip /var/www
+ADD GThumb_12.a.zip /var/www
+ADD bootstrap_darkroom_2.5.0.zip /var/www
+ 
+RUN cd /var/www/ && unzip /var/www/piwigo-12.1.0.zip && rm -rf html && mv piwigo html && \
+    cd /var/www/html/plugins && unzip -o /var/www/Ldap_Login_2.10c.zip && \
+    cd /var/www/html/plugins && unzip -o /var/www/AdminTools_12.1.0.zip && \
+    cd /var/www/html/plugins && unzip -o /var/www/rv_tscroller_2.7.a.zip && \
+    cd /var/www/html/plugins && unzip -o /var/www/GThumb_12.a.zip && \
+    cd /var/www/html/themes && unzip -o /var/www/bootstrap_darkroom_2.5.0.zip
+
+ADD database.inc.php /var/www/html/local/config/database.inc.php
+ADD jo-mat /var/www/html/template-extension/jo-mat
+ADD picture_nav.tpl /var/www/html/themes/bootstrap_darkroom/template/picture_nav.tpl
+ADD _photoswipe_js.tpl /var/www/html/themes/bootstrap_darkroom/template/_photoswipe_js.tpl
+
+#RUN chown -Rv root:www-data /var/www/html && \
+#    chmod -Rv u+rw /var/www/html && \
+#    chmod -Rv g+r /var/www/html
+
+
+# Purge
+RUN apt-get remove --allow-remove-essential --purge -y unzip && rm -rf /var/lib/apt/lists/* && rm -rf /var/www/*.zip

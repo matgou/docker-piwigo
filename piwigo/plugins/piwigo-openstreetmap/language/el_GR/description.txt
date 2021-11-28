@@ -1,1 +1,0 @@
-Ενσωμάτωση OpenStreetMap με το Piwigo

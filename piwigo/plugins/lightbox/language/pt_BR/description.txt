@@ -1,1 +1,0 @@
-Mostra as fotos dentro de um quadro (lightbox)

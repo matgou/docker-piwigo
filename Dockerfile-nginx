@@ -1,7 +1,0 @@
-from nginx
-
-ADD piwigo /var/www/html
-
-ADD nginx-piwigo.conf.template /etc/nginx/templates/default.conf.template
-
-

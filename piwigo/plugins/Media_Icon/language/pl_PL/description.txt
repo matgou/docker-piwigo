@@ -1,1 +1,0 @@
-Pozwala dodać ikony do plików, które nie są grafikami.

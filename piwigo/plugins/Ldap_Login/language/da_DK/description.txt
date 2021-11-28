@@ -1,1 +1,0 @@
-Gør det muligt for Piwigo-brugere at logge på vha. deres LDAP-oplysninger (login, mail eller anden attribut angivet af Piwigo-administratorerne samt LDAP-adgangskode). 

@@ -1,4 +1,0 @@
-File automatically created from SVN or Git repository.
-
-URL: http://piwigo.org/svn/extensions/Media_Icon 
-Revision: 30831

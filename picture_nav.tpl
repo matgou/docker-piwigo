@@ -1,4 +1,4 @@
-<nav id="secondary-nav-custom" class="navbar navbar-expand-lg navbar-contextual navbar-light bg-light sticky-top mb-2">
+<nav class="navbar navbar-contextual navbar-expand-lg {$theme_config->navbar_contextual_style} {$theme_config->navbar_contextual_bg} sticky-top mb-2">
     <div class="container{if $theme_config->fluid_width}-fluid{/if}">
         <div class="navbar-brand">
             <div class="nav-breadcrumb d-inline-flex">{$SECTION_TITLE}<span class="nav-breadcrumb-item active">{$current.TITLE}</span></div>

@@ -45,6 +45,13 @@ body {
   margin-bottom: 0;
 }
 
+#password {
+  display: none;
+}
+#username {
+  display: none;
+}
+
 /* Extra markup and styles for table-esque vertical and horizontal centering */
 .site-wrapper {
   display: table;

@@ -3,6 +3,9 @@
 <head>
 <title>{if $PAGE_TITLE=='Home'|@translate}{$GALLERY_TITLE}{else}{$PAGE_TITLE}{/if}</title>
 <link rel="shortcut icon" type="image/x-icon" href="{$ROOT_URL}{$themeconf.icon_dir}/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{$ROOT_URL}themes/modus/css/open-sans/open-sans.css">
 {strip}{get_combined_css}
 {combine_css path="themes/modus/css/base.css.tpl" version=$MODUS_CSS_VERSION template=true order=-10}
@@ -46,6 +49,8 @@
 <meta name="description" content="{$PAGE_TITLE}{if isset($INFO_FILE)} - {$INFO_FILE}{/if}">
 {/if}
 {/if}
+
+<link rel="stylesheet" type="text/css" href="{$ROOT_URL}themes/jo-mat-theme/css/custom.css?v=10">
 
 </head>
 

@@ -23,11 +23,9 @@ RUN mkdir -p /var/www/source/piwigo/plugins && \
 RUN mkdir -p /var/www/source/piwigo/themes/jo-mat-theme
 COPY themes/jo-mat-theme /var/www/source/piwigo/themes/jo-mat-theme
 
-# Fix Modus child-theme incompatibility by providing the JS files it expects in the active theme folder
+# Fix Modus child-theme incompatibility by copying all JS files from modus
 RUN mkdir -p /var/www/source/piwigo/themes/jo-mat-theme/js && \
-    cp /var/www/source/piwigo/themes/modus/js/modus.async.js /var/www/source/piwigo/themes/jo-mat-theme/js/ && \
-    cp /var/www/source/piwigo/themes/modus/js/menuh.js /var/www/source/piwigo/themes/jo-mat-theme/js/ && \
-    cp /var/www/source/piwigo/themes/modus/js/thumb.arrange.min.js /var/www/source/piwigo/themes/jo-mat-theme/js/
+    cp -r /var/www/source/piwigo/themes/modus/js/* /var/www/source/piwigo/themes/jo-mat-theme/js/
 
 # Add the runtime initialization script
 RUN mkdir -p /usr/local/bin/scripts/

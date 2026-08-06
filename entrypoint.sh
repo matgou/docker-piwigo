@@ -15,8 +15,15 @@ mkdir -p /tmp/piwigo/templates_c
 mkdir -p /tmp/piwigo/combined
 chown -R nginx:nginx /tmp/piwigo
 
+# IA-AS-CODE ENFORCEMENT:
+# The official Piwigo image only copies source to html if index.php is missing.
+# We force the sync of plugins and themes folders at every boot to ensure
+# that updates in the Dockerfile (patches, new plugins) are always applied.
+echo "Syncing plugins and themes from Docker image to persistent volume..."
+cp -r /var/www/source/piwigo/plugins/* /var/www/html/piwigo/plugins/
+cp -r /var/www/source/piwigo/themes/* /var/www/html/piwigo/themes/
+
 # Generate database configuration dynamically
-# We include the standard Piwigo defines and cache overrides
 cat <<EOF > /var/www/html/piwigo/local/config/database.inc.php
 <?php
 \$conf['dblayer'] = 'mysqli';
@@ -45,3 +52,5 @@ EOF
 
 # Ensure proper permissions for the web server
 chown -R nginx:nginx /var/www/html/piwigo/local/config
+chown -R nginx:nginx /var/www/html/piwigo/plugins
+chown -R nginx:nginx /var/www/html/piwigo/themes

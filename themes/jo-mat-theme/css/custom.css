@@ -495,47 +495,118 @@ ul.thumbnails li:hover .thumbLegend {
   border: none !important;
 }
 
-/* --- Photo Detail View (Picture Page) --- */
+/* --- Photo Detail View (Picture Page) - Light & Minimal --- */
 body.modus-picture, body[id="thePicturePage"] {
-  background-color: #0b0f19 !important;
-  color: #f8fafc !important;
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
 }
 
 body.modus-picture #theHeader, body[id="thePicturePage"] #theHeader {
-  background-color: #0f172a !important;
-  border-bottom-color: #1e293b !important;
+  background-color: #ffffff !important;
+  border-bottom-color: #e2e8f0 !important;
 }
 
 body.modus-picture #theHeader a, body[id="thePicturePage"] #theHeader a {
-  color: #f8fafc !important;
+  color: #0f172a !important;
 }
 
 body.modus-picture #menubar, body[id="thePicturePage"] #menubar {
-  background: rgba(15, 23, 42, 0.92) !important;
-  border-bottom-color: #1e293b !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-bottom-color: #e2e8f0 !important;
 }
 
 body.modus-picture #menubar dt a, body[id="thePicturePage"] #menubar dt a {
-  color: #cbd5e1 !important;
+  color: #475569 !important;
 }
 
-/* Picture Canvas & Container */
+/* Picture Layout - Stack vertically for mobile & desktop */
+body.modus-picture #content, body[id="thePicturePage"] #content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  padding: 0 16px 48px !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+  float: none !important;
+}
+
+/* Top Breadcrumbs and Action Toolbar */
 #imageHeaderBar {
-  padding: 16px 28px !important;
-  background: #0f172a !important;
-  color: #f8fafc !important;
-  border-radius: 12px !important;
-  margin-bottom: 20px !important;
+  width: 100% !important;
+  background: transparent !important;
+  color: #0f172a !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 16px 0 24px !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 12px !important;
 }
 
+#imageHeaderBar h2, .imageNumber {
+  color: #0f172a !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+  text-shadow: none !important;
+}
+
+#imageHeaderBar a {
+  color: #64748b !important;
+  text-decoration: none !important;
+}
+
+#imageHeaderBar a:hover {
+  color: #2563eb !important;
+}
+
+/* Toolbar Buttons (Play, Download, etc.) */
+#imageToolBar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  margin-bottom: 24px !important;
+}
+
+#imageToolBar a, .imageToolBar a {
+  background: #ffffff !important;
+  color: #475569 !important;
+  border: 1px solid #e2e8f0 !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+}
+
+#imageToolBar a:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Image Canvas */
 #theImage, #theImage img, .imageTable img {
-  max-width: 90vw !important;
-  max-height: 82vh !important;
+  max-width: 100% !important;
+  max-height: 75vh !important;
   object-fit: contain !important;
-  border-radius: 14px !important;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1) !important;
   margin: 0 auto !important;
   display: block !important;
+  background: #ffffff !important;
 }
 
 /* Navigation prev / next floating buttons */
@@ -543,60 +614,107 @@ body.modus-picture #menubar dt a, body[id="thePicturePage"] #menubar dt a {
   position: fixed !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
-  width: 52px !important;
-  height: 52px !important;
+  width: 48px !important;
+  height: 48px !important;
   border-radius: 50% !important;
-  background: rgba(255, 255, 255, 0.15) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  color: transparent !important; /* Hide text */
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  font-size: 24px !important;
   text-decoration: none !important;
-  transition: all 0.2s ease !important;
+  transition: all 0.25s ease !important;
   z-index: 10000 !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  overflow: hidden !important;
 }
 
-#linkPrev {
-  left: 24px !important;
-}
-
-#linkNext {
-  right: 24px !important;
-}
+#linkPrev { left: 20px !important; }
+#linkNext { right: 20px !important; }
 
 #linkPrev:hover, #linkNext:hover {
-  background: rgba(255, 255, 255, 0.35) !important;
-  transform: translateY(-50%) scale(1.08) !important;
-  color: #ffffff !important;
+  background: #ffffff !important;
+  transform: translateY(-50%) scale(1.1) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* Photo Metadata Sidebar & Info Card */
-#imageInfos, .imageInfoTable {
-  background: #0f172a !important;
-  color: #e2e8f0 !important;
+/* Clean minimal chevrons for navigation */
+#linkPrev::after {
+  content: "‹" !important;
+  color: #0f172a !important;
+  font-size: 32px !important;
+  position: absolute !important;
+  line-height: 1 !important;
+  font-family: inherit !important;
+  padding-bottom: 4px !important;
+}
+
+#linkNext::after {
+  content: "›" !important;
+  color: #0f172a !important;
+  font-size: 32px !important;
+  position: absolute !important;
+  line-height: 1 !important;
+  font-family: inherit !important;
+  padding-bottom: 4px !important;
+}
+
+/* Hide overlapping thumbnails or extra text inside nav buttons */
+#linkPrev *, #linkNext * {
+  display: none !important;
+}
+
+/* Responsive adjustments for nav buttons on mobile */
+@media (max-width: 768px) {
+  #linkPrev, #linkNext {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  #linkPrev { left: 8px !important; }
+  #linkNext { right: 8px !important; }
+  #linkPrev::after, #linkNext::after {
+    font-size: 28px !important;
+  }
+}
+
+/* Photo Metadata Sidebar & Info Card (Stacked below image) */
+#infoBox, #imageInfos, .imageInfoTable {
+  background: #ffffff !important;
+  color: #334155 !important;
   border-radius: 16px !important;
   padding: 24px !important;
-  border: 1px solid #1e293b !important;
-  margin-top: 28px !important;
+  border: 1px solid #e2e8f0 !important;
+  margin: 32px auto 0 !important;
+  width: 100% !important;
+  max-width: 800px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  float: none !important;
+  display: block !important;
+  box-sizing: border-box !important;
 }
 
-#imageInfos dt {
-  color: #94a3b8 !important;
-  font-size: 13px !important;
+#infoBox dt, #imageInfos dt {
+  color: #64748b !important;
+  font-size: 12px !important;
   font-weight: 600 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
+  margin-top: 16px !important;
 }
 
-#imageInfos dd {
-  color: #f8fafc !important;
+#infoBox dt:first-child, #imageInfos dt:first-child {
+  margin-top: 0 !important;
+}
+
+#infoBox dd, #imageInfos dd {
+  color: #0f172a !important;
   font-size: 14px !important;
-  margin-bottom: 14px !important;
+  margin-bottom: 8px !important;
+  margin-left: 0 !important;
+  font-weight: 500 !important;
 }
 
 /* --- Clean Up Form Inputs & Auth Pages --- */

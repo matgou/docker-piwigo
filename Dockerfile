@@ -17,6 +17,7 @@ RUN mkdir -p /var/www/source/piwigo/plugins && \
     mv /var/www/source/piwigo/plugins/Piwigo-GThumb-master /var/www/source/piwigo/plugins/GThumb && \
     curl -L https://github.com/jasperweyne/PiwigoOpenIdConnect/releases/download/v1.0.4/OpenIdConnect.zip -o /tmp/OIDC.zip && \
     unzip -o /tmp/OIDC.zip -d /var/www/source/piwigo/plugins && \
+    sed -i 's/ENGINE=MyISAM/ENGINE=InnoDB/g' /var/www/source/piwigo/plugins/OpenIdConnect/maintain.class.php && \
     rm /tmp/*.zip
 
 # Copy our custom lightweight child theme (based on Modus)

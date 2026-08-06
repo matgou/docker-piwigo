@@ -4,7 +4,7 @@ LABEL kapable.info/author="Mathieu GOULIN <mathieu.goulin@gadz.org>"
 # Add php customization
 COPY php-piwigo.ini /etc/php84/conf.d/piwigo.ini
 
-# Install custom plugins directly into the source directory
+# Install custom plugins
 RUN mkdir -p /var/www/source/piwigo/plugins && \
     curl -L https://github.com/Piwigo/AdminTools/archive/refs/heads/master.zip -o /tmp/AdminTools.zip && \
     unzip -o /tmp/AdminTools.zip -d /var/www/source/piwigo/plugins && \
@@ -15,10 +15,10 @@ RUN mkdir -p /var/www/source/piwigo/plugins && \
     curl -L https://github.com/plegall/Piwigo-GThumb/archive/refs/heads/master.zip -o /tmp/gthumb.zip && \
     unzip -o /tmp/gthumb.zip -d /var/www/source/piwigo/plugins && \
     mv /var/www/source/piwigo/plugins/Piwigo-GThumb-master /var/www/source/piwigo/plugins/GThumb && \
-    curl -L https://github.com/jasperweyne/PiwigoOpenIdConnect/releases/download/v1.0.4/OpenIdConnect.zip -o /tmp/OIDC.zip && \
-    unzip -o /tmp/OIDC.zip -d /var/www/source/piwigo/plugins && \
-    sed -i 's/ENGINE=MyISAM/ENGINE=InnoDB/g' /var/www/source/piwigo/plugins/OpenIdConnect/maintain.class.php && \
     rm /tmp/*.zip
+
+# Copy our locally hosted and patched OpenIdConnect plugin
+COPY plugins/OpenIdConnect /var/www/source/piwigo/plugins/OpenIdConnect
 
 # Copy our custom lightweight child theme (based on Modus)
 RUN mkdir -p /var/www/source/piwigo/themes/jo-mat-theme

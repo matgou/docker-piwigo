@@ -496,7 +496,7 @@ ul.thumbnails li:hover .thumbLegend {
 }
 
 /* --- Photo Detail View (Picture Page) - Light & Minimal --- */
-body.modus-picture, body[id="thePicturePage"] {
+body.modus-picture, body[id="thePicturePage"], body.section-categories {
   background-color: #f8fafc !important;
   color: #0f172a !important;
 }

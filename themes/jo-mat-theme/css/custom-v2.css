@@ -451,6 +451,115 @@ ul.thumbnails li:hover .thumbLegend {
   color: #ffffff !important;
 }
 
+/* --- Category Page Header & Breadcrumbs --- */
+.titrePage h2, .titrePage h2 a {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+}
+
+.titrePage .browsePath a {
+  color: #2563eb !important;
+  padding: 3px 8px !important;
+  border-radius: 6px !important;
+  transition: background 0.15s ease !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+.titrePage .browsePath a:hover {
+  background: #eff6ff !important;
+  color: #1d4ed8 !important;
+}
+
+/* Clean up legacy Piwigo camera icons in titrePage */
+.titrePage .pwg-icon, .titrePage span[class^="pwg-icon"] {
+  display: none !important;
+}
+
+/* Category Photo Count Badges */
+.titrePage .badge, .titrePage .imageNumber, .categoryCount {
+  background-color: #eff6ff !important;
+  color: #2563eb !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  padding: 4px 10px !important;
+  border-radius: 12px !important;
+  border: 1px solid #dbeafe !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+/* Category Action Buttons (e.g. Rechercher dans ce lot, Diaporama, Calendrier) */
+.categoryActions {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 16px 0 !important;
+  float: right !important;
+}
+
+.categoryActions li {
+  display: inline-block !important;
+  margin: 0 !important;
+}
+
+.titrePage > #albumActionsSwitcher,
+.titrePage > a:not(.categoryActions a):not(#breadcrumb a),
+#content > #cmdSearchInSet,
+#cmdSearchInSet {
+  display: none !important;
+}
+
+.categoryActions .pwg-button-text {
+  display: inline-block !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #334155 !important;
+  margin-left: 4px !important;
+}
+
+.gallery-icon-search-folder::before {
+  content: '🔍' !important;
+  font-size: 13px !important;
+  margin-right: 4px !important;
+}
+
+#content .pwg-button, .categoryActions .pwg-button, a.pwg-button {
+  background-color: #f1f5f9 !important;
+  color: #334155 !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 20px !important;
+  padding: 7px 15px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  text-decoration: none !important;
+}
+
+#content .pwg-button:hover, .categoryActions .pwg-button:hover, a.pwg-button:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* --- Thumbnail Cards Hover Micro-Animations --- */
+.thumbnailCategories li, .thumbnails li {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.thumbnailCategories li:hover, .thumbnails li:hover {
+  transform: translateY(-4px) scale(1.02) !important;
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.12) !important;
+}
+
 /* --- Modern Pagination Bar (.navigationBar) --- */
 .navigationBar {
   display: flex !important;

@@ -753,3 +753,51 @@ input[type="text"]:focus, input[type="password"]:focus {
 #copyright a:hover {
   color: #2563eb !important;
 }
+
+/* --- Mobile Responsive Adjustments (iPhone / Touch Screens) --- */
+@media (max-width: 768px) {
+  body.modus-picture #imageToolBar,
+  body[id="thePicturePage"] #imageToolBar {
+    margin-bottom: 10px !important;
+    justify-content: center !important;
+  }
+
+  body.modus-picture #imageToolBar .navigationButtons,
+  body[id="thePicturePage"] #imageToolBar .navigationButtons {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  body.modus-picture #imageToolBar .pwg-button,
+  body[id="thePicturePage"] #imageToolBar .pwg-button {
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+    gap: 0 !important;
+  }
+
+  #imageToolBar .pwg-button-text {
+    display: none !important;
+  }
+
+  #imageToolBar .pwg-icon {
+    margin: 0 !important;
+    font-size: 18px !important;
+  }
+
+  #imageHeaderBar:has(a[href*="picture.php"]) ~ #content #theMainImage,
+  body:has(#imageHeaderBar a[href*="picture.php"]) #theMainImage {
+    max-height: calc(100vh - 170px) !important;
+    max-width: 95vw !important;
+  }
+}

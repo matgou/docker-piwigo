@@ -10,6 +10,5 @@ $themeconf = array(
   'parent'       => 'modus',
   'load_parent_css' => false,
   'load_parent_local_head' => true,
-  'local_head'   => 'local_head.tpl',
 );
 ?>

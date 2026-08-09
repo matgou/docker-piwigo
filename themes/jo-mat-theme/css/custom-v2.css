@@ -276,7 +276,7 @@ body[id="thePicturePage"] #imageHeaderBar .browsePath a {
   font-weight: 400 !important;
   text-decoration: none !important;
   padding: 0 2px !important;
-  background: transparent !important;
+  background-color: transparent !important;
 }
 
 .titrePage a:hover,
@@ -287,18 +287,21 @@ body[id="thePicturePage"] #imageHeaderBar .browsePath a {
   background: transparent !important;
 }
 
-/* Lightweight Vector House Icon for Home link (Replacing emoji and blue boxes) */
+/* Lightweight Vector House Icon for Home link ONLY (Excluding .categoryActions) */
 body #breadcrumb a[href="/"],
-body #breadcrumb a:first-child,
+body #breadcrumb > h2 > a:first-child,
+body #breadcrumb > a:first-child,
 body .titrePage a[href="/"],
-body .titrePage a:first-child,
+body .titrePage > h2 > a:first-child,
 body .browsePath a[href="/"],
-body .browsePath a:first-child,
+body .browsePath > a:first-child:not(.categoryActions a),
 body #crumbs a[href="/"],
-body #crumbs a:first-child,
+body #crumbs > a:first-child,
 body #imageHeaderBar a[href="/"],
-body #imageHeaderBar .browsePath a:first-child,
-body.modus-picture #imageHeaderBar .browsePath a:first-child,
+body #imageHeaderBar .browsePath a[href="/"],
+body #imageHeaderBar .browsePath > a:first-child,
+body.modus-picture #imageHeaderBar .browsePath a[href="/"],
+body.modus-picture #imageHeaderBar .browsePath > a:first-child,
 body[id="thePicturePage"] #imageHeaderBar .browsePath a:first-child {
   font-size: 0 !important;
   line-height: 0 !important;
@@ -309,11 +312,20 @@ body[id="thePicturePage"] #imageHeaderBar .browsePath a:first-child {
   padding: 0 !important;
   width: 20px !important;
   height: 20px !important;
+  background-color: transparent !important;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234a5568'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E") !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
   background-size: 19px 19px !important;
   vertical-align: middle !important;
+}
+
+#breadcrumb a[href="/"]::before,
+.titrePage a[href="/"]::before,
+.browsePath a[href="/"]::before,
+#crumbs a[href="/"]::before,
+#imageHeaderBar a[href="/"]::before {
+  content: '' !important;
 }
 
 #breadcrumb a[href="/"]::before,
@@ -595,7 +607,19 @@ ul.thumbnails li:hover .thumbLegend {
   vertical-align: middle !important;
 }
 
-/* Category Action Buttons (e.g. Calendar, Grid, List, Edit icons on right) */
+/* --- Harmonized Vector SVG Action Icons (Search & Calendar ONLY) --- */
+
+/* Hide unwanted buttons & legacy icon spans */
+#cmdSlideshow,
+.categoryActions li:has(a[href*="slideshow"]),
+.categoryActions .pwg-button-text,
+.categoryActions .gallery-icon-search-folder,
+.categoryActions span[class*="icon"],
+.categoryActions a::before {
+  display: none !important;
+  content: '' !important;
+}
+
 .categoryActions {
   display: inline-flex !important;
   align-items: center !important;
@@ -613,30 +637,60 @@ ul.thumbnails li:hover .thumbLegend {
   margin: 0 !important;
 }
 
-.categoryActions a,
-.categoryActions .pwg-button,
-#content .pwg-button {
-  background-color: transparent !important;
-  color: #718096 !important;
-  border: none !important;
-  border-radius: 4px !important;
-  padding: 4px 8px !important;
-  font-size: 16px !important;
-  font-weight: 400 !important;
-  box-shadow: none !important;
-  transition: color 0.15s ease, background 0.15s ease !important;
+/* Vector SVG Search Icon Button */
+#cmdSearchInSet a,
+.categoryActions a[href*="search"] {
+  font-size: 0 !important;
+  line-height: 0 !important;
+  color: transparent !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 4px !important;
+  justify-content: center !important;
   text-decoration: none !important;
+  padding: 0 !important;
+  width: 20px !important;
+  height: 20px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234a5568'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 19px 19px !important;
+  border: none !important;
+  border-radius: 4px !important;
+  transition: opacity 0.15s ease !important;
 }
 
-.categoryActions a:hover,
-.categoryActions .pwg-button:hover,
-#content .pwg-button:hover {
-  background-color: #f7fafc !important;
-  color: #2d3748 !important;
+#cmdSearchInSet a:hover,
+.categoryActions a[href*="search"]:hover {
+  opacity: 0.75 !important;
+  background-color: transparent !important;
+}
+
+/* Vector SVG Calendar Icon Button */
+.categoryActions a[href*="created-monthly-list"],
+.categoryActions a[href*="calendar"] {
+  font-size: 0 !important;
+  line-height: 0 !important;
+  color: transparent !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  padding: 0 !important;
+  width: 20px !important;
+  height: 20px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234a5568'%3E%3Cpath d='M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 19px 19px !important;
   border: none !important;
+  border-radius: 4px !important;
+  transition: opacity 0.15s ease !important;
+}
+
+.categoryActions a[href*="created-monthly-list"]:hover,
+.categoryActions a[href*="calendar"]:hover {
+  opacity: 0.75 !important;
+  background-color: transparent !important;
 }
 
 /* --- Thumbnail Cards Hover Micro-Animations --- */
@@ -752,7 +806,7 @@ body[id="thePicturePage"] #imageHeaderBar .browsePath a {
   font-weight: 400 !important;
   padding: 0 2px !important;
   border-radius: 0 !important;
-  background: transparent !important;
+  background-color: transparent !important;
 }
 
 body.modus-picture #imageHeaderBar .browsePath a:hover,

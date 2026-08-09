@@ -26,7 +26,7 @@ html, body {
 #theHeader {
   background: #ffffff !important;
   border-bottom: 1px solid #e2e8f0 !important;
-  padding: 14px 32px !important;
+  padding: 8px 16px !important;
   text-align: left !important;
   box-shadow: none !important;
 }
@@ -49,13 +49,13 @@ html, body {
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
   border-bottom: 1px solid #e2e8f0 !important;
-  padding: 10px 32px !important;
+  padding: 6px 16px !important;
   display: flex !important;
   flex-wrap: wrap !important;
   align-items: center !important;
   justify-content: space-between !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
-  margin: 0 0 28px 0 !important;
+  margin: 0 0 8px 0 !important;
   float: none !important;
   width: auto !important;
 }
@@ -72,12 +72,12 @@ html, body {
 }
 
 #menubar dt, #menubar dt a {
-  font-size: 14px !important;
+  font-size: 13px !important;
   font-weight: 500 !important;
   color: #475569 !important;
   text-decoration: none !important;
-  padding: 7px 16px !important;
-  border-radius: 20px !important;
+  padding: 5px 12px !important;
+  border-radius: 16px !important;
   transition: all 0.2s ease !important;
   text-shadow: none !important;
 }
@@ -124,11 +124,11 @@ html, body {
   background-color: #f1f5f9 !important;
   color: #0f172a !important;
   border: 1px solid transparent !important;
-  border-radius: 24px !important;
-  padding: 10px 20px 10px 42px !important;
-  font-size: 14px !important;
+  border-radius: 20px !important;
+  padding: 7px 16px 7px 36px !important;
+  font-size: 13px !important;
   font-family: inherit !important;
-  width: 360px !important;
+  width: 280px !important;
   max-width: 100% !important;
   outline: none !important;
   transition: all 0.2s ease !important;
@@ -162,9 +162,9 @@ html, body {
 /* --- Content Container --- */
 #content, .content {
   width: 100% !important;
-  max-width: 1400px !important;
+  max-width: 1800px !important;
   margin: 0 auto !important;
-  padding: 0 32px 48px !important;
+  padding: 0 16px 16px !important;
   float: none !important;
   box-sizing: border-box !important;
   background: transparent !important;
@@ -172,14 +172,14 @@ html, body {
 
 /* --- Category Title & Breadcrumbs --- */
 .browsePath, #crumbs {
-  font-size: 14px !important;
+  font-size: 13px !important;
   font-weight: 500 !important;
   color: #64748b !important;
-  margin: 16px 0 16px 0 !important;
+  margin: 4px 0 4px 0 !important;
   display: flex !important;
   align-items: center !important;
   flex-wrap: wrap !important;
-  gap: 6px !important;
+  gap: 4px !important;
 }
 
 .browsePath a, #crumbs a {
@@ -198,15 +198,15 @@ html, body {
 }
 
 .titrePage, h2 {
-  font-size: 28px !important;
+  font-size: 20px !important;
   font-weight: 700 !important;
   color: #0f172a !important;
-  letter-spacing: -0.5px !important;
-  margin: 16px 0 24px 0 !important;
+  letter-spacing: -0.3px !important;
+  margin: 4px 0 8px 0 !important;
   display: flex !important;
   align-items: center !important;
   flex-wrap: wrap !important;
-  gap: 12px !important;
+  gap: 8px !important;
   background: transparent !important;
   border: none !important;
   padding: 0 !important;
@@ -262,10 +262,10 @@ html, body {
 /* --- Album Cards Grid (.albThumbs, .thumbnailCategories) --- */
 ul.albThumbs, ul.thumbnailCategories, #rv-at {
   display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
-  gap: 24px !important;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+  gap: 12px !important;
   padding: 0 !important;
-  margin: 28px 0 !important;
+  margin: 8px 0 !important;
   list-style: none !important;
   width: 100% !important;
   float: none !important;
@@ -285,10 +285,10 @@ ul.albThumbs li, ul.thumbnailCategories li, #rv-at li {
   height: auto !important;
   margin: 0 !important;
   background: #ffffff !important;
-  border-radius: 16px !important;
+  border-radius: 10px !important;
   border: 1px solid #e2e8f0 !important;
   overflow: hidden !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease !important;
 }
 
@@ -308,9 +308,9 @@ ul.albThumbs a, ul.thumbnailCategories a, #rv-at a {
 
 .albImg, .illustration img {
   width: 100% !important;
-  height: 210px !important;
+  height: 180px !important;
   object-fit: cover !important;
-  border-radius: 16px 16px 0 0 !important;
+  border-radius: 10px 10px 0 0 !important;
   transition: transform 0.35s ease !important;
   display: block !important;
   border: none !important;
@@ -326,7 +326,7 @@ ul.albThumbs li:hover .albImg, ul.thumbnailCategories li:hover img {
   bottom: auto !important;
   left: auto !important;
   right: auto !important;
-  padding: 16px 18px !important;
+  padding: 8px 10px !important;
   text-align: left !important;
   background: #ffffff !important;
   color: #1e293b !important;
@@ -335,16 +335,16 @@ ul.albThumbs li:hover .albImg, ul.thumbnailCategories li:hover img {
 }
 
 .albLegend h4, .albLegend h4 a, .thumbnailCategory h3, .thumbnailCategory h3 a {
-  font-size: 16px !important;
+  font-size: 14px !important;
   font-weight: 600 !important;
   color: #0f172a !important;
-  margin: 0 0 4px 0 !important;
+  margin: 0 0 2px 0 !important;
   text-decoration: none !important;
   text-shadow: none !important;
 }
 
 .albLegend div, .thumbnailCategory .text {
-  font-size: 13px !important;
+  font-size: 12px !important;
   color: #64748b !important;
   text-shadow: none !important;
 }
@@ -352,10 +352,10 @@ ul.albThumbs li:hover .albImg, ul.thumbnailCategories li:hover img {
 /* --- Photo Thumbnail Grid (.thumbnails) --- */
 ul.thumbnails {
   display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)) !important;
-  gap: 16px !important;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
+  gap: 6px !important;
   padding: 0 !important;
-  margin: 28px 0 !important;
+  margin: 8px 0 !important;
   list-style: none !important;
   width: 100% !important;
   float: none !important;
@@ -372,20 +372,20 @@ ul.thumbnails li {
   height: auto !important;
   margin: 0 !important;
   background: #f1f5f9 !important;
-  border-radius: 14px !important;
+  border-radius: 4px !important;
   overflow: hidden !important;
   aspect-ratio: 4 / 3 !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: none !important;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
   cursor: pointer !important;
-  border: 1px solid #e2e8f0 !important;
+  border: none !important;
 }
 
 ul.thumbnails li:hover {
-  transform: translateY(-3px) scale(1.01) !important;
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12) !important;
+  transform: scale(1.03) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
   z-index: 10 !important;
-  border-color: #cbd5e1 !important;
+  border-radius: 4px !important;
 }
 
 .thumbnails .wrap1, .thumbnails .wrap2 {
@@ -411,8 +411,8 @@ ul.thumbnails li:hover {
   max-width: 100% !important;
   max-height: 100% !important;
   object-fit: cover !important;
-  border-radius: 14px !important;
-  transition: transform 0.35s ease !important;
+  border-radius: 4px !important;
+  transition: transform 0.25s ease !important;
   display: block !important;
   border: none !important;
   margin: 0 !important;
@@ -428,18 +428,18 @@ ul.thumbnails li:hover img {
   bottom: 0 !important;
   left: 0 !important;
   right: 0 !important;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0) 100%) !important;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0) 100%) !important;
   color: #ffffff !important;
-  padding: 24px 14px 12px !important;
-  font-size: 13px !important;
+  padding: 18px 8px 6px !important;
+  font-size: 11px !important;
   font-weight: 500 !important;
   opacity: 0 !important;
-  transition: opacity 0.25s ease !important;
+  transition: opacity 0.2s ease !important;
   pointer-events: none !important;
-  border-bottom-left-radius: 14px !important;
-  border-bottom-right-radius: 14px !important;
+  border-bottom-left-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
   text-align: left !important;
-  line-height: 1.4 !important;
+  line-height: 1.3 !important;
   text-shadow: none !important;
 }
 
@@ -604,15 +604,15 @@ ul.thumbnails li:hover .thumbLegend {
   border: none !important;
 }
 
-/* --- Photo Detail View (Picture Page) - Light & Minimal --- */
-body.modus-picture, body[id="thePicturePage"], body.section-categories {
-  background-color: #f8fafc !important;
-  color: #0f172a !important;
+/* --- Photo Detail View (Picture Page) - Unified Google Photos Light Theme --- */
+body.modus-picture, body[id="thePicturePage"] {
+  background-color: #ffffff !important;
+  color: #1e293b !important;
 }
 
 body.modus-picture #theHeader, body[id="thePicturePage"] #theHeader {
   background-color: #ffffff !important;
-  border-bottom-color: #e2e8f0 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
 }
 
 body.modus-picture #theHeader a, body[id="thePicturePage"] #theHeader a {
@@ -620,102 +620,328 @@ body.modus-picture #theHeader a, body[id="thePicturePage"] #theHeader a {
 }
 
 body.modus-picture #menubar, body[id="thePicturePage"] #menubar {
-  background: rgba(255, 255, 255, 0.96) !important;
-  border-bottom-color: #e2e8f0 !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
 }
 
 body.modus-picture #menubar dt a, body[id="thePicturePage"] #menubar dt a {
   color: #475569 !important;
 }
 
-/* Picture Layout - Stack vertically for mobile & desktop */
-body.modus-picture #content, body[id="thePicturePage"] #content {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  padding: 0 16px 48px !important;
-  max-width: 1400px !important;
-  margin: 0 auto !important;
-  box-sizing: border-box !important;
-  float: none !important;
-}
-
-/* Top Breadcrumbs and Action Toolbar */
-#imageHeaderBar {
-  width: 100% !important;
-  background: transparent !important;
+/* Picture Canvas & Container Header */
+body.modus-picture #imageHeaderBar,
+body[id="thePicturePage"] #imageHeaderBar {
+  padding: 12px 20px !important;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
   color: #0f172a !important;
-  box-shadow: none !important;
-  border: none !important;
-  padding: 0 !important;
-  margin: 16px 0 24px !important;
-  text-align: center !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  gap: 12px !important;
+  border-radius: 12px !important;
+  margin-bottom: 12px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
 }
 
-#imageHeaderBar h2, .imageNumber {
+body.modus-picture #imageHeaderBar .titrePage,
+body.modus-picture #imageHeaderBar h2,
+body[id="thePicturePage"] #imageHeaderBar .titrePage,
+body[id="thePicturePage"] #imageHeaderBar h2 {
   color: #0f172a !important;
-  font-size: 16px !important;
-  font-weight: 500 !important;
-  margin: 0 !important;
-  text-shadow: none !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.3px !important;
+  margin: 4px 0 0 0 !important;
 }
 
-#imageHeaderBar a {
+body.modus-picture #imageHeaderBar .browsePath,
+body.modus-picture #imageHeaderBar .browsePathSeparator,
+body[id="thePicturePage"] #imageHeaderBar .browsePath,
+body[id="thePicturePage"] #imageHeaderBar .browsePathSeparator {
   color: #64748b !important;
-  text-decoration: none !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
 }
 
-#imageHeaderBar a:hover {
+body.modus-picture #imageHeaderBar .browsePath a,
+body[id="thePicturePage"] #imageHeaderBar .browsePath a {
   color: #2563eb !important;
+  padding: 4px 10px !important;
+  border-radius: 8px !important;
+  transition: background 0.15s ease !important;
+  font-weight: 500 !important;
 }
 
-/* Toolbar Buttons (Play, Download, etc.) */
-#imageToolBar {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  gap: 12px !important;
+body.modus-picture #imageHeaderBar .browsePath a:hover,
+body[id="thePicturePage"] #imageHeaderBar .browsePath a:hover {
+  background: #eff6ff !important;
+  color: #1d4ed8 !important;
+}
+
+body.modus-picture #imageHeaderBar .imageNumber,
+body[id="thePicturePage"] #imageHeaderBar .imageNumber {
+  color: #64748b !important;
+  font-weight: 600 !important;
+}
+
+/* Slideshow Mode Header Customization - Hide Big Card & Style Stop Button */
+#imageHeaderBar:has(a[href*="picture.php"]) {
   background: transparent !important;
-  padding: 0 !important;
   border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin-bottom: 12px !important;
+  text-align: left !important;
+  font-size: 0 !important;
+}
+
+#imageHeaderBar:has(a[href*="picture.php"]) .imageNumber,
+#imageHeaderBar:has(a[href*="picture.php"]) h2,
+#imageHeaderBar:has(a[href*="picture.php"]) .showtitle {
+  display: none !important;
+}
+
+#imageHeaderBar:has(a[href*="picture.php"]) .browsePath {
+  font-size: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#imageHeaderBar:has(a[href*="picture.php"]) a[href*="picture.php"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: #fef2f2 !important;
+  color: #dc2626 !important;
+  border: 1px solid #fecaca !important;
+  border-radius: 20px !important;
+  padding: 8px 18px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 1px 2px rgba(220, 38, 38, 0.08) !important;
+}
+
+#imageHeaderBar:has(a[href*="picture.php"]) a[href*="picture.php"]::before {
+  content: '✕' !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
+
+#imageHeaderBar:has(a[href*="picture.php"]) a[href*="picture.php"]:hover {
+  background: #fee2e2 !important;
+  color: #b91c1c !important;
+  border-color: #fca5a5 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Image Toolbar & Action Buttons */
+body.modus-picture #imageToolBar,
+body[id="thePicturePage"] #imageToolBar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
   margin-bottom: 24px !important;
 }
 
-#imageToolBar a, .imageToolBar a {
-  background: #ffffff !important;
-  color: #475569 !important;
+#imageToolBar .navigationButtons {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+body.modus-picture #imageToolBar .pwg-button,
+body[id="thePicturePage"] #imageToolBar .pwg-button {
+  background-color: #f1f5f9 !important;
+  color: #334155 !important;
   border: 1px solid #e2e8f0 !important;
-  width: 44px !important;
-  height: 44px !important;
-  border-radius: 50% !important;
+  border-radius: 20px !important;
+  padding: 8px 16px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.2s ease !important;
   display: inline-flex !important;
   align-items: center !important;
-  justify-content: center !important;
-  transition: all 0.2s ease !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+  gap: 6px !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  width: auto !important;
+  height: auto !important;
 }
 
-#imageToolBar a:hover {
-  background: #f1f5f9 !important;
+.pwg-icon {
+  text-indent: 0 !important;
+  overflow: visible !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+}
+
+.pwg-icon::before {
+  text-indent: 0 !important;
+  display: inline-block !important;
+  line-height: 1 !important;
+}
+
+#imageToolBar .pwg-button-text {
+  display: inline-block !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #334155 !important;
+  margin-left: 6px !important;
+  vertical-align: middle !important;
+}
+
+#imageToolBar .pwg-button:hover .pwg-button-text {
+  color: #0f172a !important;
+}
+
+/* Slideshow & Toolbar Icon Definitions */
+.pwg-icon-clock-minus::before {
+  content: '−' !important;
+  font-weight: bold !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  color: #2563eb !important;
+}
+
+.pwg-icon-clock-plus::before {
+  content: '+' !important;
+  font-weight: bold !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  color: #2563eb !important;
+}
+
+.pwg-icon-repeat-stop::before {
+  content: '↳' !important;
+  font-weight: bold !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+  color: #2563eb !important;
+}
+
+.pwg-icon-repeat-play::before, .pwg-icon-repeat::before {
+  content: '↻' !important;
+  font-weight: bold !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+  color: #2563eb !important;
+}
+
+.pwg-icon-play::before {
+  content: '▶' !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+  color: #2563eb !important;
+}
+
+.pwg-icon-pause::before {
+  content: '❚❚' !important;
+  font-size: 12px !important;
+  letter-spacing: -2px !important;
+  line-height: 1 !important;
+  color: #2563eb !important;
+}
+
+body.modus-picture #imageToolBar .pwg-button:hover,
+body[id="thePicturePage"] #imageToolBar .pwg-button:hover {
+  background-color: #e2e8f0 !important;
   color: #0f172a !important;
   border-color: #cbd5e1 !important;
-  transform: translateY(-2px) !important;
+  transform: translateY(-1px) !important;
 }
 
-/* Image Canvas */
-#theImage, #theImage img, .imageTable img {
-  max-width: 100% !important;
-  max-height: 75vh !important;
+body.modus-picture #imageToolBar .pwg-state-disabled,
+body[id="thePicturePage"] #imageToolBar .pwg-state-disabled {
+  opacity: 0.45 !important;
+  cursor: not-allowed !important;
+}
+
+/* Derivative Sizes Popover & SwitchBox */
+body.modus-picture .switchBox,
+body[id="thePicturePage"] .switchBox {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #1e293b !important;
+  border-radius: 14px !important;
+  box-shadow: 0 12px 28px -5px rgba(0, 0, 0, 0.12) !important;
+  padding: 16px 20px !important;
+  z-index: 1000 !important;
+}
+
+body.modus-picture .switchBox .switchBoxTitle,
+body[id="thePicturePage"] .switchBox .switchBoxTitle {
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  color: #0f172a !important;
+  margin-bottom: 12px !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  padding-bottom: 8px !important;
+}
+
+body.modus-picture .switchBox a,
+body[id="thePicturePage"] .switchBox a {
+  color: #475569 !important;
+  font-size: 13px !important;
+  padding: 5px 10px !important;
+  border-radius: 6px !important;
+  display: inline-block !important;
+  text-decoration: none !important;
+  transition: all 0.15s ease !important;
+}
+
+body.modus-picture .switchBox a:hover,
+body[id="thePicturePage"] .switchBox a:hover {
+  color: #2563eb !important;
+  background: #eff6ff !important;
+}
+
+body.modus-picture .switchCheck,
+body[id="thePicturePage"] .switchCheck {
+  color: #2563eb !important;
+  font-weight: bold !important;
+}
+
+/* Photo Main Display - Dynamic Viewport Height Sizing (Zero Scrollbar) */
+#theMainImage, .imageTable img {
+  max-width: 98vw !important;
+  max-height: calc(100vh - 200px) !important;
+  width: auto !important;
+  height: auto !important;
   object-fit: contain !important;
-  border-radius: 12px !important;
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.04) !important;
   margin: 0 auto !important;
   display: block !important;
-  background: #ffffff !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* In slideshow mode: hide footer & optimize height so ZERO scrolling is needed */
+#imageHeaderBar:has(a[href*="picture.php"]) ~ #copyright,
+body:has(#imageHeaderBar a[href*="picture.php"]) #copyright,
+body:has(#imageHeaderBar a[href*="picture.php"]) #footer {
+  display: none !important;
+}
+
+#imageHeaderBar:has(a[href*="picture.php"]) ~ #content #theMainImage,
+body:has(#imageHeaderBar a[href*="picture.php"]) #theMainImage {
+  max-height: calc(100vh - 225px) !important;
+}
+
+.img-loader-derivatives {
+  margin: 0 auto !important;
+}
+
+#theImage {
+  margin: 0 auto 12px auto !important;
+  text-align: center !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
 /* Navigation prev / next floating buttons */
@@ -727,103 +953,143 @@ body.modus-picture #content, body[id="thePicturePage"] #content {
   height: 48px !important;
   border-radius: 50% !important;
   background: rgba(255, 255, 255, 0.9) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  color: transparent !important; /* Hide text */
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  color: #0f172a !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   text-decoration: none !important;
-  transition: all 0.25s ease !important;
-  z-index: 10000 !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  z-index: 9999 !important;
   border: 1px solid #e2e8f0 !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12) !important;
   overflow: hidden !important;
 }
 
-#linkPrev { left: 20px !important; }
-#linkNext { right: 20px !important; }
+#linkPrev {
+  left: 24px !important;
+}
+
+#linkNext {
+  right: 24px !important;
+}
 
 #linkPrev:hover, #linkNext:hover {
   background: #ffffff !important;
   transform: translateY(-50%) scale(1.1) !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18) !important;
+  border-color: #cbd5e1 !important;
 }
 
-/* Clean minimal chevrons for navigation */
-#linkPrev::after {
-  content: "‹" !important;
-  color: #0f172a !important;
-  font-size: 32px !important;
-  position: absolute !important;
-  line-height: 1 !important;
-  font-family: inherit !important;
-  padding-bottom: 4px !important;
-}
-
-#linkNext::after {
-  content: "›" !important;
-  color: #0f172a !important;
-  font-size: 32px !important;
-  position: absolute !important;
-  line-height: 1 !important;
-  font-family: inherit !important;
-  padding-bottom: 4px !important;
-}
-
-/* Hide overlapping thumbnails or extra text inside nav buttons */
-#linkPrev *, #linkNext * {
+/* Hide original raw images and hover boxes inside floating buttons */
+#linkPrev img, #linkNext img,
+#linkPrev .thumbHover, #linkNext .thumbHover {
   display: none !important;
 }
 
-/* Responsive adjustments for nav buttons on mobile */
-@media (max-width: 768px) {
-  #linkPrev, #linkNext {
-    width: 40px !important;
-    height: 40px !important;
-  }
-  #linkPrev { left: 8px !important; }
-  #linkNext { right: 8px !important; }
-  #linkPrev::after, #linkNext::after {
-    font-size: 28px !important;
-  }
-}
-
-/* Photo Metadata Sidebar & Info Card (Stacked below image) */
-#infoBox, #imageInfos, .imageInfoTable {
-  background: #ffffff !important;
-  color: #334155 !important;
-  border-radius: 16px !important;
-  padding: 24px !important;
-  border: 1px solid #e2e8f0 !important;
-  margin: 32px auto 0 !important;
-  width: 100% !important;
-  max-width: 800px !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
-  float: none !important;
+/* Insert clean dark SVG chevron arrows inside floating navigation buttons */
+#linkPrev::after {
+  content: '' !important;
+  width: 22px !important;
+  height: 22px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230f172a' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M15 19l-7-7 7-7' /%3E%3C/svg%3E") !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
   display: block !important;
-  box-sizing: border-box !important;
 }
 
-#infoBox dt, #imageInfos dt {
+#linkNext::after {
+  content: '' !important;
+  width: 22px !important;
+  height: 22px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230f172a' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 5l7 7-7 7' /%3E%3C/svg%3E") !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  display: block !important;
+}
+
+/* Photo Metadata Sidebar & Structured Info Card */
+#imageInfos, .imageInfoTable, #Metadata {
+  background: #f8fafc !important;
+  color: #1e293b !important;
+  border-radius: 16px !important;
+  padding: 24px 28px !important;
+  border: 1px solid #e2e8f0 !important;
+  margin-top: 32px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+.imageInfoTable {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+  gap: 16px 24px !important;
+}
+
+#imageInfos dt, .imageInfo dt {
   color: #64748b !important;
   font-size: 12px !important;
   font-weight: 600 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
-  margin-top: 16px !important;
+  margin-bottom: 4px !important;
 }
 
-#infoBox dt:first-child, #imageInfos dt:first-child {
-  margin-top: 0 !important;
-}
-
-#infoBox dd, #imageInfos dd {
+#imageInfos dd, .imageInfo dd {
   color: #0f172a !important;
   font-size: 14px !important;
-  margin-bottom: 8px !important;
-  margin-left: 0 !important;
   font-weight: 500 !important;
+  margin: 0 !important;
+}
+
+#imageInfos dd a, .imageInfo dd a {
+  color: #2563eb !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+}
+
+#imageInfos dd a:hover, .imageInfo dd a:hover {
+  text-decoration: underline !important;
+}
+
+#Metadata h3 {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  padding-bottom: 8px !important;
+  margin-bottom: 16px !important;
+  grid-column: 1 / -1 !important;
+}
+
+/* Comments Block */
+#comments {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 16px !important;
+  padding: 28px !important;
+  margin-top: 32px !important;
+  color: #1e293b !important;
+}
+
+#comments h3, #comments h4 {
+  color: #0f172a !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  margin: 0 0 16px 0 !important;
+}
+
+#comments textarea, #comments input[type="text"] {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 10px !important;
+  padding: 10px 14px !important;
+  font-size: 14px !important;
+  width: 100 !percent !important;
+  box-sizing: border-box !important;
 }
 
 /* --- Clean Up Form Inputs & Auth Pages --- */
@@ -846,11 +1112,11 @@ input[type="text"]:focus, input[type="password"]:focus {
 /* --- Footer --- */
 #copyright, .footer {
   text-align: center !important;
-  padding: 36px 0 !important;
+  padding: 12px 0 !important;
   color: #94a3b8 !important;
-  font-size: 13px !important;
+  font-size: 12px !important;
   border-top: 1px solid #f1f5f9 !important;
-  margin-top: 48px !important;
+  margin-top: 16px !important;
   background: transparent !important;
 }
 
@@ -865,6 +1131,80 @@ input[type="text"]:focus, input[type="password"]:focus {
 
 /* --- Mobile Responsive Adjustments (iPhone / Touch Screens) --- */
 @media (max-width: 768px) {
+
+  /* Compact menubar on mobile */
+  #menubar {
+    padding: 4px 8px !important;
+    margin: 0 0 4px 0 !important;
+    flex-wrap: wrap !important;
+  }
+
+  #qsearchInput {
+    width: 160px !important;
+    padding: 6px 12px 6px 32px !important;
+    font-size: 12px !important;
+  }
+
+  /* Title & breadcrumbs: stack properly, no overlap */
+  .titrePage, h2 {
+    font-size: 16px !important;
+    margin: 2px 0 4px 0 !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 4px !important;
+  }
+
+  .browsePath, #crumbs {
+    font-size: 12px !important;
+    margin: 2px 0 !important;
+    gap: 2px !important;
+  }
+
+  .browsePath a, #crumbs a {
+    padding: 2px 6px !important;
+    font-size: 12px !important;
+  }
+
+  /* Content: edge-to-edge on mobile */
+  #content, .content {
+    padding: 0 8px 8px !important;
+  }
+
+  /* Albums grid: 2 columns on mobile */
+  ul.albThumbs, ul.thumbnailCategories, #rv-at {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
+    gap: 8px !important;
+    margin: 4px 0 !important;
+  }
+
+  .albImg, .illustration img {
+    height: 140px !important;
+  }
+
+  .albLegend, .thumbnailCategory .description {
+    padding: 6px 8px !important;
+  }
+
+  .albLegend h4, .albLegend h4 a {
+    font-size: 13px !important;
+  }
+
+  /* Thumbnail grid: tighter on mobile */
+  ul.thumbnails {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)) !important;
+    gap: 3px !important;
+    margin: 4px 0 !important;
+  }
+
+  ul.thumbnails li {
+    border-radius: 2px !important;
+  }
+
+  .thumbnails img, .thumbnails .wrap2 img {
+    border-radius: 2px !important;
+  }
+
+  /* Photo page toolbar */
   body.modus-picture #imageToolBar,
   body[id="thePicturePage"] #imageToolBar {
     margin-bottom: 10px !important;
@@ -904,9 +1244,30 @@ input[type="text"]:focus, input[type="password"]:focus {
     font-size: 18px !important;
   }
 
+  /* Photo header compact on mobile */
+  body.modus-picture #imageHeaderBar,
+  body[id="thePicturePage"] #imageHeaderBar {
+    padding: 8px 12px !important;
+    margin-bottom: 8px !important;
+    border-radius: 8px !important;
+  }
+
+  body.modus-picture #imageHeaderBar h2,
+  body[id="thePicturePage"] #imageHeaderBar h2 {
+    font-size: 15px !important;
+  }
+
   #imageHeaderBar:has(a[href*="picture.php"]) ~ #content #theMainImage,
   body:has(#imageHeaderBar a[href*="picture.php"]) #theMainImage {
     max-height: calc(100vh - 170px) !important;
     max-width: 95vw !important;
   }
+
+  /* Footer compact on mobile */
+  #copyright, .footer {
+    padding: 8px 0 !important;
+    margin-top: 8px !important;
+    font-size: 11px !important;
+  }
 }
+

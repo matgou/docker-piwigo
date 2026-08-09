@@ -34,8 +34,6 @@
 {if not empty($head_elements)}{foreach from=$head_elements item=elt}{$elt}
 {/foreach}{/if}
 
-{if !empty($theme.local_head)}{include file=$theme.local_head}{/if}
-
 <meta name="generator" content="Piwigo (aka PWG), see piwigo.org">
 
 {if isset($meta_ref)}

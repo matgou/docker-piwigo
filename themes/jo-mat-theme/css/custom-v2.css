@@ -214,80 +214,123 @@ html, body {
   background: transparent !important;
 }
 
-/* --- Category & Picture Page Breadcrumb Header Bar --- */
-.titrePage,
+/* --- Full-Width Breadcrumb Bar & Toolbar (Prod Style) --- */
+.titrePage {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 10px 0 12px 0 !important;
+  margin: 0 0 16px 0 !important;
+  display: flex !important;
+  flex-direction: row-reverse !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
 body.modus-picture #imageHeaderBar,
 body[id="thePicturePage"] #imageHeaderBar {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 10px !important;
-  padding: 6px 14px !important;       /* Épaisseur réduite / Compact vertical thickness */
-  margin: 6px 0 12px 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 10px 0 12px 0 !important;
+  margin: 0 0 16px 0 !important;
   display: flex !important;
   align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 6px !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+  justify-content: space-between !important;
   width: 100% !important;
   box-sizing: border-box !important;
 }
 
 .titrePage h2,
 #imageHeaderBar h2,
-#imageHeaderBar .titrePage {
-  font-size: 15px !important;
-  font-weight: 600 !important;
-  color: #0f172a !important;
+#imageHeaderBar .titrePage,
+body.modus-picture #imageHeaderBar .browsePath,
+body[id="thePicturePage"] #imageHeaderBar .browsePath {
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  color: #4a5568 !important;
   margin: 0 !important;
   padding: 0 !important;
   display: inline-flex !important;
   align-items: center !important;
   flex-wrap: wrap !important;
-  gap: 4px !important;
+  gap: 6px !important;
   background: transparent !important;
   border: none !important;
-  letter-spacing: -0.2px !important;
+  letter-spacing: -0.3px !important;
 }
 
-.browsePath, #crumbs {
-  font-size: 13px !important;
-  font-weight: 500 !important;
-  color: #64748b !important;
-  margin: 0 !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 4px !important;
-}
-
+/* Breadcrumb Category Links & Title (Same across Categories & Picture View) */
 .titrePage a,
 .browsePath a,
 #crumbs a,
-#imageHeaderBar .browsePath a {
-  color: #2563eb !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
+#imageHeaderBar .browsePath a,
+body.modus-picture #imageHeaderBar .browsePath a,
+body[id="thePicturePage"] #imageHeaderBar .browsePath a {
+  color: #4a5568 !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
   text-decoration: none !important;
-  padding: 3px 8px !important;
-  border-radius: 6px !important;
-  transition: all 0.15s ease !important;
+  padding: 0 2px !important;
+  background: transparent !important;
 }
 
 .titrePage a:hover,
 .browsePath a:hover,
 #crumbs a:hover,
 #imageHeaderBar .browsePath a:hover {
-  background: #eff6ff !important;
-  color: #1d4ed8 !important;
-  text-decoration: none !important;
+  color: #1a202c !important;
+  background: transparent !important;
 }
 
-/* Active / Current Category Title in Breadcrumbs (Black & Bold) */
-.titrePage h2 > a:last-child,
-.titrePage h2 > a:last-of-type,
-.titrePage a.active {
-  color: #0f172a !important;
-  font-weight: 700 !important;
+/* Lightweight Vector House Icon for Home link (Replacing emoji and blue boxes) */
+body #breadcrumb a[href="/"],
+body #breadcrumb a:first-child,
+body .titrePage a[href="/"],
+body .titrePage a:first-child,
+body .browsePath a[href="/"],
+body .browsePath a:first-child,
+body #crumbs a[href="/"],
+body #crumbs a:first-child,
+body #imageHeaderBar a[href="/"],
+body #imageHeaderBar .browsePath a:first-child,
+body.modus-picture #imageHeaderBar .browsePath a:first-child,
+body[id="thePicturePage"] #imageHeaderBar .browsePath a:first-child {
+  font-size: 0 !important;
+  line-height: 0 !important;
+  color: transparent !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  padding: 0 !important;
+  width: 20px !important;
+  height: 20px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234a5568'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 19px 19px !important;
+  vertical-align: middle !important;
+}
+
+#breadcrumb a[href="/"]::before,
+.titrePage a[href="/"]::before,
+.browsePath a[href="/"]::before,
+#crumbs a[href="/"]::before,
+#imageHeaderBar a[href="/"]::before {
+  content: '' !important;
+}
+
+/* Separator slashes / */
+.browsePathSeparator,
+.titrePage .separator {
+  color: #a0aec0 !important;
+  font-size: 18px !important;
+  font-weight: 300 !important;
+  margin: 0 4px !important;
 }
 
 /* Badge count */
@@ -518,23 +561,20 @@ ul.thumbnails li:hover .thumbLegend {
 
 /* --- Category Page Header & Breadcrumbs --- */
 .titrePage h2, .titrePage h2 a {
-  color: #0f172a !important;
-  font-weight: 700 !important;
+  color: #4a5568 !important;
+  font-weight: 400 !important;
   text-decoration: none !important;
 }
 
 .titrePage .browsePath a {
-  color: #2563eb !important;
-  padding: 3px 8px !important;
-  border-radius: 6px !important;
-  transition: background 0.15s ease !important;
-  font-weight: 500 !important;
+  color: #4a5568 !important;
+  font-weight: 400 !important;
   text-decoration: none !important;
 }
 
 .titrePage .browsePath a:hover {
-  background: #eff6ff !important;
-  color: #1d4ed8 !important;
+  color: #1a202c !important;
+  background: transparent !important;
 }
 
 /* Clean up legacy Piwigo camera icons in titrePage */
@@ -555,64 +595,48 @@ ul.thumbnails li:hover .thumbLegend {
   vertical-align: middle !important;
 }
 
-/* Category Action Buttons (e.g. Rechercher dans ce lot, Diaporama, Calendrier) */
+/* Category Action Buttons (e.g. Calendar, Grid, List, Edit icons on right) */
 .categoryActions {
   display: inline-flex !important;
   align-items: center !important;
-  gap: 8px !important;
+  gap: 12px !important;
   list-style: none !important;
   padding: 0 !important;
-  margin: 0 0 16px 0 !important;
+  margin: 0 !important;
   float: right !important;
+  margin-left: auto !important;
 }
 
 .categoryActions li {
-  display: inline-block !important;
+  display: inline-flex !important;
+  align-items: center !important;
   margin: 0 !important;
 }
 
-.titrePage > #albumActionsSwitcher,
-.titrePage > a:not(.categoryActions a):not(#breadcrumb a),
-#content > #cmdSearchInSet,
-#cmdSearchInSet {
-  display: none !important;
-}
-
-.categoryActions .pwg-button-text {
-  display: inline-block !important;
-  font-size: 13px !important;
-  font-weight: 500 !important;
-  color: #334155 !important;
-  margin-left: 4px !important;
-}
-
-.gallery-icon-search-folder::before {
-  content: '🔍' !important;
-  font-size: 13px !important;
-  margin-right: 4px !important;
-}
-
-#content .pwg-button, .categoryActions .pwg-button, a.pwg-button {
-  background-color: #f1f5f9 !important;
-  color: #334155 !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 20px !important;
-  padding: 7px 15px !important;
-  font-size: 13px !important;
-  font-weight: 500 !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
-  transition: all 0.2s ease !important;
+.categoryActions a,
+.categoryActions .pwg-button,
+#content .pwg-button {
+  background-color: transparent !important;
+  color: #718096 !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  box-shadow: none !important;
+  transition: color 0.15s ease, background 0.15s ease !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 6px !important;
+  gap: 4px !important;
   text-decoration: none !important;
 }
 
-#content .pwg-button:hover, .categoryActions .pwg-button:hover, a.pwg-button:hover {
-  background-color: #e2e8f0 !important;
-  color: #0f172a !important;
-  border-color: #cbd5e1 !important;
-  transform: translateY(-1px) !important;
+.categoryActions a:hover,
+.categoryActions .pwg-button:hover,
+#content .pwg-button:hover {
+  background-color: #f7fafc !important;
+  color: #2d3748 !important;
+  border: none !important;
 }
 
 /* --- Thumbnail Cards Hover Micro-Animations --- */
@@ -694,51 +718,56 @@ body.modus-picture #menubar dt a, body[id="thePicturePage"] #menubar dt a {
   color: #475569 !important;
 }
 
-/* Picture Canvas & Container Header - Inherits Compact Breadcrumb Bar */
+/* Picture Canvas & Container Header - Unified with Category Breadcrumb Bar */
 body.modus-picture #imageHeaderBar,
 body[id="thePicturePage"] #imageHeaderBar {
-  padding: 6px 14px !important;       /* Épaisseur réduite / Compact vertical thickness */
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #0f172a !important;
-  border-radius: 10px !important;
-  margin-bottom: 12px !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+  padding: 10px 0 12px 0 !important;
+  background: transparent !important;
+  border: none !important;
+  color: #4a5568 !important;
+  border-radius: 0 !important;
+  margin-bottom: 16px !important;
+  box-shadow: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
 }
 
 body.modus-picture #imageHeaderBar .titrePage,
 body.modus-picture #imageHeaderBar h2,
 body[id="thePicturePage"] #imageHeaderBar .titrePage,
 body[id="thePicturePage"] #imageHeaderBar h2 {
-  color: #0f172a !important;
-  font-size: 15px !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.2px !important;
+  color: #4a5568 !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.3px !important;
   margin: 0 !important;
 }
 
 body.modus-picture #imageHeaderBar .browsePath a,
 body[id="thePicturePage"] #imageHeaderBar .browsePath a {
-  color: #2563eb !important;
-  padding: 3px 8px !important;
-  border-radius: 6px !important;
-  transition: background 0.15s ease !important;
-  font-weight: 500 !important;
+  color: #4a5568 !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  padding: 0 2px !important;
+  border-radius: 0 !important;
+  background: transparent !important;
 }
 
 body.modus-picture #imageHeaderBar .browsePath a:hover,
 body[id="thePicturePage"] #imageHeaderBar .browsePath a:hover {
-  background: #eff6ff !important;
-  color: #1d4ed8 !important;
+  color: #1a202c !important;
+  background: transparent !important;
 }
 
 body.modus-picture #imageHeaderBar .imageNumber,
 body[id="thePicturePage"] #imageHeaderBar .imageNumber {
-  color: #64748b !important;
-  font-weight: 600 !important;
-  background: #ffffff !important;
+  color: #718096 !important;
+  font-weight: 500 !important;
+  background: #f1f5f9 !important;
   border: 1px solid #e2e8f0 !important;
-  border-radius: 14px !important;
+  border-radius: 12px !important;
   padding: 3px 10px !important;
   font-size: 13px !important;
   margin-right: 6px !important;

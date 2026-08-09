@@ -50,7 +50,7 @@
 {/if}
 {/if}
 
-<link rel="stylesheet" type="text/css" href="{$ROOT_URL}themes/jo-mat-theme/css/custom-v2.css?v=16">
+<link rel="stylesheet" type="text/css" href="{$ROOT_URL}themes/jo-mat-theme/css/custom-v2.css?v=23">
 
 </head>
 

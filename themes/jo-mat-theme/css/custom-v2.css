@@ -1278,52 +1278,90 @@ input[type="text"]:focus, input[type="password"]:focus {
 /* --- Mobile Responsive Adjustments (iPhone / Touch Screens) --- */
 @media (max-width: 768px) {
 
-  /* Compact menubar on mobile */
-  #menubar {
-    padding: 4px 8px !important;
-    margin: 0 0 4px 0 !important;
+  /* Top Header Banner on Mobile */
+  #theHeader {
+    padding: 8px 12px !important;
+    min-height: 50px !important;
     flex-wrap: wrap !important;
+    gap: 6px !important;
   }
 
-  #qsearchInput {
-    width: 160px !important;
-    padding: 6px 12px 6px 32px !important;
-    font-size: 12px !important;
-  }
-
-  /* Title & breadcrumbs: stack properly, no overlap */
-  .titrePage, h2 {
+  #theHeader h1, #theHeader h1 a {
     font-size: 16px !important;
-    margin: 2px 0 4px 0 !important;
-    flex-wrap: wrap !important;
-    align-items: center !important;
-    gap: 4px !important;
   }
 
-  .browsePath, #crumbs {
+  .header-user-status {
+    gap: 6px !important;
     font-size: 12px !important;
-    margin: 2px 0 !important;
-    gap: 2px !important;
   }
 
-  .browsePath a, #crumbs a {
+  .header-user-status .user-badge {
     padding: 2px 6px !important;
-    font-size: 12px !important;
+    font-size: 11px !important;
+  }
+
+  .header-user-status .header-btn {
+    padding: 3px 8px !important;
+    font-size: 11px !important;
+  }
+
+  /* Breadcrumb Toolbar & Title Page on Mobile */
+  .titrePage,
+  body.modus-picture #imageHeaderBar,
+  body[id="thePicturePage"] #imageHeaderBar {
+    padding: 6px 0 8px 0 !important;
+    margin: 0 0 10px 0 !important;
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .titrePage h2,
+  #imageHeaderBar h2,
+  .browsePath,
+  #crumbs {
+    font-size: 15px !important;
+  }
+
+  .titrePage a,
+  .browsePath a,
+  #crumbs a,
+  #imageHeaderBar .browsePath a {
+    font-size: 15px !important;
+    padding: 0 1px !important;
+  }
+
+  /* Vector Icons Mobile Size */
+  body #breadcrumb a[href="/"],
+  body #breadcrumb > h2 > a:first-child,
+  body #breadcrumb > a:first-child,
+  body .titrePage a[href="/"],
+  body .titrePage > h2 > a:first-child,
+  body .browsePath a[href="/"],
+  body .browsePath > a:first-child:not(.categoryActions a),
+  body #crumbs a[href="/"],
+  body #crumbs > a:first-child,
+  body #imageHeaderBar a[href="/"],
+  body #imageHeaderBar .browsePath a[href="/"],
+  body #imageHeaderBar .browsePath > a:first-child,
+  #cmdSearchInSet a,
+  .categoryActions a[href*="search"],
+  .categoryActions a[href*="created-monthly-list"],
+  .categoryActions a[href*="calendar"] {
+    width: 18px !important;
+    height: 18px !important;
+    background-size: 17px 17px !important;
   }
 
   /* Content: edge-to-edge on mobile */
   #content, .content {
-    padding: 0 8px 8px !important;
+    padding: 0 10px 12px !important;
   }
 
   /* Albums grid: 2 columns on mobile */
   ul.albThumbs, ul.thumbnailCategories, #rv-at {
-    gap: 8px !important;
-    margin: 4px 0 !important;
+    gap: 12px !important;
+    margin: 8px 0 !important;
     grid-template-columns: repeat(2, 1fr) !important;
-  }
-
-  .albImg, .illustration img {
   }
 
   .albLegend, .thumbnailCategory .description {
@@ -1336,12 +1374,12 @@ input[type="text"]:focus, input[type="password"]:focus {
 
   /* Thumbnail grid: tighter on mobile */
   ul.thumbnails {
-    gap: 3px !important;
-    margin: 4px 0 !important;
+    gap: 4px !important;
+    margin: 8px 0 !important;
   }
 
   ul.thumbnails li {
-    border-radius: 2px !important;
+    border-radius: 4px !important;
   }
 
   .thumbnails img, .thumbnails .wrap2 img {

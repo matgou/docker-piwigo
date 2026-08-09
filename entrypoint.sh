@@ -44,6 +44,8 @@ define('DB_COLLATE', '');
 \$conf['show_template_in_side_menu'] = true;
 \$conf['ws_enable_log'] = false;
 
+\$conf['nb_image_page'] = 6;
+
 // Cloud Run Performance Optimization: Use RAM for small cache files
 \$conf['template_cache_dir'] = '/tmp/piwigo/templates_c';
 \$conf['combined_dir'] = '/tmp/piwigo/combined';

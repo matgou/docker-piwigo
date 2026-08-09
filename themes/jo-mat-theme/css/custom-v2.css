@@ -262,34 +262,28 @@ html, body {
 /* --- Album Cards Grid (.albThumbs, .thumbnailCategories) --- */
 ul.albThumbs, ul.thumbnailCategories, #rv-at {
   display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
-  gap: 12px !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 24px !important;
   padding: 0 !important;
-  margin: 8px 0 !important;
+  margin: 16px 0 !important;
   list-style: none !important;
   width: 100% !important;
-  float: none !important;
   position: relative !important;
-  height: auto !important;
 }
 
 ul.albThumbs li, ul.thumbnailCategories li, #rv-at li {
   position: relative !important;
-  top: auto !important;
-  left: auto !important;
-  right: auto !important;
-  bottom: auto !important;
-  float: none !important;
   display: block !important;
-  width: 100% !important;
-  height: auto !important;
   margin: 0 !important;
   background: #ffffff !important;
-  border-radius: 10px !important;
+  border-radius: 12px !important;
   border: 1px solid #e2e8f0 !important;
   overflow: hidden !important;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease !important;
+  width: 100% !important;
+  height: auto !important;
+  max-width: none !important;
 }
 
 ul.albThumbs li:hover, ul.thumbnailCategories li:hover, #rv-at li:hover {
@@ -308,8 +302,6 @@ ul.albThumbs a, ul.thumbnailCategories a, #rv-at a {
 
 .albImg, .illustration img {
   width: 100% !important;
-  height: 180px !important;
-  object-fit: cover !important;
   border-radius: 10px 10px 0 0 !important;
   transition: transform 0.35s ease !important;
   display: block !important;
@@ -351,30 +343,20 @@ ul.albThumbs li:hover .albImg, ul.thumbnailCategories li:hover img {
 
 /* --- Photo Thumbnail Grid (.thumbnails) --- */
 ul.thumbnails {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
   gap: 6px !important;
   padding: 0 !important;
   margin: 8px 0 !important;
   list-style: none !important;
   width: 100% !important;
-  float: none !important;
-  clear: both !important;
 }
 
 ul.thumbnails li {
   position: relative !important;
-  top: auto !important;
-  left: auto !important;
   display: block !important;
-  float: none !important;
-  width: 100% !important;
-  height: auto !important;
   margin: 0 !important;
   background: #f1f5f9 !important;
   border-radius: 4px !important;
   overflow: hidden !important;
-  aspect-ratio: 4 / 3 !important;
   box-shadow: none !important;
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
   cursor: pointer !important;
@@ -406,11 +388,8 @@ ul.thumbnails li:hover {
 }
 
 .thumbnails img, .thumbnails .wrap2 img {
-  width: 100% !important;
-  height: 100% !important;
   max-width: 100% !important;
   max-height: 100% !important;
-  object-fit: cover !important;
   border-radius: 4px !important;
   transition: transform 0.25s ease !important;
   display: block !important;
@@ -1172,13 +1151,12 @@ input[type="text"]:focus, input[type="password"]:focus {
 
   /* Albums grid: 2 columns on mobile */
   ul.albThumbs, ul.thumbnailCategories, #rv-at {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
     gap: 8px !important;
     margin: 4px 0 !important;
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 
   .albImg, .illustration img {
-    height: 140px !important;
   }
 
   .albLegend, .thumbnailCategory .description {
@@ -1191,7 +1169,6 @@ input[type="text"]:focus, input[type="password"]:focus {
 
   /* Thumbnail grid: tighter on mobile */
   ul.thumbnails {
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)) !important;
     gap: 3px !important;
     margin: 4px 0 !important;
   }

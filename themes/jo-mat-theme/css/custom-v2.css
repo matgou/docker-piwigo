@@ -1,14 +1,21 @@
-/* ==========================================================================
-   Google Photos Inspired Modern Minimal Theme (Jo-Mat Theme for Piwigo)
-   ========================================================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* --- Design System & Parametric Variables --- */
+:root {
+  --jomat-header-bg: #68b99e;        /* Couleur du bandeau vert Prod */
+  --jomat-header-text: #ffffff;      /* Couleur du texte du header */
+  --jomat-primary: #68b99e;          /* Couleur primaire vert menthe */
+  --jomat-primary-hover: #56a88d;    /* Survol couleur primaire */
+  --jomat-title-color: #68b99e;      /* Titres d'albums vert menthe Prod */
+  --jomat-subtitle-color: #718096;   /* Métadonnées / sous-titres en gris */
+  --jomat-bg: #ffffff;              /* Fond principal blanc */
+  --jomat-text: #1e293b;            /* Texte principal */
+  --jomat-thumb-radius: 4px;        /* Arrondi des vignettes */
+}
 
 /* --- Global Reset & Page Foundation --- */
 html, body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
-  background-color: #ffffff !important;
-  color: #1e293b !important;
+  background-color: var(--jomat-bg) !important;
+  color: var(--jomat-text) !important;
   margin: 0 !important;
   padding: 0 !important;
   -webkit-font-smoothing: antialiased;
@@ -16,48 +23,85 @@ html, body {
 }
 
 #the_page {
-  background-color: #ffffff !important;
+  background-color: var(--jomat-bg) !important;
   min-height: 100vh !important;
   box-shadow: none !important;
   border: none !important;
 }
 
-/* --- Top Header & Admin Bar (#theHeader) --- */
+/* --- Top Header & Admin Bar (#theHeader) - Green Prod Theme --- */
 #theHeader {
-  background: #ffffff !important;
-  border-bottom: 1px solid #e2e8f0 !important;
-  padding: 8px 16px !important;
-  text-align: left !important;
-  box-shadow: none !important;
+  background: var(--jomat-header-bg) !important;
+  color: var(--jomat-header-text) !important;
+  padding: 10px 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border-bottom: none !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
-#theHeader a, #theHeader div.banner a {
-  color: #0f172a !important;
-  font-weight: 700 !important;
-  font-size: 22px !important;
+#theHeader .header-main-bar {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+#theHeader a, #theHeader div.banner a, #theHeader .gallery-title {
+  color: var(--jomat-header-text) !important;
+  font-weight: 500 !important;
+  font-size: 21px !important;
   text-decoration: none !important;
-  letter-spacing: -0.5px !important;
+  letter-spacing: -0.3px !important;
   text-shadow: none !important;
 }
 
-/* --- Top Navigation Header Bar (#menubar) --- */
-#menubar {
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 10000 !important;
-  background: rgba(255, 255, 255, 0.96) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border-bottom: 1px solid #e2e8f0 !important;
-  padding: 6px 16px !important;
+#theHeader a:hover, #theHeader div.banner a:hover, #theHeader .gallery-title:hover {
+  color: var(--jomat-header-text) !important;
+  opacity: 0.95 !important;
+  text-decoration: none !important;
+}
+
+/* User status & options inside Top Green Header (identical on ALL pages) */
+#theHeader .header-user-status {
   display: flex !important;
-  flex-wrap: wrap !important;
   align-items: center !important;
-  justify-content: space-between !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
-  margin: 0 0 8px 0 !important;
-  float: none !important;
-  width: auto !important;
+  gap: 8px !important;
+  color: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+#theHeader .header-user-welcome {
+  color: rgba(255, 255, 255, 0.92) !important;
+  font-size: 13px !important;
+  margin-right: 4px !important;
+}
+
+#theHeader .header-user-link {
+  color: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  padding: 4px 10px !important;
+  border-radius: 6px !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+  transition: all 0.15s ease !important;
+  white-space: nowrap !important;
+}
+
+#theHeader .header-user-link:hover {
+  background: rgba(255, 255, 255, 0.32) !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+/* Hide legacy redundant #menubar to ensure 100% unified layout on Category & Photo pages */
+#menubar {
+  display: none !important;
 }
 
 #menubar dl {
@@ -170,52 +214,80 @@ html, body {
   background: transparent !important;
 }
 
-/* --- Category Title & Breadcrumbs --- */
+/* --- Category & Picture Page Breadcrumb Header Bar --- */
+.titrePage,
+body.modus-picture #imageHeaderBar,
+body[id="thePicturePage"] #imageHeaderBar {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  padding: 6px 14px !important;       /* Épaisseur réduite / Compact vertical thickness */
+  margin: 6px 0 12px 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.titrePage h2,
+#imageHeaderBar h2,
+#imageHeaderBar .titrePage {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #0f172a !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 4px !important;
+  background: transparent !important;
+  border: none !important;
+  letter-spacing: -0.2px !important;
+}
+
 .browsePath, #crumbs {
   font-size: 13px !important;
   font-weight: 500 !important;
   color: #64748b !important;
-  margin: 4px 0 4px 0 !important;
-  display: flex !important;
+  margin: 0 !important;
+  display: inline-flex !important;
   align-items: center !important;
   flex-wrap: wrap !important;
   gap: 4px !important;
 }
 
-.browsePath a, #crumbs a {
+.titrePage a,
+.browsePath a,
+#crumbs a,
+#imageHeaderBar .browsePath a {
   color: #2563eb !important;
-  text-decoration: none !important;
-  padding: 4px 10px !important;
-  border-radius: 8px !important;
-  transition: background 0.15s ease !important;
+  font-size: 14px !important;
   font-weight: 500 !important;
+  text-decoration: none !important;
+  padding: 3px 8px !important;
+  border-radius: 6px !important;
+  transition: all 0.15s ease !important;
 }
 
-.browsePath a:hover, #crumbs a:hover {
+.titrePage a:hover,
+.browsePath a:hover,
+#crumbs a:hover,
+#imageHeaderBar .browsePath a:hover {
   background: #eff6ff !important;
   color: #1d4ed8 !important;
   text-decoration: none !important;
 }
 
-.titrePage, h2 {
-  font-size: 20px !important;
+/* Active / Current Category Title in Breadcrumbs (Black & Bold) */
+.titrePage h2 > a:last-child,
+.titrePage h2 > a:last-of-type,
+.titrePage a.active {
+  color: #0f172a !important;
   font-weight: 700 !important;
-  color: #0f172a !important;
-  letter-spacing: -0.3px !important;
-  margin: 4px 0 8px 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 8px !important;
-  background: transparent !important;
-  border: none !important;
-  padding: 0 !important;
-  text-shadow: none !important;
-}
-
-.titrePage a {
-  color: #0f172a !important;
-  text-decoration: none !important;
 }
 
 /* Badge count */
@@ -259,13 +331,13 @@ html, body {
   text-decoration: none !important;
 }
 
-/* --- Album Cards Grid (.albThumbs, .thumbnailCategories) --- */
+/* --- Album Cards Grid (.albThumbs, .thumbnailCategories) - Prod Mint Green Theme --- */
 ul.albThumbs, ul.thumbnailCategories, #rv-at {
   display: grid !important;
   grid-template-columns: repeat(4, 1fr) !important;
-  gap: 24px !important;
+  gap: 28px 24px !important;
   padding: 0 !important;
-  margin: 16px 0 !important;
+  margin: 20px 0 !important;
   list-style: none !important;
   width: 100% !important;
   position: relative !important;
@@ -275,21 +347,21 @@ ul.albThumbs li, ul.thumbnailCategories li, #rv-at li {
   position: relative !important;
   display: block !important;
   margin: 0 !important;
-  background: #ffffff !important;
-  border-radius: 12px !important;
-  border: 1px solid #e2e8f0 !important;
-  overflow: hidden !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  border: none !important;
+  overflow: visible !important;
+  box-shadow: none !important;
+  transition: transform 0.25s ease !important;
   width: 100% !important;
   height: auto !important;
   max-width: none !important;
 }
 
 ul.albThumbs li:hover, ul.thumbnailCategories li:hover, #rv-at li:hover {
-  transform: translateY(-4px) !important;
-  box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
-  border-color: #cbd5e1 !important;
+  transform: translateY(-3px) !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 ul.albThumbs a, ul.thumbnailCategories a, #rv-at a {
@@ -302,14 +374,17 @@ ul.albThumbs a, ul.thumbnailCategories a, #rv-at a {
 
 .albImg, .illustration img {
   width: 100% !important;
-  border-radius: 10px 10px 0 0 !important;
-  transition: transform 0.35s ease !important;
+  height: auto !important;
+  border-radius: 4px !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
   display: block !important;
   border: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
 }
 
 ul.albThumbs li:hover .albImg, ul.thumbnailCategories li:hover img {
-  transform: scale(1.04) !important;
+  transform: scale(1.02) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1) !important;
 }
 
 .albLegend, .thumbnailCategory .description {
@@ -318,27 +393,38 @@ ul.albThumbs li:hover .albImg, ul.thumbnailCategories li:hover img {
   bottom: auto !important;
   left: auto !important;
   right: auto !important;
-  padding: 8px 10px !important;
-  text-align: left !important;
-  background: #ffffff !important;
+  padding: 12px 4px 4px 4px !important;
+  text-align: center !important;
+  background: transparent !important;
   color: #1e293b !important;
   text-shadow: none !important;
   box-shadow: none !important;
+  border: none !important;
 }
 
 .albLegend h4, .albLegend h4 a, .thumbnailCategory h3, .thumbnailCategory h3 a {
-  font-size: 14px !important;
-  font-weight: 600 !important;
-  color: #0f172a !important;
-  margin: 0 0 2px 0 !important;
+  font-size: 19px !important;
+  font-weight: 500 !important;
+  color: #68b99e !important;
+  margin: 6px 0 3px 0 !important;
+  text-align: center !important;
   text-decoration: none !important;
   text-shadow: none !important;
+  transition: color 0.2s ease !important;
 }
 
-.albLegend div, .thumbnailCategory .text {
-  font-size: 12px !important;
-  color: #64748b !important;
+.albLegend h4 a:hover, .thumbnailCategory h3 a:hover {
+  color: #56a88d !important;
+  text-decoration: none !important;
+}
+
+.albLegend div, .thumbnailCategory .text, .albLegend .description, .albLegend p {
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: #718096 !important;
+  text-align: center !important;
   text-shadow: none !important;
+  margin: 0 !important;
 }
 
 /* --- Photo Thumbnail Grid (.thumbnails) --- */
@@ -590,12 +676,13 @@ body.modus-picture, body[id="thePicturePage"] {
 }
 
 body.modus-picture #theHeader, body[id="thePicturePage"] #theHeader {
-  background-color: #ffffff !important;
-  border-bottom: 1px solid #e2e8f0 !important;
+  background-color: var(--jomat-header-bg) !important;
+  color: var(--jomat-header-text) !important;
+  border-bottom: none !important;
 }
 
 body.modus-picture #theHeader a, body[id="thePicturePage"] #theHeader a {
-  color: #0f172a !important;
+  color: var(--jomat-header-text) !important;
 }
 
 body.modus-picture #menubar, body[id="thePicturePage"] #menubar {
@@ -607,16 +694,16 @@ body.modus-picture #menubar dt a, body[id="thePicturePage"] #menubar dt a {
   color: #475569 !important;
 }
 
-/* Picture Canvas & Container Header */
+/* Picture Canvas & Container Header - Inherits Compact Breadcrumb Bar */
 body.modus-picture #imageHeaderBar,
 body[id="thePicturePage"] #imageHeaderBar {
-  padding: 12px 20px !important;
+  padding: 6px 14px !important;       /* Épaisseur réduite / Compact vertical thickness */
   background: #f8fafc !important;
   border: 1px solid #e2e8f0 !important;
   color: #0f172a !important;
-  border-radius: 12px !important;
+  border-radius: 10px !important;
   margin-bottom: 12px !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
 }
 
 body.modus-picture #imageHeaderBar .titrePage,
@@ -624,26 +711,17 @@ body.modus-picture #imageHeaderBar h2,
 body[id="thePicturePage"] #imageHeaderBar .titrePage,
 body[id="thePicturePage"] #imageHeaderBar h2 {
   color: #0f172a !important;
-  font-size: 20px !important;
-  font-weight: 700 !important;
-  letter-spacing: -0.3px !important;
-  margin: 4px 0 0 0 !important;
-}
-
-body.modus-picture #imageHeaderBar .browsePath,
-body.modus-picture #imageHeaderBar .browsePathSeparator,
-body[id="thePicturePage"] #imageHeaderBar .browsePath,
-body[id="thePicturePage"] #imageHeaderBar .browsePathSeparator {
-  color: #64748b !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.2px !important;
+  margin: 0 !important;
 }
 
 body.modus-picture #imageHeaderBar .browsePath a,
 body[id="thePicturePage"] #imageHeaderBar .browsePath a {
   color: #2563eb !important;
-  padding: 4px 10px !important;
-  border-radius: 8px !important;
+  padding: 3px 8px !important;
+  border-radius: 6px !important;
   transition: background 0.15s ease !important;
   font-weight: 500 !important;
 }
@@ -658,6 +736,12 @@ body.modus-picture #imageHeaderBar .imageNumber,
 body[id="thePicturePage"] #imageHeaderBar .imageNumber {
   color: #64748b !important;
   font-weight: 600 !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 14px !important;
+  padding: 3px 10px !important;
+  font-size: 13px !important;
+  margin-right: 6px !important;
 }
 
 /* Slideshow Mode Header Customization - Hide Big Card & Style Stop Button */

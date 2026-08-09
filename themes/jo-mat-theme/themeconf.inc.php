@@ -5,6 +5,8 @@ Version: 1.0.0
 Description: Lightweight custom theme based on Modus.
 */
 
+include_once(dirname(__FILE__).'/functions.inc.php');
+
 $themeconf = array(
   'name'         => 'Jo-Mat Theme',
   'parent'       => 'modus',

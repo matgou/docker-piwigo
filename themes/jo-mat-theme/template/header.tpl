@@ -50,11 +50,11 @@
 {/if}
 {/if}
 
-<link rel="stylesheet" type="text/css" href="{$ROOT_URL}themes/jo-mat-theme/css/custom-v2.css?v=12">
+<link rel="stylesheet" type="text/css" href="{$ROOT_URL}themes/jo-mat-theme/css/custom-v2.css?v=16">
 
 </head>
 
-<body id={$BODY_ID} class="{foreach from=$BODY_CLASSES item=class}{$class} {/foreach}{if !empty($PAGE_BANNER) && $MODUS_DISPLAY_PAGE_BANNER} modus-withPageBanner{/if}" data-infos='{$BODY_DATA}'>
+<body id={$BODY_ID} class="{foreach from=$BODY_CLASSES item=class}{$class} {/foreach}modus-withPageBanner" data-infos='{$BODY_DATA}'>
 {if not empty($header_msgs) or not empty($header_notes)}
 <div class="header_msgs">
 {if not empty($header_msgs)}
@@ -69,4 +69,18 @@
 {/if}
 </div>
 {/if}
-{if !empty($PAGE_BANNER) && $MODUS_DISPLAY_PAGE_BANNER}<div id="theHeader">{$PAGE_BANNER}</div>{/if}
+<div id="theHeader">
+  <div class="header-main-bar">
+    <a href="{$ROOT_URL}" class="gallery-title">{if !empty($GALLERY_TITLE)}{$GALLERY_TITLE}{else}Photos de Johanna et Mathieu{/if}</a>
+    <div class="header-user-status">
+      {if isset($JOMAT_IS_LOGGED_IN) && $JOMAT_IS_LOGGED_IN}
+        <span class="header-user-welcome">Bonjour <strong>{$JOMAT_USERNAME}</strong> !</span>
+        <a href="{$JOMAT_U_PROFILE}" class="header-user-link">Profil</a>
+        {if !empty($JOMAT_IS_ADMIN)}<a href="{$JOMAT_U_ADMIN}" class="header-user-link">Admin</a>{/if}
+        <a href="{$JOMAT_U_LOGOUT}" class="header-user-link">Déconnexion</a>
+      {else}
+        <a href="{$JOMAT_U_LOGIN}" class="header-user-link">Connexion</a>
+      {/if}
+    </div>
+  </div>
+</div>

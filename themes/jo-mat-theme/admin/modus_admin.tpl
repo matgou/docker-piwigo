@@ -181,6 +181,36 @@ jQuery(document).ready(function() {
   </label>
 </fieldset>
 
+<fieldset><legend>{'Affichage des boutons et éléments'|translate}</legend>
+  <p style="margin-bottom: 12px; color: #64748b;">{'Cochez les éléments que vous souhaitez afficher sur la galerie :'|translate}</p>
+
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    <label>
+      <span class="graphicalCheckbox icon-check{if not $DISPLAY_SEARCH}-empty{/if}"></span>
+      <input type="checkbox" name="display_search"{if $DISPLAY_SEARCH} checked="checked"{/if}>
+      <b>{'Recherche (barre de recherche & bouton de recherche dans le lot)'|translate}</b>
+    </label>
+
+    <label>
+      <span class="graphicalCheckbox icon-check{if not $DISPLAY_CALENDAR}-empty{/if}"></span>
+      <input type="checkbox" name="display_calendar"{if $DISPLAY_CALENDAR} checked="checked"{/if}>
+      <b>{'Bouton Calendrier'|translate}</b>
+    </label>
+
+    <label>
+      <span class="graphicalCheckbox icon-check{if not $DISPLAY_SLIDESHOW}-empty{/if}"></span>
+      <input type="checkbox" name="display_slideshow"{if $DISPLAY_SLIDESHOW} checked="checked"{/if}>
+      <b>{'Bouton Diaporama'|translate}</b>
+    </label>
+
+    <label>
+      <span class="graphicalCheckbox icon-check{if not $DISPLAY_BREADCRUMB}-empty{/if}"></span>
+      <input type="checkbox" name="display_breadcrumb"{if $DISPLAY_BREADCRUMB} checked="checked"{/if}>
+      <b>{'Fil d\'Ariane (Breadcrumb)'|translate}</b>
+    </label>
+  </div>
+</fieldset>
+
 
 {*
 <fieldset><legend>Full row thumbnail layout</legend>

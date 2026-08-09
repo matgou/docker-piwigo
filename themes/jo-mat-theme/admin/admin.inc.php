@@ -14,7 +14,7 @@ if (!function_exists('modus_get_default_config') && file_exists(PHPWG_ROOT_PATH.
 }
 include_once(PHPWG_ROOT_PATH.'admin/include/tabsheet.class.php');
 
-$default_conf = modus_get_default_config();
+$default_conf = function_exists('jomat_get_default_config') ? jomat_get_default_config() : modus_get_default_config();
 
 load_language('theme.lang', dirname(__FILE__).'/../');
 
@@ -28,13 +28,16 @@ elseif (!is_array($my_conf))
 }
 
 $text_values = array('skin', 'album_thumb_size', 'index_photo_deriv','index_photo_deriv_hdpi');
-$bool_values = array('display_page_banner');
+$bool_values = array('display_page_banner', 'display_search', 'display_calendar', 'display_breadcrumb', 'display_slideshow');
 
 // *************** POST management ********************
-if (isset($_POST[$text_values[0]]))
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	foreach ($text_values as $k )
-		$my_conf[$k] = stripslashes($_POST[$k]);
+	{
+		if (isset($_POST[$k]))
+			$my_conf[$k] = stripslashes($_POST[$k]);
+	}
 	foreach ($bool_values as $k )
 		$my_conf[$k] = isset($_POST[$k]) ? true:false;
   
@@ -94,9 +97,9 @@ $tabsheet->assign();
 // *************** template init ********************
 
 foreach ($text_values as $k )
-  $template->assign( strtoupper($k), $my_conf[$k] );
+  $template->assign( strtoupper($k), isset($my_conf[$k]) ? $my_conf[$k] : '' );
 foreach ($bool_values as $k )
-  $template->assign( strtoupper($k), $my_conf[$k] );
+  $template->assign( strtoupper($k), !empty($my_conf[$k]) );
 
 // we don't use square thumbs if the thumb size is 0
 $template->assign('use_album_square_thumbs', 0 != $my_conf['album_thumb_size']);
@@ -113,6 +116,10 @@ foreach(array_keys(ImageStdParams::get_defined_type_map()) as $type)
 $available_skins=array();
 $skin_dir = dirname(dirname(__FILE__)).'/skins/';
 $skin_suffix = '.inc.php';
+if (!is_dir($skin_dir) || count(glob($skin_dir.'*'.$skin_suffix)) == 0)
+{
+	$skin_dir = PHPWG_ROOT_PATH.'themes/modus/skins/';
+}
 foreach( glob($skin_dir.'*'.$skin_suffix) as $file)
 {
 	$skin = substr($file, strlen($skin_dir), -strlen($skin_suffix));

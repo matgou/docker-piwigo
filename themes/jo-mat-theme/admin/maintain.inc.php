@@ -13,7 +13,7 @@ function theme_activate($id, $version, &$errors)
   {
     include_once(PHPWG_ROOT_PATH.'themes/modus/functions.inc.php');
   }
-  $default_conf = modus_get_default_config();
+  $default_conf = function_exists('jomat_get_default_config') ? jomat_get_default_config() : modus_get_default_config();
 
   $my_conf = @$conf['modus_theme'];
   $my_conf = @unserialize($my_conf);

@@ -52,6 +52,8 @@
 {/if}
 {/if}
 
+<link rel="stylesheet" type="text/css" href="{$ROOT_URL}themes/jo-mat-theme/css/custom-v2.css?v=12">
+
 </head>
 
 <body id={$BODY_ID} class="{foreach from=$BODY_CLASSES item=class}{$class} {/foreach}{if !empty($PAGE_BANNER) && $MODUS_DISPLAY_PAGE_BANNER} modus-withPageBanner{/if}" data-infos='{$BODY_DATA}'>

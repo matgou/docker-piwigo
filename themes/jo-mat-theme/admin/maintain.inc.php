@@ -4,7 +4,15 @@ function theme_activate($id, $version, &$errors)
 {
   global $conf;
 
-  include_once( dirname(dirname(__FILE__)).'/functions.inc.php');
+  $functions_file = dirname(dirname(__FILE__)).'/functions.inc.php';
+  if (file_exists($functions_file))
+  {
+    include_once($functions_file);
+  }
+  if (!function_exists('modus_get_default_config') && file_exists(PHPWG_ROOT_PATH.'themes/modus/functions.inc.php'))
+  {
+    include_once(PHPWG_ROOT_PATH.'themes/modus/functions.inc.php');
+  }
   $default_conf = modus_get_default_config();
 
   $my_conf = @$conf['modus_theme'];

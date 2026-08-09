@@ -3,7 +3,15 @@ if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 
 global $template;
 
-include_once( dirname(dirname(__FILE__)).'/functions.inc.php');
+$functions_file = dirname(dirname(__FILE__)).'/functions.inc.php';
+if (file_exists($functions_file))
+{
+  include_once($functions_file);
+}
+if (!function_exists('modus_get_default_config') && file_exists(PHPWG_ROOT_PATH.'themes/modus/functions.inc.php'))
+{
+  include_once(PHPWG_ROOT_PATH.'themes/modus/functions.inc.php');
+}
 include_once(PHPWG_ROOT_PATH.'admin/include/tabsheet.class.php');
 
 $default_conf = modus_get_default_config();
@@ -70,13 +78,14 @@ else
   $page['tab'] = $tabs[0]['code'];
 }
 
+$theme_id = isset($_GET['theme']) ? $_GET['theme'] : 'jo-mat-theme';
 $tabsheet = new tabsheet();
 foreach ($tabs as $tab)
 {
   $tabsheet->add(
     $tab['code'],
     $tab['label'],
-    'admin.php?page=theme&amp;theme=modus'
+    'admin.php?page=theme&amp;theme=' . $theme_id
     );
 }
 $tabsheet->select($page['tab']);
